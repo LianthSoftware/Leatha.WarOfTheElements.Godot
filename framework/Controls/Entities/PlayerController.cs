@@ -158,16 +158,17 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             //if (!changed)
             //    return;
 
-            if (changed/* || heartbeat*/)
+            if (changed /* || heartbeat */)
             {
-                GD.Print($"[{DateTime.Now:HH:mm:ss.ffff}]: Sending input: Input = { JsonSerializer.Serialize(input)}");
+                GD.Print(
+                    $"[{DateTime.Now:HH:mm:ss.ffff}]: Sending input: Seq={input.Sequence} " +
+                    $"F={input.Forward:0.000} R={input.Right:0.000} Up={input.Up:0.000} " +
+                    $"Sprint={input.IsSprinting} Fly={input.IsFlying} Yaw={input.Yaw:0.000} Pitch={input.Pitch:0.000}");
 
-                _pendingInputs.Add(input); // for prediction (used during reconciliation)
+                _pendingInputs.Add(input);
                 _ = SendInputAsync(input);
-
-                _lastSentInput = input;
                 ++_sequence;
-                //_lastSentTime = Time.GetUnixTimeFromSystem();
+                _lastSentInput = input;
             }
 
             // =========== 5) Camera rotation (visual only) ===========
@@ -259,8 +260,10 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             _predYaw = input.Yaw;
             _predPitch = input.Pitch;
 
+            //GD.Print($"[{DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally: ");
+
             //GD.Print($"[{ DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally (1): Sequence = {_sequence} | LastProcessed = { s.LastProcessedInputSeq}");
-            //GD.Print($"[{ DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally (2): Yaw = { _predYaw } | Pitch = { _predPitch } | PredPos = { _predPos} | CurrentPos = { GlobalPosition } | StatePos = { new Vector3(s.X, s.Y, s.Z) }");
+            GD.Print($"[{ DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally (2): Yaw = { _predYaw } | Pitch = { _predPitch } | PredPos = { _predPos} | CurrentPos = { GlobalPosition } | StatePos = { new Vector3(s.X, s.Y, s.Z) }");
         }
 
         private void UpdateCameraMode()
