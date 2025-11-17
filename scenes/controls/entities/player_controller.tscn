@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1numewvxc4u"]
+
+[ext_resource type="Script" uid="uid://cmq4pn4bmp2no" path="res://framework/Controls/Entities/PlayerController.cs" id="1_ncqbw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2f3xh"]
+
+[node name="PlayerController" type="CharacterBody3D"]
+script = ExtResource("1_ncqbw")
+CameraPivotPath = NodePath("CameraPivot")
+CameraPath = NodePath("CameraPivot/Camera3D")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2f3xh")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]

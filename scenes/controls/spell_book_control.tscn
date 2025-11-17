@@ -1,0 +1,712 @@
+[gd_scene load_steps=19 format=3 uid="uid://cbvs7yb4wuttk"]
+
+[ext_resource type="Script" uid="uid://vqv52fgoale1" path="res://framework/Controls/SpellBook/SpellBookControl.cs" id="1_arc42"]
+[ext_resource type="Texture2D" uid="uid://6ax74jartc2w" path="res://resources/line_fade_texture_1d.tres" id="1_n25m1"]
+[ext_resource type="PackedScene" uid="uid://dcy3mg3hnxim0" path="res://scenes/controls/spell_book_item_control.tscn" id="2_aaxq5"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="2_cmexo"]
+[ext_resource type="Texture2D" uid="uid://j1febwsgvjfq" path="res://resources/textures/talent_border_001.png" id="4_0ywho"]
+[ext_resource type="Texture2D" uid="uid://rytx47o1d4n5" path="res://resources/textures/spell_frost_frost.jpg" id="4_dfkw4"]
+[ext_resource type="Shader" uid="uid://cnv76mjxxqija" path="res://resources/shaders/circular_shape_shader.gdshader" id="5_tf6ee"]
+[ext_resource type="Script" uid="uid://bt1xho8t4030h" path="res://framework/Controls/SpellBook/SpellDetailControl.cs" id="8_wom4v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aaxq5"]
+font_size = 25
+font_color = Color(1, 0.827451, 0.356863, 1)
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wom4v"]
+bg_color = Color(0.117647, 0.0980392, 0.054902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_ddtee"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_wom4v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmexo"]
+shader = ExtResource("5_tf6ee")
+shader_parameter/radius = 0.5
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/grayscale = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arc42"]
+bg_color = Color(0.0781564, 0.0781565, 0.0781564, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_wom4v"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmexo"]
+font_size = 10
+font_color = Color(0.960784, 0.870588, 0.701961, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wom4v"]
+shader = ExtResource("5_tf6ee")
+shader_parameter/radius = 0.5
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/grayscale = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_arc42"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ddtee"]
+font_size = 14
+font_color = Color(0.752582, 0.752582, 0.752582, 1)
+
+[node name="SpellBookControl" type="VBoxContainer" node_paths=PackedStringArray("ItemContainer", "SpellDetailControl")]
+anchors_preset = -1
+anchor_right = 0.767
+anchor_bottom = 0.799
+offset_right = 0.415955
+offset_bottom = 0.247986
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_arc42")
+ItemControlScene = ExtResource("2_aaxq5")
+ItemContainer = NodePath("ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer")
+SpellDetailControl = NodePath("ContentContainer/HBoxContainer/SpellDetailContainer")
+
+[node name="HeaderContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="HeaderContainer"]
+layout_mode = 2
+text = "SPELL BOOK"
+label_settings = SubResource("LabelSettings_aaxq5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeparatorLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 70, 902, 70)
+width = 2.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("1_n25m1")
+texture_mode = 2
+
+[node name="ContentContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContentContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ddtee")
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="ItemContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer" instance=ExtResource("2_aaxq5")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="NinePatchRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_cmexo")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_0ywho")
+expand_mode = 1
+
+[node name="TalentImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_cmexo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dfkw4")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer/BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_arc42")
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer/BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_wom4v")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Bolt"
+
+[node name="Label2" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer2/MarginContainer/HorizontalContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits.
+"
+label_settings = SubResource("LabelSettings_cmexo")
+autowrap_mode = 3
+
+[node name="PanelContainer3" type="NinePatchRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer"]
+modulate = Color(1, 1, 1, 0.313726)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_cmexo")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_0ywho")
+expand_mode = 1
+
+[node name="TalentImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_cmexo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dfkw4")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer/BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_arc42")
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer/BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_wom4v")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Bolt"
+
+[node name="Label2" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer3/MarginContainer/HorizontalContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits.
+"
+label_settings = SubResource("LabelSettings_cmexo")
+autowrap_mode = 3
+
+[node name="PanelContainer4" type="NinePatchRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer"]
+modulate = Color(1, 1, 1, 0.313726)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_cmexo")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_0ywho")
+expand_mode = 1
+
+[node name="TalentImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_cmexo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dfkw4")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer/BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_arc42")
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer/BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_wom4v")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Bolt"
+
+[node name="Label2" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer4/MarginContainer/HorizontalContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits.
+"
+label_settings = SubResource("LabelSettings_cmexo")
+autowrap_mode = 3
+
+[node name="PanelContainer5" type="NinePatchRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer"]
+modulate = Color(1, 1, 1, 0.313726)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_cmexo")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_0ywho")
+expand_mode = 1
+
+[node name="TalentImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_cmexo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dfkw4")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer/BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_arc42")
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer/BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_wom4v")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Bolt"
+
+[node name="Label2" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer5/MarginContainer/HorizontalContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits.
+"
+label_settings = SubResource("LabelSettings_cmexo")
+autowrap_mode = 3
+
+[node name="PanelContainer6" type="NinePatchRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer"]
+modulate = Color(1, 1, 1, 0.313726)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_cmexo")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_0ywho")
+expand_mode = 1
+
+[node name="TalentImage" type="TextureRect" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_cmexo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dfkw4")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer/BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_arc42")
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer/BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_wom4v")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Bolt"
+
+[node name="Label2" type="Label" parent="ContentContainer/HBoxContainer/ScrollContainer/MarginContainer/ItemContainer/PanelContainer6/MarginContainer/HorizontalContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits.
+"
+label_settings = SubResource("LabelSettings_cmexo")
+autowrap_mode = 3
+
+[node name="SpellDetailContainer" type="NinePatchRect" parent="ContentContainer/HBoxContainer" node_paths=PackedStringArray("SpellImage", "SpellNameLabel", "SpellDescriptionLabel", "SpellDetailsLabel")]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_cmexo")
+region_rect = Rect2(8, 8, 184, 184)
+script = ExtResource("8_wom4v")
+SpellImage = NodePath("MarginContainer/VBoxContainer/HBoxContainer/BorderImage/SpellImage")
+SpellNameLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SpellName")
+SpellDescriptionLabel = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/Description")
+SpellDetailsLabel = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/SpellDetails")
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SpellImage" type="TextureRect" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_dfkw4")
+
+[node name="BorderImage" type="TextureRect" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_0ywho")
+expand_mode = 1
+
+[node name="SpellImage" type="TextureRect" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/HBoxContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_wom4v")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_dfkw4")
+expand_mode = 1
+
+[node name="SpellName" type="Label" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "WATER BOLT"
+label_settings = SubResource("LabelSettings_arc42")
+
+[node name="SeparatorLine" type="Line2D" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer"]
+points = PackedVector2Array(-25, 70, 390, 70)
+width = 2.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("1_n25m1")
+texture_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Description" type="RichTextLabel" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "[font_size=14][p][color=c0c0c0]Hurls a water bolt to your direction. Deals 50 damage sto the target it hits.[/color][/p][/font_size]"
+fit_content = true
+
+[node name="Label" type="Label" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits."
+label_settings = SubResource("LabelSettings_ddtee")
+autowrap_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="SpellDetails" type="RichTextLabel" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 10
+bbcode_enabled = true
+text = "[font_size=14][p][color=wheat]Rank:[/color]   1[/p]
+[p][color=wheat]Cost:[/color]   100  [color=dodgerblue][font_size=12](Water Chacra)[/font_size][/color][/p]
+[p][color=wheat]Cast Time:[/color]   3  [font_size=12]seconds[/font_size][/p]
+[p][color=wheat]Duration:[/color]   3  [font_size=12]seconds[/font_size][/p][/font_size]"
+fit_content = true
+
+[node name="SeparatorLine" type="Line2D" parent="ContentContainer/HBoxContainer/SpellDetailContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+points = PackedVector2Array(-25, 55, 390, 55)
+width = 2.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("1_n25m1")
+texture_mode = 2

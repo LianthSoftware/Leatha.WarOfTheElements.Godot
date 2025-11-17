@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3q788pbug2nq"]
+
+[ext_resource type="Script" uid="uid://pw4jgeiomgx4" path="res://framework/UI/menu/LoadingControl.cs" id="1_qjft7"]
+[ext_resource type="PackedScene" uid="uid://cdlbfpl1435u5" path="res://scenes/test_3d_scene.tscn" id="2_qjft7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjft7"]
+font_size = 50
+
+[node name="LoadingControl" type="Control" node_paths=PackedStringArray("LoadingLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qjft7")
+MainMenuScene = ExtResource("2_qjft7")
+GameScene = ExtResource("2_qjft7")
+LoadingLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING"
+label_settings = SubResource("LabelSettings_qjft7")
+horizontal_alignment = 1
+vertical_alignment = 1

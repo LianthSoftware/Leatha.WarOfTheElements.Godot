@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://6ax74jartc2w"]
+
+[ext_resource type="Gradient" uid="uid://b1m77dv21n8ei" path="res://resources/line_fade.tres" id="1_q3qfg"]
+
+[resource]
+gradient = ExtResource("1_q3qfg")

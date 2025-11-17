@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://cdlbfpl1435u5"]
+
+[ext_resource type="Script" uid="uid://crnht1wv482op" path="res://framework/Controls/ExpandableCanvasLayer.cs" id="1_ahwgs"]
+[ext_resource type="Script" uid="uid://dm2nrviftgoac" path="res://framework/Controls/Maps/MapControl.cs" id="1_poeqp"]
+[ext_resource type="PackedScene" uid="uid://xpndu4rn3asq" path="res://scenes/controls/talents/talents_control.tscn" id="1_q0ah8"]
+[ext_resource type="PackedScene" uid="uid://bo8f56umf4cyh" path="res://scenes/ui/player_spellbar_control.tscn" id="3_vyv7f"]
+[ext_resource type="Script" uid="uid://bh24qrl4gbiqd" path="res://framework/Controls/Spells/HellfireControl.cs" id="4_umvoe"]
+[ext_resource type="Texture2D" uid="uid://bsjf0uatcppqi" path="res://resources/textures/spells/spell_fire_hellfire_visual_003.png" id="5_umvoe"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vyv7f"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_5ud02"]
+sky_material = SubResource("ProceduralSkyMaterial_vyv7f")
+
+[sub_resource type="Environment" id="Environment_umvoe"]
+background_mode = 2
+sky = SubResource("Sky_5ud02")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_muyy3"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyv7f"]
+albedo_color = Color(0.523781, 0.523781, 0.523781, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mko12"]
+top_radius = 2.0
+bottom_radius = 2.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vom7u"]
+albedo_color = Color(0.509804, 0.603922, 1, 1)
+
+[node name="TestScene3D" type="Node3D"]
+script = ExtResource("1_poeqp")
+MapId = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_umvoe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_muyy3")
+surface_material_override/0 = SubResource("StandardMaterial3D_vyv7f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("1_ahwgs")
+
+[node name="TalentsControl" parent="CanvasLayer" instance=ExtResource("1_q0ah8")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PlayerSpellBarControl" parent="." instance=ExtResource("3_vyv7f")]
+visible = false
+
+[node name="Hellfire" type="Node3D" parent="."]
+visible = false
+script = ExtResource("4_umvoe")
+
+[node name="Decal" type="Decal" parent="Hellfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126346, 0)
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("5_umvoe")
+modulate = Color(1, 0.521569, 0.34902, 1)
+
+[node name="CharacterHolder" type="Node3D" parent="."]
+
+[node name="Pillar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+mesh = SubResource("CylinderMesh_mko12")
+surface_material_override/0 = SubResource("StandardMaterial3D_vom7u")

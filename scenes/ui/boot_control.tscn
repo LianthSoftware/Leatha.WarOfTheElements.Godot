@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://daqq88178gf1t"]
+
+[ext_resource type="Script" uid="uid://ye0dx05g5bk0" path="res://framework/UI/menu/BootControl.cs" id="1_u30b7"]
+[ext_resource type="PackedScene" uid="uid://c3q788pbug2nq" path="res://scenes/ui/loading_control.tscn" id="2_t8yug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t8yug"]
+font_size = 50
+
+[node name="BootControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u30b7")
+LoginScene = ExtResource("2_t8yug")
+LoadingScene = ExtResource("2_t8yug")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BOOT"
+label_settings = SubResource("LabelSettings_t8yug")
+horizontal_alignment = 1
+vertical_alignment = 1

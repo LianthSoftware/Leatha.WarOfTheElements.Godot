@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bij01n05kad2e"]
+
+[ext_resource type="Texture2D" uid="uid://6ax74jartc2w" path="res://resources/line_fade_texture_1d.tres" id="1_bwyx0"]
+
+[node name="Line2D" type="Line2D"]
+points = PackedVector2Array(422, 41, 310, 108)
+width = 2.0
+default_color = Color(1, 1, 0.478431, 0.572549)
+texture = ExtResource("1_bwyx0")
+texture_mode = 2

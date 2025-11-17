@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://butm0osnkx7rg"]
+
+[ext_resource type="Script" uid="uid://c6x5gp7uhieqj" path="res://framework/Controls/Talents/TalentItemControl.cs" id="1_0au1t"]
+[ext_resource type="Texture2D" uid="uid://j1febwsgvjfq" path="res://resources/textures/talent_border_001.png" id="2_lrswu"]
+[ext_resource type="Shader" uid="uid://cnv76mjxxqija" path="res://resources/shaders/circular_shape_shader.gdshader" id="3_3j8fl"]
+[ext_resource type="Texture2D" uid="uid://rytx47o1d4n5" path="res://resources/textures/spell_frost_frost.jpg" id="4_6px0w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5fi0"]
+shader = ExtResource("3_3j8fl")
+shader_parameter/radius = 0.5
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/grayscale = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_0au1t"]
+font_size = 25
+font_color = Color(0.333333, 0.290196, 0.219608, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0au1t"]
+bg_color = Color(0.0781564, 0.0781565, 0.0781564, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_lrswu"]
+font_size = 10
+
+[node name="Talent001" type="Control" node_paths=PackedStringArray("TalentImage")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_0au1t")
+TalentImage = NodePath("BorderImage/TalentImage")
+
+[node name="BorderImage" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+texture = ExtResource("2_lrswu")
+expand_mode = 1
+
+[node name="TalentImage" type="TextureRect" parent="BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_p5fi0")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6px0w")
+expand_mode = 1
+
+[node name="HiddenTalentLabel" type="Label" parent="BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_0au1t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0au1t")
+
+[node name="Label" type="Label" parent="BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_lrswu")
+horizontal_alignment = 1

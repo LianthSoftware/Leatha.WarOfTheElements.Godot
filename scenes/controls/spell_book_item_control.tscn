@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcy3mg3hnxim0"]
+
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="1_xbcoc"]
+[ext_resource type="Script" uid="uid://ig2tphsfaj65" path="res://framework/Controls/SpellBook/SpellBookItemControl.cs" id="2_22les"]
+[ext_resource type="Texture2D" uid="uid://j1febwsgvjfq" path="res://resources/textures/talent_border_001.png" id="2_55xvx"]
+[ext_resource type="Shader" uid="uid://cnv76mjxxqija" path="res://resources/shaders/circular_shape_shader.gdshader" id="3_22les"]
+[ext_resource type="Texture2D" uid="uid://rytx47o1d4n5" path="res://resources/textures/spell_frost_frost.jpg" id="4_ubjv3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmexo"]
+shader = ExtResource("3_22les")
+shader_parameter/radius = 0.5
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/grayscale = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arc42"]
+bg_color = Color(0.0781564, 0.0781565, 0.0781564, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_wom4v"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmexo"]
+font_size = 10
+font_color = Color(0.960784, 0.870588, 0.701961, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="NinePatchRect" node_paths=PackedStringArray("SpellImage", "SpellNameLabel", "SpellDescriptionLabel")]
+modulate = Color(1, 1, 1, 0.313726)
+custom_minimum_size = Vector2(380, 100)
+size_flags_horizontal = 3
+mouse_filter = 0
+texture = ExtResource("1_xbcoc")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+script = ExtResource("2_22les")
+SpellImage = NodePath("MarginContainer/HorizontalContainer/BorderImage/SpellImage")
+SpellNameLabel = NodePath("MarginContainer/HorizontalContainer/VBoxContainer/SpellName")
+SpellDescriptionLabel = NodePath("MarginContainer/HorizontalContainer/VBoxContainer/SpellDescription")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_55xvx")
+expand_mode = 1
+
+[node name="SpellImage" type="TextureRect" parent="MarginContainer/HorizontalContainer/BorderImage"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_cmexo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ubjv3")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HorizontalContainer/BorderImage"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_arc42")
+
+[node name="Label" type="Label" parent="MarginContainer/HorizontalContainer/BorderImage/PanelContainer"]
+layout_mode = 2
+text = "0 / 1"
+label_settings = SubResource("LabelSettings_wom4v")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpellName" type="Label" parent="MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Water Bolt"
+
+[node name="SpellDescription" type="Label" parent="MarginContainer/HorizontalContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Hurls a water bolt to your direction. Deals 50 damage to the target it hits.
+"
+label_settings = SubResource("LabelSettings_cmexo")
+autowrap_mode = 3

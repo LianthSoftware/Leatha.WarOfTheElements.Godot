@@ -1,0 +1,21 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.4.0">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="framework\Controls\NewFolder\**" />
+    <EmbeddedResource Remove="framework\Controls\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Leatha.WarOfTheElements.Common">
+      <HintPath>lib/Leatha.WarOfTheElements.Common/Leatha.WarOfTheElements.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
