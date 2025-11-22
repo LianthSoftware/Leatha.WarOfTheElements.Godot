@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using Leatha.WarOfTheElements.Common.Communication.Transfer.Enums;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Objects
 {
@@ -15,5 +17,43 @@ namespace Leatha.WarOfTheElements.Godot.framework.Objects
         //public static readonly Color IncreasedStatsColor = Color.FromHtml("#6fe77a");
         //public static readonly Color ReducedStatsColor = Color.FromHtml("#ff4c4b");
         //public static readonly Color NormalStatsColor = Colors.White;
+
+        public static Color GetColorForElement(ElementTypes elementType)
+        {
+            switch (elementType)
+            {
+                case ElementTypes.Fire:
+                    return FireElementColor;
+                case ElementTypes.Water:
+                    return WaterElementColor;
+                case ElementTypes.Air:
+                    return WindElementColor;
+                case ElementTypes.Nature:
+                    return EarthElementColor;
+                case ElementTypes.Lightning:
+                    return LightningElementColor;
+                default:
+                    return Colors.White;
+            }
+        }
+
+        public static string GetElementIconPath(ElementTypes elementType)
+        {
+            switch (elementType)
+            {
+                case ElementTypes.Fire:
+                    return "res://resources/textures/icon_fire.png";
+                case ElementTypes.Water:
+                    return "res://resources/textures/icon_water.png";
+                case ElementTypes.Air:
+                    return "res://resources/textures/icon_wind.png";
+                case ElementTypes.Nature:
+                    return "res://resources/textures/icon_ground.png";
+                case ElementTypes.Lightning:
+                    return "res://resources/textures/icon_lightning.png";
+                default:
+                    return String.Empty;
+            }
+        }
     }
 }

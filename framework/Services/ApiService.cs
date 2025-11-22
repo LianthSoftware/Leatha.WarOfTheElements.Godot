@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Godot;
@@ -24,7 +25,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
 
 
-        //Task<List<SpellTemplateObject>> GetSpellTemplatesAsync();
+        Task<List<SpellInfoObject>> GetSpellTemplatesAsync();
+
+        Task<List<MapInfoObject>> GetSMapTemplatesAsync();
     }
 
     public sealed partial class ApiService : Node, IApiService
@@ -85,7 +88,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             {
                 var request = new RefreshTokenRequest
                 {
-                    PlayerId = GetPlayerId(),
+                    AccountId = GetAccountId(),
                     RefreshToken = GetRefreshToken(),
                 };
 
@@ -133,15 +136,15 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
             // #TODO: Encrypt files.
 
-            GD.Print($"AuthenticateUserAsync - PlayerId = {response.PlayerId}");
+            GD.Print($"AuthenticateUserAsync - AccountId = {response.AccountId}");
 
-            SetPlayerId(response.PlayerId.ToString());
+            SetAccountId(response.AccountId.ToString());
             SetAccessToken(response.AccessToken);
             SetRefreshToken(response.RefreshToken);
 
             GD.Print(json);
 
-            return response.PlayerId;
+            return response.AccountId;
             //}
             //catch (Exception ex)
             //{
@@ -156,7 +159,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                 // Call API to logout.
                 var request = new LogoutRequest
                 {
-                    PlayerId = GetPlayerId(),
+                    AccountId = GetAccountId(),
                     RefreshToken = GetRefreshToken()
                 };
 
@@ -174,6 +177,34 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             catch (Exception ex)
             {
                 GD.PrintErr(ex);
+            }
+        }
+
+        public async Task<List<SpellInfoObject>> GetSpellTemplatesAsync()
+        {
+            try
+            {
+                var response = await _serverClient.ApiGameDataTemplatesSpellTemplateAsync();
+                return response.ToList();
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr(ex);
+                return [];
+            }
+        }
+
+        public async Task<List<MapInfoObject>> GetSMapTemplatesAsync()
+        {
+            try
+            {
+                var response = await _serverClient.ApiGameDataTemplatesMapTemplateAsync();
+                return response.ToList();
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr(ex);
+                return [];
             }
         }
 

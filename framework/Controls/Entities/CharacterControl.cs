@@ -1,5 +1,6 @@
 using Godot;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
+using Leatha.WarOfTheElements.Godot.framework.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +12,15 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 {
     public abstract partial class CharacterControl : CharacterBody3D
     {
-        public abstract void ApplyServerState(PlayerStateObject state); // #TODO: CharacterStateObject instead!
+        public ICharacterStateObject LastState { get; private set; }
+
+        public void ApplyServerState(ICharacterStateObject state)
+        {
+            OnApplyServerState(state);
+            LastState = state;
+        }
+
+        protected abstract void OnApplyServerState(ICharacterStateObject state);
 
         //public 
 

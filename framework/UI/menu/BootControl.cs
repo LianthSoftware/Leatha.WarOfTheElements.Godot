@@ -29,7 +29,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
             if (accessTokenValidationResponse is { IsTokenValid: true })
             {
                 //ObjectAccessor.SessionService.SetCurrentServer(1, "TEST Server"); // #TODO
-                ObjectAccessor.SessionService.PlayerId = accessTokenValidationResponse.PlayerId;
+                ObjectAccessor.SessionService.AccountId = accessTokenValidationResponse.AccountId;
                 scene = LoadingScene;
             }
 

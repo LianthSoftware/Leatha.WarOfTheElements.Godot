@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Leatha.WarOfTheElements.Common.Communication.Transfer;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Maps
@@ -9,11 +10,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Maps
         [Export]
         public int MapId { get; set; }
 
+        public MapInfoObject MapInfo { get; private set; }
+
         public override void _Ready()
         {
             base._Ready();
 
-            PlayerEnterWorld();
+            //PlayerEnterWorld();
+        }
+
+        public void SetMapInfo(MapInfoObject mapInfo)
+        {
+            MapInfo = mapInfo;
         }
 
         private async void PlayerEnterWorld()
@@ -28,7 +36,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Maps
                 return;
             }
 
-            GD.Print($"Player \"{ result.Data.PlayerId }\" entered the world!");
+            GD.Print($"Player \"{result.Data.WorldObjectId.ObjectId}\" entered the world!");
 
             ObjectAccessor.CharacterService.ApplySnapshot(result.Data);
         }

@@ -68,11 +68,36 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             }
         }
 
+        public static ITemplateService TemplateService
+        {
+            get => _templateService;
+            set
+            {
+                if (_templateService != null)
+                    return;
+
+                _templateService = value;
+            }
+        }
+        
+        public static MainThreadDispatcher MainThreadDispatcher
+        {
+            get => _mainThreadDispatcher;
+            set
+            {
+                if (_mainThreadDispatcher != null)
+                    return;
+
+                _mainThreadDispatcher = value;
+            }
+        }
 
         private static IApiService _apiService;
         private static IGameHubService _gameHubService;
         private static ISessionService _sessionService;
         private static IPlayerInputService _playerInputService;
         private static ICharacterService _characterService;
+        private static ITemplateService _templateService;
+        private static MainThreadDispatcher _mainThreadDispatcher;
     }
 }

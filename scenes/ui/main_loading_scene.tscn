@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkx58g2sckux7"]
+
+[ext_resource type="Script" uid="uid://crnht1wv482op" path="res://framework/Controls/ExpandableCanvasLayer.cs" id="1_w65q5"]
+[ext_resource type="PackedScene" uid="uid://c3q788pbug2nq" path="res://scenes/ui/loading_control.tscn" id="2_oexmv"]
+[ext_resource type="PackedScene" uid="uid://ced8qflhxlh3a" path="res://scenes/ui/character_selection_scene.tscn" id="3_oexmv"]
+
+[node name="MainLoadingScene" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_w65q5")
+
+[node name="LoadingControl" parent="CanvasLayer" instance=ExtResource("2_oexmv")]
+CharacterSelectionScene = ExtResource("3_oexmv")

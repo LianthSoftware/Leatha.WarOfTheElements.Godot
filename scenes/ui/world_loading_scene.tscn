@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://davycob8rlvce"]
+
+[ext_resource type="Script" uid="uid://crnht1wv482op" path="res://framework/Controls/ExpandableCanvasLayer.cs" id="1_aiudt"]
+[ext_resource type="Script" uid="uid://b14i67dj3gqi5" path="res://framework/UI/menu/WorldLoadingControl.cs" id="2_ho6o7"]
+[ext_resource type="Texture2D" uid="uid://dkob4a66ch1jx" path="res://resources/textures/loading_screen_001.png" id="3_geka1"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="4_3lgv6"]
+[ext_resource type="Texture2D" uid="uid://csa8lj8g5taxg" path="res://resources/textures/progress_bar_fill_blood_001.png" id="5_1bvje"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fad3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftyk4"]
+font_size = 12
+
+[node name="WorldLoadingScene" type="Node3D" node_paths=PackedStringArray("LoadingBar", "LoadingText")]
+script = ExtResource("2_ho6o7")
+LoadingBar = NodePath("CanvasLayer/LoadingControl/MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer/LoadingBar")
+LoadingText = NodePath("CanvasLayer/LoadingControl/MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer/LoadingText")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_aiudt")
+
+[node name="LoadingControl" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LoadingControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_geka1")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/LoadingControl"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 25
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LoadingControl/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7fad3")
+
+[node name="LoadingBarControl" type="NinePatchRect" parent="CanvasLayer/LoadingControl/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_3lgv6")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_top = 10
+patch_margin_right = 50
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/LoadingControl/MarginContainer/PanelContainer/LoadingBarControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04
+anchor_top = -0.2
+anchor_right = 1.04
+anchor_bottom = 1.2
+offset_right = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/LoadingControl/MarginContainer/PanelContainer/LoadingBarControl/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 12
+
+[node name="LoadingBar" type="TextureProgressBar" parent="CanvasLayer/LoadingControl/MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer"]
+layout_mode = 2
+step = 0.001
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("5_1bvje")
+
+[node name="LoadingText" type="Label" parent="CanvasLayer/LoadingControl/MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Loading ..."
+label_settings = SubResource("LabelSettings_ftyk4")
+horizontal_alignment = 1
+vertical_alignment = 1

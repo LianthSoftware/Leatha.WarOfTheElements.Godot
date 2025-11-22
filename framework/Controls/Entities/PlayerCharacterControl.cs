@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Common.Communication.Utilities;
+using Leatha.WarOfTheElements.Godot.framework.Services;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 {
@@ -13,9 +15,12 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
     {
         public Guid PlayerId { get; private set; }
 
-        public override void ApplyServerState(PlayerStateObject state)
+        protected override void OnApplyServerState(ICharacterStateObject state)
         {
-            if (state.PlayerId != PlayerId)
+            if (!state.WorldObjectId.IsPlayer())
+                return;
+
+            if (state.WorldObjectId.ObjectId != PlayerId)
                 return;
 
             // Position

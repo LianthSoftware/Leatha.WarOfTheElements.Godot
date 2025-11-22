@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkodec02ayx0s"]
+
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="1_127qs"]
+[ext_resource type="Script" uid="uid://cpadrc7lbvewj" path="res://framework/UI/menu/CharacterSelectionItemControl.cs" id="2_6rljp"]
+[ext_resource type="Texture2D" uid="uid://j1febwsgvjfq" path="res://resources/textures/talent_border_001.png" id="2_v27a8"]
+[ext_resource type="Texture2D" uid="uid://cxi6mr1onhja5" path="res://resources/textures/icon_fire.png" id="3_6rljp"]
+[ext_resource type="Texture2D" uid="uid://dx5ycmfoufivt" path="res://resources/textures/level_border_001.png" id="5_6rljp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3r4o"]
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqw5k"]
+font_size = 12
+font_color = Color(0.489622, 0.489622, 0.489622, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8b550"]
+font_size = 12
+font_color = Color(0.489622, 0.489622, 0.489622, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7cf6x"]
+font_size = 12
+font_color = Color(0.678431, 0.541176, 0.254902, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CharacterSelectionItemControl" type="NinePatchRect" node_paths=PackedStringArray("ElementImage", "CharacterName", "CharacterMap", "CharacterElements", "CharacterLevel")]
+custom_minimum_size = Vector2(300, 100)
+size_flags_horizontal = 3
+mouse_filter = 0
+texture = ExtResource("1_127qs")
+region_rect = Rect2(5, 0, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+script = ExtResource("2_6rljp")
+ElementImage = NodePath("MarginContainer/HorizontalContainer/BorderImage/ElementImage")
+CharacterName = NodePath("MarginContainer/HorizontalContainer/VBoxContainer/MarginContainer/CharacterName")
+CharacterMap = NodePath("MarginContainer/HorizontalContainer/VBoxContainer/CharacterMap")
+CharacterElements = NodePath("MarginContainer/HorizontalContainer/VBoxContainer/CharacterElements")
+CharacterLevel = NodePath("MarginContainer/HorizontalContainer/MarginContainer/TextureRect/CharacterLevel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BorderImage" type="TextureRect" parent="MarginContainer/HorizontalContainer"]
+z_index = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_v27a8")
+expand_mode = 1
+
+[node name="ElementImage" type="TextureRect" parent="MarginContainer/HorizontalContainer/BorderImage"]
+modulate = Color(1, 0.309804, 0.196078, 1)
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6rljp")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="CharacterName" type="Label" parent="MarginContainer/HorizontalContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Leatha"
+label_settings = SubResource("LabelSettings_p3r4o")
+
+[node name="CharacterMap" type="Label" parent="MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hideout"
+label_settings = SubResource("LabelSettings_eqw5k")
+
+[node name="CharacterElements" type="Label" parent="MarginContainer/HorizontalContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fire - Air - Water"
+label_settings = SubResource("LabelSettings_8b550")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_right = -10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HorizontalContainer/MarginContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("5_6rljp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CharacterLevel" type="Label" parent="MarginContainer/HorizontalContainer/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -11.5
+offset_right = 9.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "21"
+label_settings = SubResource("LabelSettings_7cf6x")
+horizontal_alignment = 1
+vertical_alignment = 1

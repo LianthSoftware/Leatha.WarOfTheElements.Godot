@@ -1,0 +1,177 @@
+[gd_scene load_steps=19 format=3 uid="uid://cdlbfpl1435u5"]
+
+[ext_resource type="Script" uid="uid://dm2nrviftgoac" path="res://framework/Controls/Maps/MapControl.cs" id="1_ojrkb"]
+[ext_resource type="Material" uid="uid://dugrrgii3yo6r" path="res://resources/shaders/black_hole_red_shader_material.tres" id="2_k4hy5"]
+[ext_resource type="Script" uid="uid://crnht1wv482op" path="res://framework/Controls/ExpandableCanvasLayer.cs" id="2_nw4f3"]
+[ext_resource type="PackedScene" uid="uid://bo8f56umf4cyh" path="res://scenes/ui/player_spellbar_control.tscn" id="4_cygj0"]
+[ext_resource type="PackedScene" uid="uid://doc842mwy067x" path="res://scenes/ui/player_status_bar_control.tscn" id="4_ojrkb"]
+[ext_resource type="Script" uid="uid://bh24qrl4gbiqd" path="res://framework/Controls/Spells/HellfireControl.cs" id="5_k4hy5"]
+[ext_resource type="PackedScene" uid="uid://5f5oxcj06s1d" path="res://scenes/ui/target_status_bar_control.tscn" id="5_nw4f3"]
+[ext_resource type="Texture2D" uid="uid://bsjf0uatcppqi" path="res://resources/textures/spells/spell_fire_hellfire_visual_003.png" id="6_l6dr3"]
+[ext_resource type="Texture2D" uid="uid://dbvf6of3phug5" path="res://resources/textures/crosshair_001.png" id="8_2dofn"]
+[ext_resource type="Script" uid="uid://ds65ixfdddvda" path="res://framework/Controls/UserInterface/ShadowContainerControl.cs" id="10_k4hy5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vyv7f"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_5ud02"]
+sky_material = SubResource("ProceduralSkyMaterial_vyv7f")
+
+[sub_resource type="Environment" id="Environment_umvoe"]
+background_mode = 2
+sky = SubResource("Sky_5ud02")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_muyy3"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyv7f"]
+albedo_color = Color(0.523781, 0.523781, 0.523781, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k4hy5"]
+font_size = 30
+font_color = Color(1, 0.101961, 0.156863, 1)
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mko12"]
+top_radius = 2.0
+bottom_radius = 2.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vom7u"]
+albedo_color = Color(0.509804, 0.603922, 1, 1)
+
+[node name="TestScene3D" type="Node3D"]
+script = ExtResource("1_ojrkb")
+MapId = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_umvoe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_muyy3")
+surface_material_override/0 = SubResource("StandardMaterial3D_vyv7f")
+
+[node name="ShadowLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthIndicator" type="PanelContainer" parent="ShadowLayer"]
+material = ExtResource("2_k4hy5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_k4hy5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_nw4f3")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerSpellBarControl" parent="UICanvasLayer" instance=ExtResource("4_cygj0")]
+
+[node name="PlayerStatusBarControl" parent="UICanvasLayer" instance=ExtResource("4_ojrkb")]
+offset_left = 50.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 40.0
+scale = Vector2(1.66, 1.66)
+
+[node name="TargetStatusBarControl" parent="UICanvasLayer" instance=ExtResource("5_nw4f3")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -500.0
+offset_top = 40.0
+offset_right = -500.0
+offset_bottom = 40.0
+grow_horizontal = 0
+scale = Vector2(1.66, 1.66)
+pivot_offset = Vector2(450, 0)
+size_flags_horizontal = 8
+
+[node name="MessagesContainer" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.216
+anchor_right = 0.5
+anchor_bottom = 0.216
+offset_left = -20.0
+offset_top = -19.968
+offset_right = 20.0
+offset_bottom = 20.032
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VerticalContainer" type="VBoxContainer" parent="UICanvasLayer/MessagesContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -21.0
+offset_right = 143.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ErrorLabel" type="Label" parent="UICanvasLayer/MessagesContainer/VerticalContainer"]
+layout_mode = 2
+text = "Not enough chakra!"
+label_settings = SubResource("LabelSettings_k4hy5")
+
+[node name="Hellfire" type="Node3D" parent="."]
+visible = false
+script = ExtResource("5_k4hy5")
+
+[node name="Decal" type="Decal" parent="Hellfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126346, 0)
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("6_l6dr3")
+modulate = Color(1, 0.521569, 0.34902, 1)
+
+[node name="CharacterHolder" type="Node3D" parent="."]
+
+[node name="Pillar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+mesh = SubResource("CylinderMesh_mko12")
+surface_material_override/0 = SubResource("StandardMaterial3D_vom7u")
+
+[node name="CrosshairControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairImage" type="TextureRect" parent="CrosshairControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2dofn")

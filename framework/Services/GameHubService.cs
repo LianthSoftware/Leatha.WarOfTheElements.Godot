@@ -5,6 +5,7 @@ using Godot;
 using Godot.Collections;
 using Leatha.WarOfTheElements.Common.Communication.Messages;
 using Leatha.WarOfTheElements.Common.Communication.Services;
+using Leatha.WarOfTheElements.Common.Communication.Transfer;
 using Leatha.WarOfTheElements.Godot.framework.communication;
 using Leatha.WarOfTheElements.Godot.framework.Controls.Entities;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
@@ -119,13 +120,63 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
             // Invocation Hook methods.
             {
-                _connection.On<WorldSnapshotMessage>(nameof(IServerToClientHandler.SendSnapshot), async message =>
+                _connection.On<WorldSnapshotMessage>(nameof(IServerToClientHandler.SendSnapshot), message =>
                 {
                     //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                    await this.RunOnMainThreadAsync(() =>
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
                         ObjectAccessor.CharacterService.ApplySnapshot(message);
-                        return Task.CompletedTask;
+                    });
+                });
+
+                _connection.On<SpellObject>(nameof(IServerToClientHandler.SendSpellStart), message =>
+                {
+                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
+                        ObjectAccessor.CharacterService.CharacterStartedSpellCast(message);
+                    });
+                });
+
+                _connection.On<SpellObject>(nameof(IServerToClientHandler.SendSpellFinished), spellObject =>
+                {
+                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
+                        ObjectAccessor.CharacterService.CharacterFinishedSpellCast(spellObject);
+                    });
+                });
+
+                _connection.On<AuraObject>(nameof(IServerToClientHandler.SendAuraApply), auraObject =>
+                {
+                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
+                        ObjectAccessor.CharacterService.CharacterApplyAura(auraObject);
+                    });
+                });
+
+                _connection.On<AuraObject>(nameof(IServerToClientHandler.SendAuraRemove), auraObject =>
+                {
+                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
+                        ObjectAccessor.CharacterService.CharacterRemoveAura(auraObject);
                     });
                 });
 

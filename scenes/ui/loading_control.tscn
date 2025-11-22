@@ -1,31 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3q788pbug2nq"]
+[gd_scene load_steps=8 format=3 uid="uid://c3q788pbug2nq"]
 
 [ext_resource type="Script" uid="uid://pw4jgeiomgx4" path="res://framework/UI/menu/LoadingControl.cs" id="1_qjft7"]
-[ext_resource type="PackedScene" uid="uid://cdlbfpl1435u5" path="res://scenes/test_3d_scene.tscn" id="2_qjft7"]
+[ext_resource type="PackedScene" uid="uid://bl2hjmjjt4q24" path="res://scenes/ui/character_selection_control.tscn" id="2_ftyk4"]
+[ext_resource type="Texture2D" uid="uid://dkob4a66ch1jx" path="res://resources/textures/loading_screen_001.png" id="3_tjrxh"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="4_prayy"]
+[ext_resource type="Texture2D" uid="uid://csa8lj8g5taxg" path="res://resources/textures/progress_bar_fill_blood_001.png" id="5_ftyk4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_qjft7"]
-font_size = 50
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fad3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_size = 5
 
-[node name="LoadingControl" type="Control" node_paths=PackedStringArray("LoadingLabel")]
+[sub_resource type="LabelSettings" id="LabelSettings_ftyk4"]
+font_size = 12
+
+[node name="LoadingControl" type="Control" node_paths=PackedStringArray("LoadingBar")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
 script = ExtResource("1_qjft7")
-MainMenuScene = ExtResource("2_qjft7")
-GameScene = ExtResource("2_qjft7")
-LoadingLabel = NodePath("Label")
+CharacterSelectionScene = ExtResource("2_ftyk4")
+LoadingBar = NodePath("MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer/LoadingBar")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "LOADING"
-label_settings = SubResource("LabelSettings_qjft7")
+texture = ExtResource("3_tjrxh")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 25
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7fad3")
+
+[node name="LoadingBarControl" type="NinePatchRect" parent="MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_prayy")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_top = 10
+patch_margin_right = 50
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/LoadingBarControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04
+anchor_top = -0.2
+anchor_right = 1.04
+anchor_bottom = 1.2
+offset_right = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/LoadingBarControl/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 12
+
+[node name="LoadingBar" type="TextureProgressBar" parent="MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer"]
+layout_mode = 2
+step = 0.001
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("5_ftyk4")
+
+[node name="LoadingText" type="Label" parent="MarginContainer/PanelContainer/LoadingBarControl/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Loading ..."
+label_settings = SubResource("LabelSettings_ftyk4")
 horizontal_alignment = 1
 vertical_alignment = 1

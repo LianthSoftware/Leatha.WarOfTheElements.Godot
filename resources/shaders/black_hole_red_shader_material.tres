@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dugrrgii3yo6r"]
+
+[ext_resource type="Shader" uid="uid://3ayurrnne0do" path="res://resources/shaders/black_hole_visual_tint.gdshader" id="1_g7q52"]
+
+[resource]
+shader = ExtResource("1_g7q52")
+shader_parameter/player_position = Vector2(0, 0)
+shader_parameter/visible_radius = 70.0
+shader_parameter/shadow_radius = 750.0
+shader_parameter/tint_color = Color(0.109804, 0, 0, 1)

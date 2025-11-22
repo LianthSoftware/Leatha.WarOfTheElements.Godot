@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://rnqvgo4wyvor"]
+
+[ext_resource type="Shader" uid="uid://bupbqhqxqywsu" path="res://resources/shaders/black_hole_visual.gdshader" id="1_2tfb0"]
+
+[resource]
+shader = ExtResource("1_2tfb0")
+shader_parameter/player_position = Vector2(0, 0)
+shader_parameter/visible_radius = 70.0
+shader_parameter/shadow_radius = 750.0

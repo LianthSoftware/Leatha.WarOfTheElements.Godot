@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ced8qflhxlh3a"]
+
+[ext_resource type="PackedScene" uid="uid://bl2hjmjjt4q24" path="res://scenes/ui/character_selection_control.tscn" id="1_7t0sp"]
+[ext_resource type="Script" uid="uid://crnht1wv482op" path="res://framework/Controls/ExpandableCanvasLayer.cs" id="1_fpxe1"]
+
+[node name="CharacterSelectionScene" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_fpxe1")
+
+[node name="CharacterSelectionControl" parent="CanvasLayer" instance=ExtResource("1_7t0sp")]

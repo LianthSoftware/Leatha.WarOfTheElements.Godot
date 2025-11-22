@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bo8f56umf4cyh"]
+[gd_scene load_steps=24 format=3 uid="uid://bo8f56umf4cyh"]
 
 [ext_resource type="Script" uid="uid://d4m10ka1mm25o" path="res://framework/Controls/UserInterface/PlayerSpellBarControl.cs" id="1_f2gfd"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="2_bgit1"]
 [ext_resource type="Script" uid="uid://b0bs7p1dtik41" path="res://framework/Controls/UserInterface/SpellActionBarSlot.cs" id="2_eiu7s"]
 [ext_resource type="Texture2D" uid="uid://xevnx5w5lwnt" path="res://resources/textures/spells/spell_water_water_bolt.jpg" id="3_w0fxi"]
+[ext_resource type="Texture2D" uid="uid://blj3es2o3w88s" path="res://resources/textures/grascale_fill_001.png" id="3_wio1h"]
 [ext_resource type="Texture2D" uid="uid://ijko2mk4i4pb" path="res://resources/textures/spells/spell_water_water_rain.jpg" id="4_lk7tk"]
 [ext_resource type="Texture2D" uid="uid://c0wrqfxxshhim" path="res://resources/textures/spells/spell_water_water_wave.jpg" id="5_bgit1"]
 [ext_resource type="Texture2D" uid="uid://coj4bs2fco78y" path="res://resources/textures/spells/spell_water_water_clone.jpg" id="6_wio1h"]
@@ -18,6 +20,14 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xt3du"]
+shadow_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_bgit1"]
+font_size = 20
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1o83"]
 content_margin_left = 10.0
@@ -107,7 +117,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_size = 5
 
-[node name="PlayerSpellBarControl" type="Control" node_paths=PackedStringArray("ActionListContainer")]
+[node name="PlayerSpellBarControl" type="Control" node_paths=PackedStringArray("ActionListContainer", "CastBarControl", "CastBar", "CastSpellNameLabel", "CastRemainingTimeLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,7 +125,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2gfd")
-ActionListContainer = NodePath("PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar")
+ActionListContainer = NodePath("PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList")
+CastBarControl = NodePath("PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl")
+CastBar = NodePath("PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar")
+CastSpellNameLabel = NodePath("PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/SpellName")
+CastRemainingTimeLabel = NodePath("PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/RemainingTime")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -141,7 +155,74 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 20
 
+[node name="CastBarControl" type="MarginContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(450, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xt3du")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+texture = ExtResource("2_bgit1")
+region_rect = Rect2(5, 5, 190, 190)
+patch_margin_left = 10
+patch_margin_top = 2
+patch_margin_right = 10
+patch_margin_bottom = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.125
+anchor_right = 0.988
+anchor_bottom = 0.875
+offset_left = 0.0959997
+offset_right = -0.0720062
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("3_wio1h")
+tint_progress = Color(1, 1, 0.678431, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer"]
+layout_mode = 2
+
+[node name="SpellName" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Water Bolt"
+label_settings = SubResource("LabelSettings_bgit1")
+
+[node name="RemainingTime" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/CastBarControl/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/outline_size = 15
+bbcode_enabled = true
+text = "[p align=right][font_size=20]1.5 [font_size=15][color=4ac4ff]s[/color][/font_size][/font_size][/p]"
+fit_content = true
+
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -169,13 +250,13 @@ theme_override_constants/margin_right = 10
 [node name="HorizontalContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2/CastBar/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2/CastBar/MarginContainer/HorizontalContainer"]
+[node name="SpellName" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2/CastBar/MarginContainer/HorizontalContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Holy Light"
 label_settings = SubResource("LabelSettings_g1o83")
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2/CastBar/MarginContainer/HorizontalContainer"]
+[node name="RemainingTime" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2/CastBar/MarginContainer/HorizontalContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0.5s"
@@ -206,6 +287,7 @@ KeyBind = 49
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("3_w0fxi")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot001/SpellIcon"]
 z_index = 1
@@ -242,6 +324,7 @@ KeyBind = 50
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("4_lk7tk")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot002/SpellIcon"]
 z_index = 1
@@ -278,6 +361,7 @@ KeyBind = 51
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("5_bgit1")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot003/SpellIcon"]
 z_index = 1
@@ -314,6 +398,7 @@ KeyBind = 52
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("6_wio1h")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot004/SpellIcon"]
 z_index = 1
@@ -350,6 +435,7 @@ KeyBind = 53
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("7_xt3du")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot005/SpellIcon"]
 z_index = 1
@@ -386,6 +472,7 @@ KeyBind = 54
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("8_w8chb")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot006/SpellIcon"]
 z_index = 1
@@ -422,6 +509,7 @@ KeyBind = 55
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("9_8pe7x")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot007/SpellIcon"]
 z_index = 1
@@ -458,6 +546,7 @@ KeyBind = 56
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("10_p0d3q")
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot008/SpellIcon"]
 z_index = 1
@@ -493,6 +582,7 @@ KeyBind = 57
 [node name="SpellIcon" type="TextureRect" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot009"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot009/SpellIcon"]
 z_index = 1
@@ -528,6 +618,7 @@ KeyBind = 48
 [node name="SpellIcon" type="TextureRect" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot010"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+expand_mode = 1
 
 [node name="KeyBindLabel" type="Label" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/SpellActionBar/ActionList/SpellSlot010/SpellIcon"]
 z_index = 1

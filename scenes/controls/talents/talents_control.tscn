@@ -24,6 +24,7 @@
 bg_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxuh5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 shadow_size = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qxuh5"]

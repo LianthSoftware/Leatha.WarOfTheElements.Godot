@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://btbr8kvttq8yn"]
+
+[ext_resource type="Shader" uid="uid://bta1bh5cbtq84" path="res://resources/shaders/fogofwar.gdshader" id="1_sup6p"]
+
+[resource]
+shader = ExtResource("1_sup6p")
+shader_parameter/mask_scale = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0, 0)

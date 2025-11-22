@@ -13,9 +13,14 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
 
         public static async Task RunOnMainThreadAsync(this Node node, Func<Task> action)
         {
-            await node.ToSignal(node.GetTree(), "process_frame");
+            await node.WaitFrameAsync();
 
             await action();
+        }
+
+        public static async Task WaitFrameAsync(this Node node)
+        {
+            await node.ToSignal(node.GetTree(), "process_frame");
         }
 
         public static async Task WaitForSeconds(this Node node, float seconds)

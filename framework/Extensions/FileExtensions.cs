@@ -9,7 +9,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
     {
         private const string UserFolder = "user://";
         private const string EncryptionKeyPath = "encryption.key";
-        private const string PlayerPath = "player.woe";
+        private const string AccountPath = "account.woe";
         private const string AccessTokenPath = "access.token";
         private const string RefreshTokenPath = "refresh.token";
         private const string RealmListPath = "realmlist.woe";
@@ -46,16 +46,16 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             return JsonSerializer.Deserialize<RealmList>(text);
         }
 
-        public static Guid GetPlayerId()
+        public static Guid GetAccountId()
         {
-            using var file = FileAccess.Open(UserFolder + PlayerPath, FileAccess.ModeFlags.Read);
+            using var file = FileAccess.Open(UserFolder + AccountPath, FileAccess.ModeFlags.Read);
             if (file == null)
                 return Guid.Empty;
 
-            var playerId = file.GetLine();
+            var accountId = file.GetLine();
             file.Close();
 
-            return Guid.Parse(playerId);
+            return Guid.Parse(accountId);
         }
 
         public static string GetAccessToken()
@@ -95,19 +95,19 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             file.Close();
         }
 
-        public static void SetPlayerId(string playerId)
+        public static void SetAccountId(string accountId)
         {
-            if (playerId == null)
+            if (accountId == null)
             {
-                DirAccess.RemoveAbsolute(UserFolder + PlayerPath);
+                DirAccess.RemoveAbsolute(UserFolder + AccountPath);
                 return;
             }
 
-            using var file = FileAccess.Open(UserFolder + PlayerPath, FileAccess.ModeFlags.Write);
+            using var file = FileAccess.Open(UserFolder + AccountPath, FileAccess.ModeFlags.Write);
             if (file == null)
                 return;
 
-            file.StoreLine(playerId);
+            file.StoreLine(accountId);
             file.Close();
         }
 
@@ -147,9 +147,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         {
             var dir = DirAccess.Open(UserFolder);
 
-            // Player.
-            if (FileAccess.FileExists(UserFolder + PlayerPath))
-                dir?.Remove(PlayerPath);
+            // Account.
+            if (FileAccess.FileExists(UserFolder + AccountPath))
+                dir?.Remove(AccountPath);
 
             // Access Token.
             if (FileAccess.FileExists(UserFolder + AccessTokenPath))

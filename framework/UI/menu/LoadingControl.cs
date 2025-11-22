@@ -1,63 +1,35 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
+using Range = Godot.Range;
 
 namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
 {
     public sealed partial class LoadingControl : Node
     {
         [Export]
-        public PackedScene MainMenuScene { get; set; }
+        public PackedScene CharacterSelectionScene { get; set; }
 
         [Export]
-        public PackedScene GameScene { get; set; }
+        public TextureProgressBar LoadingBar { get; set; }
 
-        [Export]
-        public Label LoadingLabel { get; set; }
-
-        [Export]
-        public double LoadingTimerTick { get; set; } = 0.5D;
-
-        private const string ServerTemplate = "Server  {0}";
-        private const string LoadingTemplate = "Loading {0}";
-        private const int PadWidth = 3;
-
-        private double _loadingTimer;
-        private int _dotsCount = 0;
+        private Tween _loadingTween;
 
         public override void _Ready()
         {
             base._Ready();
 
+            LoadingBar.Value = 0.0f;
             LoadData();
         }
 
-        public override void _Process(double delta)
+        private void SetLoadingBarValue(float value, float duration = 0.75f)
         {
-            base._Process(delta);
+            _loadingTween?.Kill();
 
-            if (_loadingTimer <= 0.0D)
-            {
-                _loadingTimer = LoadingTimerTick;
-                OnLoadingTimerTick();
-            }
-            else
-                _loadingTimer -= delta;
-        }
-
-        private void OnLoadingTimerTick()
-        {
-            // Create a string with _dotsCount dots
-            var value = new string('.', _dotsCount);
-
-            // Pad it with spaces to make the total length PadWidth
-            value = value.PadRight(PadWidth, ' ');
-
-            LoadingLabel.Text = String.Format(LoadingTemplate, value);
-
-            ++_dotsCount;
-            if (_dotsCount > PadWidth)
-                _dotsCount = 0;
+            _loadingTween = CreateTween();
+            _loadingTween.TweenProperty(LoadingBar, Range.PropertyName.Value.ToString(), value, duration);
         }
 
         private async void LoadData()
@@ -70,19 +42,41 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
 
                 // Connect to SignalR server.
                 await instance.CreateConnectionAsync();
+
+                SetLoadingBarValue(10.0f); // #TODO: TEST ONLY
+
                 await instance.ConnectToServerAsync();
 
-                //await Task.Delay(10000); // #TODO
+                //await Task.Delay(1000); // #TODO
+                SetLoadingBarValue(20.0f); // #TODO: TEST ONLY
 
-                var playerResponse = await instance
+                //var playerResponse = await instance
+                //    .GetClientHandler()
+                //    .GetPlayer(sessionService.PlayerId);
+                //if (playerResponse.IsError)
+                //    throw new InvalidOperationException(playerResponse.ErrorMessage);
+
+                //sessionService.Player = playerResponse.Data;
+
+                var characterListResponse = await instance
                     .GetClientHandler()
-                    .GetPlayer(sessionService.PlayerId);
-                if (playerResponse.IsError)
-                    throw new InvalidOperationException(playerResponse.ErrorMessage);
+                    .GetCharacterList(sessionService.AccountId);
+                if (characterListResponse.IsError)
+                    throw new InvalidOperationException(characterListResponse.ErrorMessage);
 
-                sessionService.Player = playerResponse.Data;
+                ObjectAccessor.SessionService.Characters = characterListResponse.Data;
 
-                await sessionService.LoadTemplatesAsync();
+                //sessionService.Player = playerResponse.Data;
+
+                SetLoadingBarValue(66.0f); // #TODO: TEST ONLY
+
+                await ObjectAccessor.TemplateService.LoadTemplatesAsync();
+
+                //await Task.Delay(3000);
+
+                SetLoadingBarValue(100.0f, 0.5f); // #TODO: TEST ONLY
+
+                await this.WaitForSeconds(0.5f);
 
                 //var gameResponse = await instance
                 //    .GetClientHandler()
@@ -117,7 +111,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
                 //    });
                 //}
                 //else
-                    GetTree().ChangeSceneToPacked(MainMenuScene);
+                GetTree().ChangeSceneToPacked(CharacterSelectionScene);
             }
             catch (Exception ex)
             {

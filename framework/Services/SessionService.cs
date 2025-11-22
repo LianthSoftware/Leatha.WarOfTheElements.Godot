@@ -9,27 +9,28 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 {
     public interface ISessionService
     {
+        Guid AccountId { get; set; }
+
         Guid PlayerId { get; set; }
 
-        PlayerObject Player { get; set; }
+        public PlayerObject CurrentCharacter { get; set; }
 
-        //Dictionary<int, SpellTemplateObject> SpellTemplates { get; }
+        public List<PlayerObject> Characters { get; set; }
 
-        //SpellTemplateObject GetSpellTemplate(int spellId);
-
-
-        Task LoadTemplatesAsync();
-
-        //Task LoadSpellTemplatesAsync();
+        public bool IsWorldLoaded { get; set; }
     }
 
     public sealed partial class SessionService : Node, ISessionService
     {
+        public Guid AccountId { get; set; }
+
         public Guid PlayerId { get; set; }
 
-        public PlayerObject Player { get; set; }
+        public PlayerObject CurrentCharacter { get; set; }
 
-        //public Dictionary<int, SpellTemplateObject> SpellTemplates { get; private set; } = [];
+        public List<PlayerObject> Characters { get; set; }
+
+        public bool IsWorldLoaded { get; set; }
 
         public override void _Ready()
         {
@@ -37,24 +38,5 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
             ObjectAccessor.SessionService = this;
         }
-
-
-        //public SpellTemplateObject GetSpellTemplate(int cardId)
-        //{
-        //    return SpellTemplates.GetValueOrDefault(cardId);
-        //}
-
-        public async Task LoadTemplatesAsync()
-        {
-            //await LoadSpellTemplatesAsync();
-        }
-
-        //public async Task LoadSpellTemplatesAsync()
-        //{
-        //    var templates = await ObjectAccessor.ApiService.GetSpellTemplatesAsync();
-        //    SpellTemplates = templates.ToDictionary(i => i.CardId, n => n);
-
-        //    GD.Print($"Loaded {templates.Count} spell templates.");
-        //}
     }
 }

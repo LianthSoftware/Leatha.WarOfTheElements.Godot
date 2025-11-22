@@ -19,6 +19,14 @@ namespace Leatha.WarOfTheElements.Godot.framework.communication
 
         private readonly IGameHubService _gameHubService;
 
+        public Task<TransferMessage<List<PlayerObject>>> GetCharacterList(Guid accountId)
+        {
+            return _gameHubService
+                .GetConnection()
+                .InvokeAsync<TransferMessage<List<PlayerObject>>>(nameof(IClientToServerHandler.GetCharacterList),
+                    accountId);
+        }
+
         public Task<TransferMessage<PlayerStateObject>> EnterWorld(Guid playerId)
         {
             return _gameHubService
@@ -67,12 +75,28 @@ namespace Leatha.WarOfTheElements.Godot.framework.communication
                     playerId);
         }
 
+        public Task<TransferMessage<List<SpellInfoObject>>> GetPlayerSpellBarSpells(Guid playerId)
+        {
+            return _gameHubService
+                .GetConnection()
+                .InvokeAsync<TransferMessage<List<SpellInfoObject>>>(nameof(IClientToServerHandler.GetPlayerSpellBarSpells),
+                    playerId);
+        }
+
         public Task<TransferMessage<SpellCastResult>> CastSpell(Guid casterId, int spellId)
         {
             return _gameHubService
                 .GetConnection()
                 .InvokeAsync<TransferMessage<SpellCastResult>>(nameof(IClientToServerHandler.CastSpell),
                     casterId, spellId);
+        }
+
+        public Task<int> Test(int data)
+        {
+            return _gameHubService
+                .GetConnection()
+                .InvokeAsync<int>(nameof(IClientToServerHandler.Test),
+                    1);
         }
     }
 }

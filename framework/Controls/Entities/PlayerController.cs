@@ -1,10 +1,13 @@
 using Godot;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
+using Leatha.WarOfTheElements.Common.Communication.Utilities;
+using Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static Godot.WebSocketPeer;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 {
@@ -38,23 +41,37 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
         private float _predYaw;
         private float _predPitch;
 
-        // NEW: Render position (what we actually apply to GlobalPosition)
+        // Render position (what we actually apply to GlobalPosition)
         private Vector3 _renderPos;
 
         private readonly List<PlayerInputObject> _pendingInputs = new();
 
         private PlayerInputObject _lastSentInput;
-        //private double _lastSentTime;
+
+        private CharacterStatusBarControl _characterStatusBarControl;
 
         private int _sequence;
 
-        public override void _Ready()
+        private CharacterControl _lockedCharacter;
+        private bool _ignoreNextServerYaw; // to avoid snap on first snapshot after unlock
+
+        private bool _run;
+        private double _runTime;
+        private bool _end;
+
+        private int _count;
+
+        private float _forward;
+
+        private ShadowContainerControl _shadowContainer;
+
+        public override async void _Ready()
         {
             _pivot = GetNode<Node3D>(CameraPivotPath);
             _camera = GetNode<Camera3D>(CameraPath);
 
             _predPos = GlobalPosition;
-            _renderPos = GlobalPosition;  // NEW: start render position at current position
+            _renderPos = GlobalPosition;
 
             _predYaw = Rotation.Y;
             _predPitch = 0f;
@@ -62,13 +79,31 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             _yaw = _predYaw;
             _pitch = _predPitch;
 
+            _isFirstPerson = true;
             UpdateCameraMode();
             Input.MouseMode = Input.MouseModeEnum.Captured;
+
+            _shadowContainer = GetTree().CurrentScene.GetNode<ShadowContainerControl>("ShadowLayer/HealthIndicator");
+            _shadowContainer.RadiusTweenFullDuration = 0.5f;
+            //_shadowContainer.
+
+            //await this.WaitForSeconds(2.0f);
+
+            //_run = true;
+            //_forward = 1.0f;
+        }
+
+        public override void _Process(double delta)
+        {
+            base._Process(delta);
+
+            FireRayFromCamera();
         }
 
         public override void _Input(InputEvent evt)
         {
-            if (evt is InputEventMouseMotion m)
+            // Mouse ONLY when NOT locked
+            if (evt is InputEventMouseMotion m && _lockedCharacter == null)
             {
                 _yaw -= m.Relative.X * MouseSensitivity;
                 _pitch -= m.Relative.Y * MouseSensitivity;
@@ -81,6 +116,139 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                     ? Input.MouseModeEnum.Visible
                     : Input.MouseModeEnum.Captured;
             }
+
+            if (Input.IsActionJustPressed("lock_target"))
+            {
+                if (_lockedCharacter != null)
+                {
+                    // 🔓 UNLOCK:
+                    // - Use current LookAt camera direction
+                    // - Convert to yaw/pitch
+                    // - Flatten pitch horizontally
+                    AlignYawPitchToCamera(flattenPitchToZero: true);
+
+                    _lockedCharacter = null;
+                    _ignoreNextServerYaw = true; // avoid snap from 1st server snapshot
+                }
+                else if (ObjectAccessor.CharacterService.GetPlayerTarget() is { } target)
+                {
+                    // 🔒 LOCK onto current selected target
+                    _lockedCharacter = target;
+                    ObjectAccessor.CharacterService.ShowTargetFrame(target?.LastState, target);
+                }
+            }
+        }
+
+        public void SetResources(PlayerStateObject playerState, CharacterStatusBarControl control)
+        {
+            _characterStatusBarControl = control;
+            _characterStatusBarControl.UpdateResources(playerState);
+        }
+
+        private void FireRayFromCamera()
+        {
+            if (_lockedCharacter != null)
+                return; // don't change target while hard-locked
+
+            var camera = GetViewport().GetCamera3D();
+            if (camera == null) return;
+
+            // Start at camera position
+            var origin = camera.GlobalTransform.Origin;
+
+            // Direction: camera forward vector
+            var direction = camera.GlobalTransform.Basis.Z * -1f;
+            // (Z points backward, so invert to get forward)
+
+            var rayLength = 1000f;
+            var to = origin + direction * rayLength;
+
+            var spaceState = GetWorld3D().DirectSpaceState;
+
+            var query = new PhysicsRayQueryParameters3D
+            {
+                From = origin,
+                To = to,
+                CollideWithAreas = true,
+                CollideWithBodies = true
+            };
+
+            var result = spaceState.IntersectRay(query);
+
+            CharacterControl hitTarget = null;
+            if (result.Count > 0)
+            {
+                var collider = (GodotObject)result["collider"];
+
+                if (collider is NonPlayerCharacterControl body)
+                    hitTarget = body;
+            }
+
+            ObjectAccessor.CharacterService.ShowTargetFrame(hitTarget?.LastState, hitTarget);
+        }
+
+        private void FaceTarget(Vector3 targetPos)
+        {
+            var toTarget = (targetPos - GlobalPosition);
+            toTarget.Y = 0; // horizontal only
+            if (toTarget.Length() < 0.001f)
+                return;
+
+            var desiredYaw = Mathf.Atan2(toTarget.X, toTarget.Z);
+            _yaw = desiredYaw;
+            Rotation = new Vector3(0, _yaw, 0);
+        }
+
+        private void CenterCameraOnTarget(Vector3 worldTargetPos)
+        {
+            // (Unused now, but kept for reference)
+            var camPos = _camera.GlobalTransform.Origin;
+            var toTarget = (worldTargetPos - camPos).Normalized();
+
+            var yaw = Mathf.Atan2(toTarget.X, toTarget.Z);
+            var pitch = -Mathf.Asin(toTarget.Y);
+
+            _yaw = yaw;
+            _pitch = Mathf.Clamp(pitch, -1.45f, 1.45f);
+
+            Rotation = new Vector3(0, _yaw, 0);
+            _pivot.Rotation = new Vector3(_pitch, 0, 0);
+        }
+
+        private float Smooth(float current, float target, float speed, double delta)
+        {
+            return Mathf.LerpAngle(current, target, speed * (float)delta);
+        }
+
+        /// <summary>
+        /// Converts the current camera LookAt orientation into yaw/pitch.
+        /// If flattenPitchToZero = true, pitch becomes 0 (horizontal).
+        /// </summary>
+        private void AlignYawPitchToCamera(bool flattenPitchToZero)
+        {
+            var camTransform = _camera.GlobalTransform;
+            var forward = -camTransform.Basis.Z; // Godot: -Z is forward
+
+            // YAW: horizontal forward
+            var horiz = new Vector3(forward.X, 0, forward.Z);
+            if (horiz.LengthSquared() > 0.0001f)
+            {
+                horiz = horiz.Normalized();
+                _yaw = Mathf.Atan2(horiz.X, horiz.Z);
+            }
+
+            if (flattenPitchToZero)
+            {
+                _pitch = 0f;
+            }
+            else
+            {
+                _pitch = -Mathf.Asin(forward.Y);
+                _pitch = Mathf.Clamp(_pitch, -1.45f, 1.45f);
+            }
+
+            Rotation = new Vector3(0, _yaw, 0);
+            _pivot.Rotation = new Vector3(_pitch, 0, 0);
         }
 
         public override void _PhysicsProcess(double delta)
@@ -121,14 +289,15 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 PlayerId = PlayerId,
                 Sequence = _sequence,
                 Forward = dir.Y,
+                //Forward = _forward,
                 Right = dir.X,
                 //Up = up,// #TODO
-                //Jump = jump,// #TODO
+                Jump = jump,// #TODO
                 //IsFlying = _isFlying,// #TODO
                 //IsSprinting = _isSprinting,// #TODO
                 Yaw = _yaw,
                 Pitch = _pitch,
-                DeltaTime = (float) delta
+                DeltaTime = (float)delta
             };
 
             // =========== 4) Determine if we should send input ===========
@@ -153,18 +322,10 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                     Math.Abs(input.Pitch - _lastSentInput.Pitch) > ROT_EPS;
             }
 
-            //var heartbeat = (Time.GetUnixTimeFromSystem() - _lastSentTime) > 0.1f;
-
             //if (!changed)
             //    return;
 
-            if (changed /* || heartbeat */)
             {
-                GD.Print(
-                    $"[{DateTime.Now:HH:mm:ss.ffff}]: Sending input: Seq={input.Sequence} " +
-                    $"F={input.Forward:0.000} R={input.Right:0.000} Up={input.Up:0.000} " +
-                    $"Sprint={input.IsSprinting} Fly={input.IsFlying} Yaw={input.Yaw:0.000} Pitch={input.Pitch:0.000}");
-
                 _pendingInputs.Add(input);
                 _ = SendInputAsync(input);
                 ++_sequence;
@@ -173,14 +334,22 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
             // =========== 5) Camera rotation (visual only) ===========
 
-            Rotation = new Vector3(0, _yaw, 0);
-            _pivot.Rotation = new Vector3(_pitch, 0, 0);
+            if (_lockedCharacter != null && IsInstanceValid(_lockedCharacter))
+            {
+                // While locked: camera is fully driven by LookAt.
+                var targetPos = _lockedCharacter.GlobalPosition;// + new Vector3(0, 1.6f, 0);
+                _camera.LookAt(targetPos, Vector3.Up);
+            }
+            else
+            {
+                // When NOT locked: normal yaw/pitch drive the view.
+                Rotation = new Vector3(0, _yaw, 0);
+                _pivot.Rotation = new Vector3(_pitch, 0, 0);
+            }
 
             // =========== 6) Lerp visual position towards predicted position ===========
 
-            // Main smoothing change: instead of snapping GlobalPosition in ApplyServerState,
-            // we smoothly move render position each physics frame.
-            float lerpFactor = 0.2f; // tweak: 0.1–0.3
+            var lerpFactor = 0.2f; // tweak: 0.1–0.3
             _renderPos = _renderPos.Lerp(_predPos, lerpFactor);
 
             GlobalPosition = _renderPos;
@@ -202,32 +371,48 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
         //              SERVER → CLIENT RECONCILIATION
         // ==============================================================
 
-        public override void ApplyServerState(PlayerStateObject s)
+        protected override void OnApplyServerState(ICharacterStateObject s)
         {
-            if (s.PlayerId != PlayerId)
+            if (!s.WorldObjectId.IsPlayer())
+                return;
+
+            if (s.WorldObjectId.ObjectId != PlayerId)
+                return;
+
+            if (s is not PlayerStateObject playerState)
                 return;
 
             // 1) Reset predicted state to server authoritative state
             _predPos = new Vector3(s.X, s.Y, s.Z);
+
             _predYaw = s.Yaw;
             _predPitch = s.Pitch;
 
             // 2) Remove processed inputs
-            if (s.LastProcessedInputSeq > 0)
+            if (playerState.LastProcessedInputSeq > 0)
             {
-                _pendingInputs.RemoveAll(i => i.Sequence <= s.LastProcessedInputSeq);
+                _pendingInputs.RemoveAll(i => i.Sequence <= playerState.LastProcessedInputSeq);
             }
 
             // 3) Re-simulate remaining inputs on top of server state
             foreach (var input in _pendingInputs)
             {
-                SimulateLocally(input, s);
+                SimulateLocally(input, playerState);
             }
 
             // 4) Update local view angles from predicted orientation
-            //    (we don't touch GlobalPosition here – smoothing is done in _PhysicsProcess)
-            _yaw = _predYaw;
-            _pitch = _predPitch;
+            //    Only if we're NOT locked and we didn't just unlock.
+            if (_lockedCharacter == null && !_ignoreNextServerYaw)
+            {
+                _yaw = _predYaw;
+                _pitch = _predPitch;
+            }
+
+            // After one snapshot, allow server yaw again
+            _ignoreNextServerYaw = false;
+
+            _characterStatusBarControl.UpdateResources(playerState);
+            _shadowContainer?.UpdateFromHealth(playerState.Resources.Health, playerState.Resources.MaxHealth);
         }
 
         private void SimulateLocally(PlayerInputObject input, PlayerStateObject s)
@@ -259,11 +444,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
             _predYaw = input.Yaw;
             _predPitch = input.Pitch;
-
-            //GD.Print($"[{DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally: ");
-
-            //GD.Print($"[{ DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally (1): Sequence = {_sequence} | LastProcessed = { s.LastProcessedInputSeq}");
-            GD.Print($"[{ DateTime.Now:HH:mm:ss.ffff}]: SimulateLocally (2): Yaw = { _predYaw } | Pitch = { _predPitch } | PredPos = { _predPos} | CurrentPos = { GlobalPosition } | StatePos = { new Vector3(s.X, s.Y, s.Z) }");
         }
 
         private void UpdateCameraMode()
