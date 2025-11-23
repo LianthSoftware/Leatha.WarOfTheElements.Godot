@@ -61,6 +61,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         private const int MaxErrorMessagesCount = 5;
 
+        private PlayerController _playerController; // #TODO
+
         // #TODO: Make it better
         private const string CharacterPlayerControlPath = "res://scenes/controls/entities/player_character_control.tscn";
         private const string CharacterNonPlayerControlPath = "res://scenes/controls/entities/non_player_character_control.tscn";
@@ -124,6 +126,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                     _nonPlayers.Remove(kvp.Key);
                 }
             }
+
+            // Update map and position in top status bar.
+            SetMapAndPosition(_playerController);
         }
 
         public void ApplySnapshot(PlayerStateObject playerState)
@@ -169,6 +174,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             // Clear error messages.
             var messageContainer = GetTree().CurrentScene.GetNode<Control>("UICanvasLayer/MessagesContainer/VerticalContainer");
             messageContainer.ClearChildren();
+
+            _playerController = control;
 
             return control;
         }
@@ -231,6 +238,30 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/TargetStatusBarControl");
 
             return control?.CharacterControl;
+        }
+
+        private const string PositionTemplate =
+            "[p align=right][color=4ac4ff]{0}[/color] | [color=4ac4ff]{1}[/color][/p]";
+
+        public void SetMapAndPosition(PlayerController playerController)
+        {
+            if (playerController == null)
+                return;
+
+            var control = GetTree().CurrentScene.GetNode<Control>("UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2/MarginContainer/LocationStatusBar");
+
+            var mapLabel = control.GetNode<Label>("MapName");
+            var positionLabel = control.GetNode<RichTextLabel>("MarginContainer/Position");
+
+            var state = playerController.LastState;
+            if (state != null)
+            {
+                var mapInfo = ObjectAccessor.TemplateService.GetMapInfo(state.MapId);
+                if (mapInfo != null)
+                    mapLabel.Text = mapInfo.MapName;
+
+                positionLabel.Text = string.Format(PositionTemplate, state.X.ToString("F2"), state.Z.ToString("F2"));
+            }
         }
 
         public void CharacterStartedSpellCast(SpellObject spellObject)

@@ -182,6 +182,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
                 if (collider is NonPlayerCharacterControl body)
                     hitTarget = body;
+
+                //GD.Print("LastState = " + JsonSerializer.Serialize(hitTarget?.LastState));
             }
 
             ObjectAccessor.CharacterService.ShowTargetFrame(hitTarget?.LastState, hitTarget);
@@ -412,6 +414,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             _ignoreNextServerYaw = false;
 
             _characterStatusBarControl.UpdateResources(playerState);
+            _characterStatusBarControl.UpdateState(playerState);
             _shadowContainer?.UpdateFromHealth(playerState.Resources.Health, playerState.Resources.MaxHealth);
         }
 

@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://02rn78t56e8w" path="res://resources/textures/icon_wind.png" id="10_ac6j5"]
 [ext_resource type="Texture2D" uid="uid://dfmjaqktjsdod" path="res://resources/textures/spells/spell_water_water_jet.jpg" id="13_qef4h"]
 [ext_resource type="PackedScene" uid="uid://bfrkry40hkc5d" path="res://scenes/controls/auras/aura_control.tscn" id="15_j6yn6"]
+[ext_resource type="Script" uid="uid://cfd46e83d2737" path="res://framework/Controls/Entities/CastBarControl.cs" id="16_c7dav"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5t8h"]
 bg_color = Color(0.0674377, 0.0674377, 0.0674377, 1)
@@ -89,11 +90,6 @@ shader_parameter/tint_color = Color(1, 1, 0.486275, 1)
 shadow_size = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_oyrph"]
-font_size = 8
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_j6yn6"]
 font_size = 8
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
@@ -561,11 +557,15 @@ theme_override_constants/margin_right = 105
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="CastBarContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CastBarContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("CastBar", "CastSpellNameLabel", "RemainingCastTimeLabel")]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_bottom = 5
+script = ExtResource("16_c7dav")
+CastBar = NodePath("PanelContainer/NinePatchRect/TextureProgressBar")
+CastSpellNameLabel = NodePath("PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/SpellName")
+RemainingCastTimeLabel = NodePath("PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/RemainingCastTime")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer"]
 custom_minimum_size = Vector2(0, 16)
@@ -611,21 +611,14 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
+[node name="SpellName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Water Bolt"
 label_settings = SubResource("LabelSettings_oyrph")
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-text = "1.5s"
-label_settings = SubResource("LabelSettings_j6yn6")
-
-[node name="ElementPercent" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(36, 0)
+[node name="RemainingCastTime" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/outline_size = 8

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://5f5oxcj06s1d"]
+[gd_scene load_steps=37 format=3 uid="uid://5f5oxcj06s1d"]
 
 [ext_resource type="Script" uid="uid://cvukdvj4fr1t5" path="res://framework/Controls/UserInterface/CharacterStatusBarControl.cs" id="1_de8je"]
 [ext_resource type="Texture2D" uid="uid://3fndfc30mjvj" path="res://resources/textures/hero_bartender_001.png" id="2_ka6t0"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://02rn78t56e8w" path="res://resources/textures/icon_wind.png" id="13_u1215"]
 [ext_resource type="Texture2D" uid="uid://cpvxl71v6wq35" path="res://resources/textures/icon_lightning.png" id="14_0x5g1"]
 [ext_resource type="Texture2D" uid="uid://dfmjaqktjsdod" path="res://resources/textures/spells/spell_water_water_jet.jpg" id="15_u16li"]
+[ext_resource type="Script" uid="uid://cfd46e83d2737" path="res://framework/Controls/Entities/CastBarControl.cs" id="16_qy4vi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjph7"]
 bg_color = Color(0, 1, 0, 0)
@@ -565,10 +566,14 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 5
 
-[node name="CastBarContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CastBarContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("CastBar", "CastSpellNameLabel", "RemainingCastTimeLabel")]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_constants/margin_bottom = 5
+script = ExtResource("16_qy4vi")
+CastBar = NodePath("PanelContainer/NinePatchRect/TextureProgressBar")
+CastSpellNameLabel = NodePath("PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/Label")
+RemainingCastTimeLabel = NodePath("PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/ElementPercent")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer"]
 custom_minimum_size = Vector2(0, 16)
@@ -599,7 +604,7 @@ grow_vertical = 2
 value = 50.0
 nine_patch_stretch = true
 texture_progress = ExtResource("9_hghd4")
-tint_progress = Color(1, 1, 0.678431, 1)
+tint_progress = Color(1, 0.858824, 0.109804, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar"]
 layout_mode = 1

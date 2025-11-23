@@ -22,6 +22,13 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
         [Export]
         public Label CharacterLevelLabel { get; set; }
 
+        [ExportGroup("Cast Bar")]
+        [Export]
+        public CastBarControl CastBarControl { get; set; }
+
+
+
+        [ExportGroup("Health")]
         [Export]
         public TextureProgressBar HealthBar { get; set; }
 
@@ -30,6 +37,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
 
         [Export]
         public RichTextLabel HealthPercentLabel { get; set; }
+
+
 
         [ExportGroup("Primary Element")]
         [Export]
@@ -126,8 +135,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
         {
             var healthPct = characterState.Resources.GetHealthPercent();
 
-            CharacterNameLabel.Text = ObjectAccessor.SessionService.CurrentCharacter.PlayerName;
-            CharacterLevelLabel.Text = ObjectAccessor.SessionService.CurrentCharacter.Level.ToString();
+            //CharacterNameLabel.Text = ObjectAccessor.SessionService.CurrentCharacter.PlayerName;
+            //CharacterLevelLabel.Text = ObjectAccessor.SessionService.CurrentCharacter.Level.ToString();
 
             HealthBar.Value = healthPct;
 
@@ -214,6 +223,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
             }
             else
                 TertiaryElement.Visible = false;
+        }
+
+        public void SetSpellCasting(bool isCasting, SpellObject spellObject) // #TODO
+        {
+            if (isCasting)
+            {
+                CastBarControl.OnSpellCastStarted(spellObject);
+            }
+            else
+            {
+                CastBarControl.ResetCastBar();
+            }
         }
 
         public void AddAura(AuraObject auraObject)

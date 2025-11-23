@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
@@ -16,8 +17,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
         public void ApplyServerState(ICharacterStateObject state)
         {
-            OnApplyServerState(state);
+            //GD.Print("LastState = " + JsonSerializer.Serialize(state));
             LastState = state;
+            OnApplyServerState(state);
         }
 
         protected abstract void OnApplyServerState(ICharacterStateObject state);

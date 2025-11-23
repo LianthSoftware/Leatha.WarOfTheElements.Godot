@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdlbfpl1435u5"]
+[gd_scene load_steps=25 format=3 uid="uid://cdlbfpl1435u5"]
 
 [ext_resource type="Script" uid="uid://dm2nrviftgoac" path="res://framework/Controls/Maps/MapControl.cs" id="1_ojrkb"]
 [ext_resource type="Material" uid="uid://dugrrgii3yo6r" path="res://resources/shaders/black_hole_red_shader_material.tres" id="2_k4hy5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bo8f56umf4cyh" path="res://scenes/ui/player_spellbar_control.tscn" id="4_cygj0"]
 [ext_resource type="PackedScene" uid="uid://doc842mwy067x" path="res://scenes/ui/player_status_bar_control.tscn" id="4_ojrkb"]
 [ext_resource type="Script" uid="uid://bh24qrl4gbiqd" path="res://framework/Controls/Spells/HellfireControl.cs" id="5_k4hy5"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="5_l6dr3"]
 [ext_resource type="PackedScene" uid="uid://5f5oxcj06s1d" path="res://scenes/ui/target_status_bar_control.tscn" id="5_nw4f3"]
 [ext_resource type="Texture2D" uid="uid://bsjf0uatcppqi" path="res://resources/textures/spells/spell_fire_hellfire_visual_003.png" id="6_l6dr3"]
 [ext_resource type="Texture2D" uid="uid://dbvf6of3phug5" path="res://resources/textures/crosshair_001.png" id="8_2dofn"]
@@ -30,11 +31,44 @@ size = Vector3(500, 1, 500)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyv7f"]
 albedo_color = Color(0.523781, 0.523781, 0.523781, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4hy5"]
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6dr3"]
+font_size = 24
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_k4hy5"]
 font_size = 30
 font_color = Color(1, 0.101961, 0.156863, 1)
 outline_size = 25
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wom4v"]
+bg_color = Color(0.117647, 0.0980392, 0.054902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_l6dr3"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_wom4v")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6dr3"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mko12"]
 top_radius = 2.0
@@ -76,13 +110,90 @@ script = ExtResource("2_nw4f3")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="TopStatusBar" type="MarginContainer" parent="UICanvasLayer"]
+custom_minimum_size = Vector2(0, 36)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.073
+offset_bottom = -10.304
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/TopStatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4hy5")
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/TopStatusBar"]
+custom_minimum_size = Vector2(250, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_l6dr3")
+region_rect = Rect2(5, 5, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/TopStatusBar/PanelContainer2"]
+custom_minimum_size = Vector2(350, 36)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.348
+anchor_right = 0.652
+anchor_bottom = 0.986
+offset_left = 50.104
+offset_top = 0.5
+offset_right = -50.104
+offset_bottom = 0.0179977
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_l6dr3")
+region_rect = Rect2(5, 5, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="LocationStatusBar" type="HBoxContainer" parent="UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="MapName" type="Label" parent="UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2/MarginContainer/LocationStatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hideout"
+label_settings = SubResource("LabelSettings_l6dr3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2/MarginContainer/LocationStatusBar"]
+layout_mode = 2
+
+[node name="Position" type="RichTextLabel" parent="UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2/MarginContainer/LocationStatusBar/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[p align=right][color=4ac4ff]20[/color] | [color=4ac4ff]20[/color][/p]"
+fit_content = true
+
 [node name="PlayerSpellBarControl" parent="UICanvasLayer" instance=ExtResource("4_cygj0")]
 
 [node name="PlayerStatusBarControl" parent="UICanvasLayer" instance=ExtResource("4_ojrkb")]
 offset_left = 50.0
-offset_top = 40.0
+offset_top = 100.0
 offset_right = 50.0
-offset_bottom = 40.0
+offset_bottom = 100.0
 scale = Vector2(1.66, 1.66)
 
 [node name="TargetStatusBarControl" parent="UICanvasLayer" instance=ExtResource("5_nw4f3")]
@@ -90,9 +201,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -500.0
-offset_top = 40.0
+offset_top = 100.0
 offset_right = -500.0
-offset_bottom = 40.0
+offset_bottom = 100.0
 grow_horizontal = 0
 scale = Vector2(1.66, 1.66)
 pivot_offset = Vector2(450, 0)
@@ -129,6 +240,122 @@ grow_vertical = 2
 layout_mode = 2
 text = "Not enough chakra!"
 label_settings = SubResource("LabelSettings_k4hy5")
+
+[node name="ChatControl" type="MarginContainer" parent="UICanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.725
+anchor_right = 0.276
+anchor_bottom = 0.957
+offset_left = -0.32
+offset_top = 0.199982
+offset_right = 0.0479736
+offset_bottom = -0.135986
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/ChatControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4hy5")
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/ChatControl"]
+z_index = 5
+custom_minimum_size = Vector2(250, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_l6dr3")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/ChatControl/PanelContainer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.067
+anchor_right = 0.968
+anchor_bottom = 0.94
+offset_left = -0.00800037
+offset_top = -0.0500002
+offset_right = -0.104004
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_l6dr3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [color=gray][Leatha][/color]: Nice day for fishing, ain't it? Hua hua. And even longer?[/p]"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [Leatha]: Nice day for fishing, ain't it? Hua hua.[/p]"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [Leatha]: Nice day for fishing, ain't it? Hua hua.[/p]"
+fit_content = true
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_l6dr3")
+region_rect = Rect2(5, 0, 200, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.031
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.178
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LineEdit" type="LineEdit" parent="UICanvasLayer/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_l6dr3")
+placeholder_text = "Press \"Enter\" to start typing ..."
 
 [node name="Hellfire" type="Node3D" parent="."]
 visible = false
