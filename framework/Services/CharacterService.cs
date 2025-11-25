@@ -160,7 +160,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             var control = packedScene.Instantiate<PlayerController>();
             control.SetPlayerId(state.WorldObjectId.ObjectId);
 
-            var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/PlayerStatusBarControl");
+            var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_PlayerStatusBar_Path);
             control.SetResources(state, charStatusControl);
 
             // #TODO: Add auras.
@@ -172,7 +172,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             ObjectAccessor.SessionService.PlayerId = state.WorldObjectId.ObjectId;
 
             // Clear error messages.
-            var messageContainer = GetTree().CurrentScene.GetNode<Control>("UICanvasLayer/MessagesContainer/VerticalContainer");
+            var messageContainer = GetTree().CurrentScene.GetNode<Control>(NodePathHelper.GameUI_MessageList_Path);
             messageContainer.ClearChildren();
 
             _playerController = control;
@@ -190,7 +190,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                 return;
             }
 
-            var control = GetTree().CurrentScene.GetNode<PlayerSpellBarControl>("UICanvasLayer/PlayerSpellBarControl");
+            var control = GetTree().CurrentScene.GetNode<PlayerSpellBarControl>(NodePathHelper.GameUI_PlayerSpellBar_Path);
 
             // #TODO: Get existing cooldowns (across sessions).
             var spellSlots = control.ActionListContainer.GetChildren<SpellActionBarSlot>();
@@ -216,7 +216,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         public void ShowTargetFrame(ICharacterStateObject state, CharacterControl characterControl)
         {
-            var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/TargetStatusBarControl");
+            var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_TargetStatusBar_Path);
             if (control != null)
             {
                 control.Visible = state != null;
@@ -224,18 +224,21 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             }
 
             if (state != null)
+            {
+                //GD.Print($"UpdateState => {state.CharacterName}");
                 control?.UpdateState(state);
+            }
         }
 
         public bool PlayerHasTarget()
         {
-            var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/TargetStatusBarControl");
+            var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_TargetStatusBar_Path);
             return control is { Visible: true };
         }
 
         public CharacterControl GetPlayerTarget()
         {
-            var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/TargetStatusBarControl");
+            var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_TargetStatusBar_Path);
 
             return control?.CharacterControl;
         }
@@ -248,7 +251,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             if (playerController == null)
                 return;
 
-            var control = GetTree().CurrentScene.GetNode<Control>("UICanvasLayer/TopStatusBar/PanelContainer2/PanelContainer2/MarginContainer/LocationStatusBar");
+            var control = GetTree().CurrentScene.GetNode<Control>("UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/PanelContainer2/MarginContainer/LocationStatusBar");
 
             var mapLabel = control.GetNode<Label>("MapName");
             var positionLabel = control.GetNode<RichTextLabel>("MarginContainer/Position");
@@ -271,7 +274,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                 Color.FromHtml("#00a749"),
                 5.0f);
 
-            var control = GetTree().CurrentScene.GetNode<PlayerSpellBarControl>("UICanvasLayer/PlayerSpellBarControl");
+            var control = GetTree().CurrentScene.GetNode<PlayerSpellBarControl>(NodePathHelper.GameUI_PlayerSpellBar_Path);
 
             // #TODO: Find caster and show casting animation.
 
@@ -306,7 +309,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                 Color.FromHtml("#00a749"),
                 5.0f);
 
-            var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/PlayerStatusBarControl");
+            var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_PlayerStatusBar_Path);
             charStatusControl.AddAura(auraObject);
         }
 
@@ -317,7 +320,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                 Color.FromHtml("#00a749"),
                 5.0f);
 
-            var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>("UICanvasLayer/PlayerStatusBarControl");
+            var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_PlayerStatusBar_Path);
             charStatusControl.RemoveAura(auraObject);
         }
 
@@ -333,7 +336,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         public void ShowMessage(string message, Color color, float duration = 3.0f)
         {
-            var container = GetTree().CurrentScene.GetNode<Control>("UICanvasLayer/MessagesContainer/VerticalContainer");
+            var container = GetTree().CurrentScene.GetNode<Control>(NodePathHelper.GameUI_MessageList_Path);
 
             GD.Print($"[{DateTime.Now:dd.MM.yyyy HH:mm:ss.ffff}]: { message }");
 
@@ -350,9 +353,10 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                     FontColor = color,
                     FontSize = 30,
                     OutlineColor = Colors.Black,
-                    OutlineSize = 25
+                    OutlineSize = 25,
                 },
-                Text = message
+                Text = message,
+                HorizontalAlignment = HorizontalAlignment.Center,
             };
 
             container.AddChild(label);

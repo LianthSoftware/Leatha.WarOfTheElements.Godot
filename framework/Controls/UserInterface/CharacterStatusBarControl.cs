@@ -119,6 +119,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
             GetGridControl(BuffContainer).ClearChildren(true);
             GetGridControl(DebuffContainer).ClearChildren(true);
 
+            //GD.Print("Ready?");
+
             SetAuraPanelVisibility(BuffContainer);
             SetAuraPanelVisibility(DebuffContainer);
         }
@@ -127,6 +129,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
         {
             CharacterNameLabel.Text = characterState.CharacterName;
             CharacterLevelLabel.Text = characterState.CharacterLevel.ToString();
+
+            //if (Name == "TargetStatusBarControl")
+            //    GD.Print($"Wtf: { GetPath() } -> { CharacterNameLabel.Text }");
 
             UpdateResources(characterState);
         }
@@ -297,6 +302,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface
         {
             var gridControl = GetGridControl(parent);
             parent.Visible = gridControl != null && gridControl.GetChildCount() > 0;
+
+            GD.Print($"{parent.GetPath()}: IsVisible = { parent.Visible } | Children = { gridControl?.GetChildCount() ?? -1}");
         }
 
         //public override void _Ready()

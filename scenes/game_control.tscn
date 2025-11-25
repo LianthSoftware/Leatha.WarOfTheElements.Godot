@@ -1,0 +1,1266 @@
+[gd_scene load_steps=48 format=3 uid="uid://32kbip1w5nlk"]
+
+[ext_resource type="Material" uid="uid://dugrrgii3yo6r" path="res://resources/shaders/black_hole_red_shader_material.tres" id="1_acc7x"]
+[ext_resource type="Script" uid="uid://ds65ixfdddvda" path="res://framework/Controls/UserInterface/ShadowContainerControl.cs" id="2_m5sd2"]
+[ext_resource type="Script" uid="uid://boj0v67jf0aun" path="res://framework/Controls/UserInterface/ResizableUIRootControl.cs" id="3_pm6yd"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="4_7diii"]
+[ext_resource type="PackedScene" uid="uid://bo8f56umf4cyh" path="res://scenes/ui/player_spellbar_control.tscn" id="5_uqr57"]
+[ext_resource type="PackedScene" uid="uid://doc842mwy067x" path="res://scenes/ui/player_status_bar_control.tscn" id="6_l0up3"]
+[ext_resource type="PackedScene" uid="uid://5f5oxcj06s1d" path="res://scenes/ui/target_status_bar_control.tscn" id="7_7dayx"]
+[ext_resource type="Texture2D" uid="uid://6ax74jartc2w" path="res://resources/line_fade_texture_1d.tres" id="8_yn477"]
+[ext_resource type="Texture2D" uid="uid://i2nrol3h1vj5" path="res://resources/textures/items/equip_helm_slot_001.jpg" id="9_p6ge2"]
+[ext_resource type="Texture2D" uid="uid://xdfj8bkwp0k7" path="res://resources/textures/items/equip_shoulder_slot_001.jpg" id="10_14brh"]
+[ext_resource type="Texture2D" uid="uid://c3wj8sp7frto1" path="res://resources/textures/items/equip_chest_slot_001.jpg" id="11_alo1g"]
+[ext_resource type="Texture2D" uid="uid://b0h2x43fs0plb" path="res://resources/textures/items/equip_bracer_slot_001.jpg" id="12_ghuhc"]
+[ext_resource type="Texture2D" uid="uid://paa8qfxgyune" path="res://resources/textures/items/equip_glove_slot_001.jpg" id="13_3kn3d"]
+[ext_resource type="Texture2D" uid="uid://dg6owonadthsw" path="res://resources/textures/items/equip_belt_slot_001.jpg" id="14_u1o03"]
+[ext_resource type="Texture2D" uid="uid://b7kaohy21k5n0" path="res://resources/textures/items/equip_leg_slot_001.jpg" id="15_6ce05"]
+[ext_resource type="Texture2D" uid="uid://q8ymetmbr00q" path="res://resources/textures/items/equip_boot_slot_001.jpg" id="16_vi2au"]
+[ext_resource type="Texture2D" uid="uid://dgv4tpfkn721t" path="res://resources/textures/items/equip_weapon_slot_001.jpg" id="17_guxxq"]
+[ext_resource type="Texture2D" uid="uid://hwsfalh7f18d" path="res://resources/textures/items/equip_shield_slot_001.jpg" id="18_sjmyi"]
+[ext_resource type="Texture2D" uid="uid://necm4abvw5u4" path="res://resources/textures/icon_water.png" id="19_nxqs2"]
+[ext_resource type="Texture2D" uid="uid://02rn78t56e8w" path="res://resources/textures/icon_wind.png" id="20_o7duk"]
+[ext_resource type="Texture2D" uid="uid://cxi6mr1onhja5" path="res://resources/textures/icon_fire.png" id="21_spxj2"]
+[ext_resource type="Texture2D" uid="uid://dbvf6of3phug5" path="res://resources/textures/crosshair_001.png" id="22_wlhl8"]
+[ext_resource type="PackedScene" uid="uid://dpmgtuk4lb7kq" path="res://scenes/maps/initial_player_spawn_map.tscn" id="23_m5sd2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ae2y"]
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5twei"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0591259, 0.059126, 0.0591259, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37jrh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.113665, 0.113665, 0.113665, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0v841"]
+font_size = 20
+font_color = Color(0.8, 0.8, 0.8, 1)
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7guyh"]
+font_size = 25
+font_color = Color(0.800491, 0.800491, 0.800491, 1)
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rxnju"]
+font_size = 24
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gh4yx"]
+font_size = 30
+font_color = Color(1, 0.101961, 0.156863, 1)
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wom4v"]
+bg_color = Color(0.117647, 0.0980392, 0.054902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_derr4"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_wom4v")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17t4e"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q676k"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xtgl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_size = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbijq"]
+
+[sub_resource type="Theme" id="Theme_xestc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a0r8"]
+font_size = 25
+font_color = Color(1, 0.827451, 0.356863, 1)
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ii4km"]
+font_size = 30
+outline_size = 22
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80qhg"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.409603, 0.409603, 0.409603, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjdux"]
+font_size = 20
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oftr0"]
+bg_color = Color(0, 0, 0, 0.101961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.121569, 0.101961, 0.0588235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_k1ufn"]
+font_size = 25
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6vq0"]
+font_size = 30
+font_color = Color(0.290196, 0.768627, 1, 1)
+outline_size = 22
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_evk4q"]
+font_size = 30
+font_color = Color(0.772549, 0.772549, 0.772549, 1)
+outline_size = 22
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byfv1"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.409603, 0.409603, 0.409603, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_w5vc3"]
+font_size = 30
+font_color = Color(1, 0.309804, 0.196078, 1)
+outline_size = 22
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GameControl" type="Node3D"]
+
+[node name="ShadowLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthIndicator" type="PanelContainer" parent="ShadowLayer"]
+material = ExtResource("1_acc7x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_m5sd2")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUIRoot" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_pm6yd")
+
+[node name="TopStatusBar" type="MarginContainer" parent="UICanvasLayer/GameUIRoot"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.065
+offset_bottom = -0.200005
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ae2y")
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/GameUIRoot/TopStatusBar"]
+custom_minimum_size = Vector2(250, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_7diii")
+region_rect = Rect2(5, 5, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5twei")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_37jrh")
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "I"
+label_settings = SubResource("LabelSettings_0v841")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Character"
+label_settings = SubResource("LabelSettings_7guyh")
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5twei")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button3/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button3/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_37jrh")
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button3/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "P"
+label_settings = SubResource("LabelSettings_0v841")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Spell Book"
+label_settings = SubResource("LabelSettings_7guyh")
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5twei")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_37jrh")
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button2/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "M"
+label_settings = SubResource("LabelSettings_0v841")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer/HBoxContainer/Button2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Map"
+label_settings = SubResource("LabelSettings_7guyh")
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(450, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_7diii")
+region_rect = Rect2(5, 5, 190, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/PanelContainer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_right = 0.987
+anchor_bottom = 1.0
+offset_left = 0.15
+offset_right = -0.150024
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="LocationStatusBar" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="MapName" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/PanelContainer2/MarginContainer/LocationStatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hideout"
+label_settings = SubResource("LabelSettings_rxnju")
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/PanelContainer2/MarginContainer/LocationStatusBar"]
+layout_mode = 2
+
+[node name="Position" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/PanelContainer2/MarginContainer/LocationStatusBar/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[p align=right][color=4ac4ff]20[/color] | [color=4ac4ff]20[/color][/p]"
+fit_content = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_5twei")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/Button/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/Button/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_37jrh")
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/Button/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "Esc"
+label_settings = SubResource("LabelSettings_0v841")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/GameUIRoot/TopStatusBar/PanelContainer2/HBoxContainer/MarginContainer2/HBoxContainer/Button/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Menu"
+label_settings = SubResource("LabelSettings_7guyh")
+vertical_alignment = 1
+
+[node name="PlayerSpellBarControl" parent="UICanvasLayer/GameUIRoot" instance=ExtResource("5_uqr57")]
+layout_mode = 1
+
+[node name="PlayerStatusBarControl" parent="UICanvasLayer/GameUIRoot" instance=ExtResource("6_l0up3")]
+layout_mode = 1
+anchor_left = 0.01
+anchor_top = 0.083
+anchor_right = 0.01
+anchor_bottom = 0.083
+offset_left = 0.799999
+offset_top = 0.359993
+offset_right = 750.8
+offset_bottom = 300.36
+scale = Vector2(1.2, 1.2)
+
+[node name="TargetStatusBarControl" parent="UICanvasLayer/GameUIRoot" instance=ExtResource("7_7dayx")]
+layout_mode = 1
+anchor_left = 0.99
+anchor_top = 0.083
+anchor_right = 0.99
+anchor_bottom = 0.083
+offset_left = -900.8
+offset_top = 0.359993
+offset_right = -150.8
+offset_bottom = 300.36
+grow_horizontal = 0
+scale = Vector2(1.2, 1.2)
+size_flags_horizontal = 8
+
+[node name="MessagesContainer" type="Control" parent="UICanvasLayer/GameUIRoot"]
+custom_minimum_size = Vector2(800, 230)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.139
+anchor_right = 0.5
+anchor_bottom = 0.139
+offset_left = -400.0
+offset_top = -0.12001
+offset_right = 400.0
+offset_bottom = 229.88
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageList" type="VBoxContainer" parent="UICanvasLayer/GameUIRoot/MessagesContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ErrorLabel" type="Label" parent="UICanvasLayer/GameUIRoot/MessagesContainer/MessageList"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Not enough chakra!"
+label_settings = SubResource("LabelSettings_gh4yx")
+horizontal_alignment = 1
+
+[node name="ErrorLabel2" type="Label" parent="UICanvasLayer/GameUIRoot/MessagesContainer/MessageList"]
+layout_mode = 2
+text = "Not enough chakra!"
+label_settings = SubResource("LabelSettings_gh4yx")
+horizontal_alignment = 1
+
+[node name="ErrorLabel3" type="Label" parent="UICanvasLayer/GameUIRoot/MessagesContainer/MessageList"]
+layout_mode = 2
+text = "Not enough chakra!"
+label_settings = SubResource("LabelSettings_gh4yx")
+horizontal_alignment = 1
+
+[node name="ErrorLabel4" type="Label" parent="UICanvasLayer/GameUIRoot/MessagesContainer/MessageList"]
+visible = false
+layout_mode = 2
+text = "Not enough chakra!"
+label_settings = SubResource("LabelSettings_gh4yx")
+horizontal_alignment = 1
+
+[node name="ErrorLabel5" type="Label" parent="UICanvasLayer/GameUIRoot/MessagesContainer/MessageList"]
+visible = false
+layout_mode = 2
+text = "Not enough chakra!"
+label_settings = SubResource("LabelSettings_gh4yx")
+horizontal_alignment = 1
+
+[node name="ChatControl" type="MarginContainer" parent="UICanvasLayer/GameUIRoot"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.704
+anchor_right = 0.271
+anchor_bottom = 0.981
+offset_left = 0.799999
+offset_top = -0.320068
+offset_right = -0.320068
+offset_bottom = 0.519897
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/ChatControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ae2y")
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/GameUIRoot/ChatControl"]
+z_index = 5
+custom_minimum_size = Vector2(250, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_7diii")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.067
+anchor_right = 0.968
+anchor_bottom = 0.94
+offset_left = -0.00800037
+offset_top = -0.0500002
+offset_right = -0.104004
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_derr4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [color=gray][Leatha][/color]: Nice day for fishing, ain't it? Hua hua. And even longer?[/p]"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [Leatha]: Nice day for fishing, ain't it? Hua hua.[/p]"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [Leatha]: Nice day for fishing, ain't it? Hua hua.[/p]"
+fit_content = true
+
+[node name="PanelContainer2" type="NinePatchRect" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_7diii")
+region_rect = Rect2(5, 0, 200, 200)
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.031
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.178
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LineEdit" type="LineEdit" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_17t4e")
+placeholder_text = "Press \"Enter\" to start typing ..."
+
+[node name="DialogsRoot" type="Control" parent="UICanvasLayer"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 70
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q676k")
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 65
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="HorizontalContainer" type="HBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2xtgl")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer"]
+material = SubResource("ShaderMaterial_gbijq")
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_xestc")
+texture = ExtResource("4_7diii")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 15
+
+[node name="SpellBookControl" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/HeaderContainer"]
+layout_mode = 2
+text = "EQUIP & STATS"
+label_settings = SubResource("LabelSettings_7a0r8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeparatorLine" type="Line2D" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl"]
+points = PackedVector2Array(0, 70, 1670, 70)
+width = 2.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("8_yn477")
+texture_mode = 2
+
+[node name="ContentContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CharacterEquip" type="NinePatchRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_7diii")
+region_rect = Rect2(8, 8, 184, 184)
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "LEATHA"
+label_settings = SubResource("LabelSettings_ii4km")
+horizontal_alignment = 1
+
+[node name="SeparatorLine" type="Line2D" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer"]
+points = PackedVector2Array(-12, 70, 742, 70)
+width = 2.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("8_yn477")
+texture_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+
+[node name="EquipSlot001" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot001"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot001/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("9_p6ge2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot001"]
+layout_mode = 2
+text = "Head"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot002" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot002"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot002/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("10_14brh")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot002"]
+layout_mode = 2
+text = "Shoulders"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot003" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot003"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot003/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("11_alo1g")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot003"]
+layout_mode = 2
+text = "Chest"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot004" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot004"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot004/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("12_ghuhc")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/EquipSlot004"]
+layout_mode = 2
+text = "Bracers"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_oftr0")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 35
+
+[node name="EquipSlot005" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot005"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot005/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("13_3kn3d")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot005"]
+layout_mode = 2
+text = "Gloves"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot006" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot006"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot006/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("14_u1o03")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot006"]
+layout_mode = 2
+text = "Belt"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot007" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot007"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot007/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("15_6ce05")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot007"]
+layout_mode = 2
+text = "Legs"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot008" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot008"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot008/PanelContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("16_vi2au")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/EquipSlot008"]
+layout_mode = 2
+text = "Boots"
+label_settings = SubResource("LabelSettings_mjdux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 60
+
+[node name="EquipSlot007" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EquipSlot007"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_guxxq")
+expand_mode = 1
+
+[node name="EquipSlot008" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterEquip/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/EquipSlot008"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("18_sjmyi")
+expand_mode = 1
+
+[node name="CharacterStats" type="NinePatchRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.392157)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_7diii")
+region_rect = Rect2(8, 8, 184, 184)
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ELEMENTS"
+label_settings = SubResource("LabelSettings_7a0r8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeparatorLine" type="Line2D" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer"]
+points = PackedVector2Array(-12, 60, 742, 60)
+width = 2.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("8_yn477")
+texture_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EquipSlot006" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label2" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot006"]
+layout_mode = 2
+text = "PRIMARY"
+label_settings = SubResource("LabelSettings_k1ufn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot006"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot006/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot006/MarginContainer/PanelContainer"]
+self_modulate = Color(0.290196, 0.768627, 1, 1)
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("19_nxqs2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot006"]
+layout_mode = 2
+text = "Water"
+label_settings = SubResource("LabelSettings_w6vq0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot007" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label2" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot007"]
+layout_mode = 2
+text = "SECONDARY"
+label_settings = SubResource("LabelSettings_k1ufn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot007"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot007/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_80qhg")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot007/MarginContainer/PanelContainer"]
+self_modulate = Color(0.772549, 0.772549, 0.772549, 1)
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("20_o7duk")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot007"]
+layout_mode = 2
+text = "Air"
+label_settings = SubResource("LabelSettings_evk4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipSlot008" type="VBoxContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label2" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot008"]
+layout_mode = 2
+text = "TERTIARY"
+label_settings = SubResource("LabelSettings_k1ufn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot008"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot008/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_byfv1")
+
+[node name="SpellIcon" type="TextureRect" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot008/MarginContainer/PanelContainer"]
+self_modulate = Color(1, 0.309804, 0.196078, 1)
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("21_spxj2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/EquipSlot008"]
+layout_mode = 2
+text = "Fire"
+label_settings = SubResource("LabelSettings_w5vc3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeparatorLine" type="Line2D" parent="UICanvasLayer/DialogsRoot/MarginContainer/PanelContainer/MarginContainer/HorizontalContainer/PanelContainer/NinePatchRect/MarginContainer/SpellBookControl/ContentContainer/HBoxContainer/CharacterStats/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+points = PackedVector2Array(-12, 265, 742, 265)
+width = 3.0
+default_color = Color(0.0941176, 0.0823529, 0.0588235, 1)
+texture = ExtResource("8_yn477")
+texture_mode = 2
+
+[node name="CrosshairControl" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairImage" type="TextureRect" parent="UICanvasLayer/CrosshairControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_wlhl8")
+
+[node name="MapControl" type="Node3D" parent="."]
+
+[node name="InitialPlayerSpawnMap" parent="MapControl" instance=ExtResource("23_m5sd2")]

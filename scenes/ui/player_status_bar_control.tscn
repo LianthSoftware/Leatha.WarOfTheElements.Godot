@@ -20,10 +20,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5t8h"]
 bg_color = Color(0.0674377, 0.0674377, 0.0674377, 1)
-corner_radius_top_left = 48
-corner_radius_top_right = 48
-corner_radius_bottom_right = 48
-corner_radius_bottom_left = 48
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
 shadow_size = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2kdlr"]
@@ -36,13 +36,13 @@ shader_parameter/grayscale = false
 shadow_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ol5f"]
-font_size = 14
+font_size = 24
 font_color = Color(1, 0.729412, 0.258824, 1)
-outline_size = 12
+outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t0p61"]
-font_size = 10
+font_size = 12
 font_color = Color(0.678431, 0.541176, 0.254902, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
@@ -128,8 +128,11 @@ shadow_size = 2
 shadow_size = 3
 
 [node name="PlayerStatusBarControl" type="Control" node_paths=PackedStringArray("CharacterNameLabel", "CharacterLevelLabel", "HealthBar", "HealthValueLabel", "HealthPercentLabel", "PrimaryElement", "PrimaryLoadingBar", "PrimaryElementIcon", "PrimaryElementPercent", "SecondaryElement", "SecondaryLoadingBar", "SecondaryElementIcon", "SecondaryElementPercent", "TertiaryElement", "TertiaryLoadingBar", "TertiaryElementIcon", "TertiaryElementPercent", "BuffContainer", "DebuffContainer")]
+custom_minimum_size = Vector2(750, 300)
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.391
+offset_right = -0.720093
+offset_bottom = 138.0
 script = ExtResource("1_oyrph")
 CharacterNameLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/BoxContainer/CharacterName")
 CharacterLevelLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/BoxContainer/MarginContainer/TextureRect/CharacterLevel")
@@ -148,14 +151,17 @@ TertiaryElement = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Tertiar
 TertiaryLoadingBar = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TertiaryElemenmt/PanelContainer/TextureRect/LoadingBar")
 TertiaryElementIcon = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TertiaryElemenmt/VBoxContainer/TextureRect")
 TertiaryElementPercent = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TertiaryElemenmt/VBoxContainer/RichTextLabel")
-BuffContainer = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/BuffContainer")
-DebuffContainer = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/DebuffContainer")
+BuffContainer = NodePath("MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer")
+DebuffContainer = NodePath("MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer")
 AuraControlScene = ExtResource("15_j6yn6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -170,7 +176,7 @@ theme_override_constants/separation = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_constants/separation = -25
+theme_override_constants/separation = -35
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 z_index = 1
@@ -179,7 +185,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q5t8h")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(96, 96)
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 texture = ExtResource("1_5ybfd")
 expand_mode = 1
@@ -235,7 +241,7 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0p61")
 
 [node name="PanelContainer2" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3"]
-custom_minimum_size = Vector2(250, 80)
+custom_minimum_size = Vector2(450, 130)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -252,9 +258,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer"]
 layout_mode = 2
@@ -265,7 +271,7 @@ layout_mode = 2
 [node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Leatha"
+text = "<Name>"
 label_settings = SubResource("LabelSettings_2ol5f")
 horizontal_alignment = 1
 
@@ -275,7 +281,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/BoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(36, 36)
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("5_t0p61")
@@ -304,24 +310,23 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_right = 10
+size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(200, 20)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 
 [node name="TextureRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Control"]
-custom_minimum_size = Vector2(28, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = -100.0
-offset_right = 14.0
-offset_bottom = 100.0
+offset_left = -108.0
+offset_top = -90.5
+offset_right = -58.0
+offset_bottom = 309.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
@@ -331,11 +336,14 @@ texture = ExtResource("8_gjph7")
 [node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.105
-anchor_top = 0.1
+anchor_left = 0.127
+anchor_top = 0.2
 anchor_right = 0.895
-anchor_bottom = 0.9
-offset_right = -1.52588e-05
+anchor_bottom = 0.754
+offset_left = 0.199997
+offset_top = 3.0
+offset_right = -3.05176e-05
+offset_bottom = -3.01
 grow_horizontal = 2
 grow_vertical = 2
 step = 0.001
@@ -346,33 +354,35 @@ tint_progress = Color(0, 0.368627, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -9.0
-offset_bottom = 9.0
+anchors_preset = -1
+anchor_left = 0.127
+anchor_top = 0.2
+anchor_right = 0.895
+anchor_bottom = 0.754
+offset_left = 0.199997
+offset_right = -3.05176e-05
+offset_bottom = -0.0100021
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 
 [node name="HealthValueLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 8
+size_flags_vertical = 4
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[p align=left]100[font_size=7][color=27ff7b] / [/color][/font_size]100[/p]"
+text = "[p align=left]100[font_size=12][color=27ff7b] / [/color][/font_size]100[/p]"
+fit_content = true
 
 [node name="HealthPercentLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/PanelContainer3/PanelContainer2/MarginContainer/VBoxContainer/MarginContainer/Control/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 8
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[p align=right]100[font_size=7][color=27ff7b] %[/color][/font_size][/p]"
+text = "[p align=right]100[font_size=12][color=27ff7b] %[/color][/font_size][/p]"
 fit_content = true
 autowrap_mode = 0
 
@@ -387,7 +397,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gjph7")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/PrimaryElement/PanelContainer"]
 material = SubResource("ShaderMaterial_cpx02")
-custom_minimum_size = Vector2(28, 80)
+custom_minimum_size = Vector2(42, 130)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -418,17 +428,17 @@ theme_override_constants/separation = 0
 
 [node name="ElementPercent" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/PrimaryElement/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 bbcode_enabled = true
-text = "[p][font_size=10]100 [font_size=7][color=4ac4ff]%[/color][/font_size][/font_size][/p]"
+text = "[p align=center][font_size=16]100 [font_size=12][color=4ac4ff]%[/color][/font_size][/font_size][/p]"
 fit_content = true
 
 [node name="ElementIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/PrimaryElement/VBoxContainer"]
 material = SubResource("ShaderMaterial_qef4h")
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 texture = ExtResource("9_cpx02")
 expand_mode = 1
 stretch_mode = 4
@@ -444,7 +454,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gjph7")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SecondaryElement/PanelContainer"]
 material = SubResource("ShaderMaterial_cpx02")
-custom_minimum_size = Vector2(28, 80)
+custom_minimum_size = Vector2(42, 130)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -475,14 +485,14 @@ theme_override_constants/separation = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/SecondaryElement/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 bbcode_enabled = true
-text = "[p][font_size=10]100 [font_size=7][color=c5c5c5]%[/color][/font_size][/font_size][/p]"
+text = "[p align=center][font_size=16]100 [font_size=12][color=c5c5c5]%[/color][/font_size][/font_size][/p]"
 fit_content = true
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/SecondaryElement/VBoxContainer"]
 material = SubResource("ShaderMaterial_opdkh")
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -501,7 +511,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gjph7")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/TertiaryElemenmt/PanelContainer"]
 material = SubResource("ShaderMaterial_cpx02")
-custom_minimum_size = Vector2(28, 80)
+custom_minimum_size = Vector2(42, 130)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -532,14 +542,14 @@ theme_override_constants/separation = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2/TertiaryElemenmt/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 12
 bbcode_enabled = true
-text = "[p][font_size=10]100 [font_size=7][color=ffff7c]%[/color][/font_size][/font_size][/p]"
+text = "[p align=center][font_size=16]100 [font_size=12][color=ffff7c]%[/color][/font_size][/font_size][/p]"
 fit_content = true
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/TertiaryElemenmt/VBoxContainer"]
 material = SubResource("ShaderMaterial_2ol5f")
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -548,6 +558,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = -5
@@ -785,6 +796,258 @@ grow_vertical = 0
 theme_override_constants/margin_bottom = -6
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/DebuffContainer/GridContainer/PanelContainer2/NinePatchRect2/MarginContainer"]
+z_index = 3
+layout_mode = 2
+size_flags_vertical = 8
+text = "5s"
+label_settings = SubResource("LabelSettings_qef4h")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.189
+anchor_top = -0.043
+anchor_right = 0.788
+anchor_bottom = -0.043
+offset_left = 0.0299988
+offset_top = -0.0119996
+offset_right = -0.240051
+offset_bottom = 138.988
+theme_override_constants/separation = 5
+
+[node name="CastBarContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer" node_paths=PackedStringArray("CastBar", "CastSpellNameLabel", "RemainingCastTimeLabel")]
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+script = ExtResource("16_c7dav")
+CastBar = NodePath("PanelContainer/NinePatchRect/TextureProgressBar")
+CastSpellNameLabel = NodePath("PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/SpellName")
+RemainingCastTimeLabel = NodePath("PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer/RemainingCastTime")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7dav")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+texture = ExtResource("1_q5t8h")
+region_rect = Rect2(5, 5, 190, 190)
+patch_margin_left = 10
+patch_margin_top = 2
+patch_margin_right = 10
+patch_margin_bottom = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.125
+anchor_right = 0.988
+anchor_bottom = 0.875
+offset_left = 0.0959997
+offset_right = -0.0720062
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("7_8f8if")
+tint_progress = Color(1, 1, 0.678431, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer"]
+layout_mode = 2
+
+[node name="SpellName" type="Label" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Water Bolt"
+label_settings = SubResource("LabelSettings_oyrph")
+
+[node name="RemainingCastTime" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/CastBarContainer/PanelContainer/NinePatchRect/TextureProgressBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[p align=right][font_size=10]1.5 [font_size=8][color=4ac4ff]s[/color][/font_size][/font_size][/p]"
+fit_content = true
+
+[node name="BuffContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_opdkh")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 7
+columns = 8
+
+[node name="AuraControl" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer/GridContainer" instance=ExtResource("15_j6yn6")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ybfd")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer/GridContainer/PanelContainer2"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("1_q5t8h")
+
+[node name="SpellImage" type="TextureRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer/GridContainer/PanelContainer2/NinePatchRect2"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_t0p61")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer/GridContainer/PanelContainer2/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = -6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/BuffContainer/GridContainer/PanelContainer2/NinePatchRect2/MarginContainer"]
+z_index = 3
+layout_mode = 2
+size_flags_vertical = 8
+text = "5s"
+label_settings = SubResource("LabelSettings_qef4h")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DebuffContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_opdkh")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 7
+columns = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oyrph")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("1_q5t8h")
+
+[node name="SpellImage" type="TextureRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer/NinePatchRect"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_qef4h")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer/NinePatchRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = -6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer/NinePatchRect/MarginContainer"]
+z_index = 3
+layout_mode = 2
+size_flags_vertical = 8
+text = "5s"
+label_settings = SubResource("LabelSettings_qef4h")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6yn6")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer2"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("1_q5t8h")
+
+[node name="SpellImage" type="TextureRect" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer2/NinePatchRect2"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_t0p61")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer2/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = -6
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/DebuffContainer/GridContainer/PanelContainer2/NinePatchRect2/MarginContainer"]
 z_index = 3
 layout_mode = 2
 size_flags_vertical = 8
