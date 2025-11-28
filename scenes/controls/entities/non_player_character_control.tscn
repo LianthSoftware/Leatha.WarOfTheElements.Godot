@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cekpury1qtolx"]
+[gd_scene load_steps=5 format=3 uid="uid://cekpury1qtolx"]
 
 [ext_resource type="Script" uid="uid://cym83sjgq2s08" path="res://framework/Controls/Entities/NonPlayerCharacterControl.cs" id="1_r1akl"]
+[ext_resource type="PackedScene" uid="uid://dp0s3i88bb10j" path="res://scenes/controls/chat_bubble.tscn" id="2_vd25a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2f3xh"]
 
@@ -14,3 +15,6 @@ mesh = SubResource("CapsuleMesh_2f3xh")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_2f3xh")
+
+[node name="ChatBubble" parent="." instance=ExtResource("2_vd25a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

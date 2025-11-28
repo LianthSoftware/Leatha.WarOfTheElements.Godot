@@ -1,12 +1,15 @@
 using Godot;
+using Godot.Collections;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
 using Leatha.WarOfTheElements.Common.Communication.Utilities;
 using Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Entities.GameObjects;
 using static Godot.WebSocketPeer;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
@@ -176,6 +179,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             var result = spaceState.IntersectRay(query);
 
             CharacterControl hitTarget = null;
+            GameObjectControl hitGameObject = null; // #TODO: Make it WorldObject
             if (result.Count > 0)
             {
                 var collider = (GodotObject)result["collider"];
@@ -183,11 +187,41 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 if (collider is NonPlayerCharacterControl body)
                     hitTarget = body;
 
-                //GD.Print("LastState = " + JsonSerializer.Serialize(hitTarget?.LastState));
+                // #TODO: Check if GameObjectControl is hit.
+
+                if (collider is GameObjectControl gameObject)
+                {
+                    //if (_lastInteractionControl is GameObjectControl inter)
+                    //    inter.ShowInteraction(null);
+
+                    if (gameObject != _lastInteractionControl)
+                    {
+                        _lastInteractionControl?.ShowInteraction(null);
+                        _lastInteractionControl = null;
+                    }
+
+                    //gameObject.ShowInteraction(this);
+                    _lastInteractionControl = gameObject;
+                    //gameObject.ShowInteraction(this);
+                }
+                else
+                {
+                    _lastInteractionControl?.ShowInteraction(null);
+                    _lastInteractionControl = null;
+                }
+            }
+            else
+            {
+                _lastInteractionControl?.ShowInteraction(null);
+                _lastInteractionControl = null;
             }
 
             ObjectAccessor.CharacterService.ShowTargetFrame(hitTarget?.LastState, hitTarget);
+            _lastInteractionControl?.ShowInteraction(this);
+            _lastInteractionControl?.UpdateMarkerPoint(this);
         }
+
+        private GameObjectControl _lastInteractionControl; // #TODO: Make it WorldObject
 
         private void FaceTarget(Vector3 targetPos)
         {

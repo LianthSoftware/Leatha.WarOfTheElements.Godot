@@ -4,12 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Godot.framework.Controls;
+using SystemVector3 = System.Numerics.Vector3;
+using GodotVector3 = Godot.Vector3;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Extensions
 {
     public static class ControlExtensions
     {
         private static readonly RandomNumberGenerator RandomNumberGenerator = new RandomNumberGenerator();
+
+        public static GameControl GetGameControl(this Node node)
+        {
+            return node.GetTree().CurrentScene as GameControl;
+        }
 
         public static async Task RunOnMainThreadAsync(this Node node, Func<Task> action)
         {
@@ -40,6 +48,10 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             Input.SetCustomMouseCursor(cursor);
         }
 
+        public static int Random(int min, int max)
+        {
+            return RandomNumberGenerator.RandiRange(min, max);
+        }
 
 
 
@@ -75,6 +87,19 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         {
             var children = node.GetChildren().OfType<TChildren>();
             return children.ToList();
+        }
+
+
+
+
+        public static SystemVector3 FromGodotVector3(this GodotVector3 vector)
+        {
+            return new SystemVector3(vector.X, vector.Y, vector.Z);
+        }
+
+        public static GodotVector3 ToGodotVector3(this SystemVector3 vector)
+        {
+            return new GodotVector3(vector.X, vector.Y, vector.Z);
         }
     }
 }

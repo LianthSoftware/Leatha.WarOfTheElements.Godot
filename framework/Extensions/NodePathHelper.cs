@@ -20,7 +20,15 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         public const string GameUI_MessageList_Path = "UICanvasLayer/GameUIRoot/MessagesContainer/MessageList";
         public const string GameUI_ChatControl_Path = "UICanvasLayer/GameUIRoot/ChatControl";
 
+        public const string GameUI_ChatControlItemScene_Path = "res://scenes/controls/chat_item_label.tscn";
+
         // *** Dialog Root ***
         public const string DialogsUI_DialogsRoot_Path = "UICanvasLayer/DialogsRoot";
+
+        // *** Main Menu ***
+        public const string MainMenu_CharacterSelection_Path = "res://scenes/ui/character_selection_scene.tscn";
+
+        // *** Game ***
+        public const string Game_GameControlScene_Path = "res://scenes/game_control.tscn";
     }
 }

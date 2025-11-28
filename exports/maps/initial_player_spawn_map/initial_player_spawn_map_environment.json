@@ -1,0 +1,1294 @@
+{
+  "Instances": [
+    {
+      "ArchetypeName": "cylinder",
+      "Name": "PodiumObject",
+      "MapId": 1,
+      "Position": {
+        "X": 0,
+        "Y": 1,
+        "Z": 0
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 5,
+        "Y": 1,
+        "Z": 0
+      },
+      "ShapeType": "Cylinder",
+      "IsStatic": true,
+      "ConvexHullPoints": null
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall001",
+      "MapId": 1,
+      "Position": {
+        "X": 0,
+        "Y": 10,
+        "Z": 30
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 35,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 17.5,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 17.5,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -17.5,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 17.5,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 17.5,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -17.5,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -17.5,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -17.5,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall002",
+      "MapId": 1,
+      "Position": {
+        "X": 0,
+        "Y": 10,
+        "Z": -30
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 35,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 17.5,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 17.5,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -17.5,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 17.5,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 17.5,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -17.5,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -17.5,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -17.5,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall003",
+      "MapId": 1,
+      "Position": {
+        "X": 55.5,
+        "Y": 10,
+        "Z": 0
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 90,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 25,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 12.5,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 12.5,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -12.5,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 12.5,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 12.5,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -12.5,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -12.5,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -12.5,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall004",
+      "MapId": 1,
+      "Position": {
+        "X": 44.5,
+        "Y": 10,
+        "Z": -14.029
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 20,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall009",
+      "MapId": 1,
+      "Position": {
+        "X": 44.5,
+        "Y": 10,
+        "Z": 14
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 20,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall005",
+      "MapId": 1,
+      "Position": {
+        "X": -24.5,
+        "Y": 10,
+        "Z": 15
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 109.999985,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 30,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 15,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 15,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -15,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 15,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 15,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -15,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -15,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -15,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall006",
+      "MapId": 1,
+      "Position": {
+        "X": -24.5,
+        "Y": 10,
+        "Z": -15
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 70.000015,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 30,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 15,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 15,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -15,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 15,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 15,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -15,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -15,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -15,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall007",
+      "MapId": 1,
+      "Position": {
+        "X": 26.5,
+        "Y": 10,
+        "Z": 22
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 45,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 20,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Wall008",
+      "MapId": 1,
+      "Position": {
+        "X": 26.5,
+        "Y": 10,
+        "Z": -22
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 135,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 20,
+        "Y": 20,
+        "Z": 0.5
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": 10,
+          "Y": -10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": 10,
+          "Z": -0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": 0.25
+        },
+        {
+          "X": -10,
+          "Y": -10,
+          "Z": -0.25
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar001",
+      "MapId": 1,
+      "Position": {
+        "X": -18.5,
+        "Y": 10,
+        "Z": -30
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar002",
+      "MapId": 1,
+      "Position": {
+        "X": 33.5,
+        "Y": 10,
+        "Z": 14
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar008",
+      "MapId": 1,
+      "Position": {
+        "X": 33.5,
+        "Y": 10,
+        "Z": -14
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar009",
+      "MapId": 1,
+      "Position": {
+        "X": 55.5,
+        "Y": 10,
+        "Z": -14
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar010",
+      "MapId": 1,
+      "Position": {
+        "X": 55.5,
+        "Y": 10,
+        "Z": 14
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar004",
+      "MapId": 1,
+      "Position": {
+        "X": -30,
+        "Y": 10,
+        "Z": 0
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar005",
+      "MapId": 1,
+      "Position": {
+        "X": 18.5,
+        "Y": 10,
+        "Z": 30
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar006",
+      "MapId": 1,
+      "Position": {
+        "X": -18.5,
+        "Y": 10,
+        "Z": 30
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "WallPillar007",
+      "MapId": 1,
+      "Position": {
+        "X": 18.5,
+        "Y": 10,
+        "Z": -30
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 2,
+        "Y": 20,
+        "Z": 2
+      },
+      "ShapeType": "ConvexHull",
+      "IsStatic": true,
+      "ConvexHullPoints": [
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": -1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": -10,
+          "Z": 1
+        },
+        {
+          "X": -1,
+          "Y": 10,
+          "Z": 1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": -1
+        },
+        {
+          "X": 1,
+          "Y": 10,
+          "Z": 1
+        }
+      ]
+    },
+    {
+      "ArchetypeName": "box_unit",
+      "Name": "FiretLight",
+      "MapId": 1,
+      "Position": {
+        "X": 17,
+        "Y": 0,
+        "Z": 25
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "ShapeType": "Box",
+      "IsStatic": true,
+      "ConvexHullPoints": null
+    },
+    {
+      "ArchetypeName": "box_unit",
+      "Name": "AirLight",
+      "MapId": 1,
+      "Position": {
+        "X": -17,
+        "Y": 0,
+        "Z": 25
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "ShapeType": "Box",
+      "IsStatic": true,
+      "ConvexHullPoints": null
+    },
+    {
+      "ArchetypeName": "box_unit",
+      "Name": "LightningLight",
+      "MapId": 1,
+      "Position": {
+        "X": -25,
+        "Y": 0,
+        "Z": 0
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "ShapeType": "Box",
+      "IsStatic": true,
+      "ConvexHullPoints": null
+    },
+    {
+      "ArchetypeName": "box_unit",
+      "Name": "NatureLight",
+      "MapId": 1,
+      "Position": {
+        "X": -18,
+        "Y": 0,
+        "Z": -25
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "ShapeType": "Box",
+      "IsStatic": true,
+      "ConvexHullPoints": null
+    },
+    {
+      "ArchetypeName": "box_unit",
+      "Name": "WaterLight",
+      "MapId": 1,
+      "Position": {
+        "X": 17,
+        "Y": 0,
+        "Z": -25
+      },
+      "RotationDegrees": {
+        "X": -0,
+        "Y": 0,
+        "Z": 0
+      },
+      "ColliderSize": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "ShapeType": "Box",
+      "IsStatic": true,
+      "ConvexHullPoints": null
+    }
+  ]
+}

@@ -30,12 +30,12 @@
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_5ud02"]
+[sub_resource type="Sky" id="Sky_dmowd"]
 sky_material = SubResource("ProceduralSkyMaterial_vyv7f")
 
 [sub_resource type="Environment" id="Environment_umvoe"]
 background_mode = 2
-sky = SubResource("Sky_5ud02")
+sky = SubResource("Sky_dmowd")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -98,7 +98,7 @@ font_color = Color(1, 0.101961, 0.156863, 1)
 outline_size = 25
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wom4v"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a18bc"]
 bg_color = Color(0.117647, 0.0980392, 0.054902, 1)
 border_width_left = 2
 border_width_top = 2
@@ -111,9 +111,9 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="Theme" id="Theme_l6dr3"]
-VScrollBar/styles/grabber = SubResource("StyleBoxFlat_wom4v")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_wom4v")
-VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_wom4v")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_a18bc")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_a18bc")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_a18bc")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6dr3"]
 content_margin_left = 10.0
@@ -226,7 +226,6 @@ albedo_color = Color(0.509804, 0.603922, 1, 1)
 
 [node name="TestScene3D" type="Node3D"]
 script = ExtResource("1_ojrkb")
-MapId = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_umvoe")

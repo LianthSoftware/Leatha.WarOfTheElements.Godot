@@ -1,6 +1,7 @@
-using System;
 using Godot;
+using Leatha.WarOfTheElements.Common.Communication.Transfer;
 using Leatha.WarOfTheElements.Common.Communication.Transfer.Enums;
+using System;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Objects
 {
@@ -54,6 +55,23 @@ namespace Leatha.WarOfTheElements.Godot.framework.Objects
                 default:
                     return String.Empty;
             }
+        }
+
+        public static Color GetChatMessageColor(ChatMessageType type)
+        {
+            switch (type)
+            {
+                case ChatMessageType.Say:
+                    break;
+                case ChatMessageType.Yell:
+                    return Colors.OrangeRed;
+                case ChatMessageType.Mutter:
+                    return Colors.LightGray;
+                case ChatMessageType.Whisper:
+                    return Colors.MediumPurple;
+            }
+
+            return Colors.White;
         }
     }
 }

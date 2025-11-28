@@ -180,6 +180,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                     });
                 });
 
+                _connection.On<ChatMessageObject>(nameof(IServerToClientHandler.Talk), message =>
+                {
+                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
+                        ObjectAccessor.CharacterService.CharacterTalked(message);
+                    });
+                });
+
                 // *** Games ***
                 //_connection.On<StartGameMessage>(nameof(IServerToClientHandler.StartGame), async message =>
                 //{

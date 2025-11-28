@@ -1,14 +1,16 @@
-[gd_scene load_steps=48 format=3 uid="uid://32kbip1w5nlk"]
+[gd_scene load_steps=51 format=3 uid="uid://32kbip1w5nlk"]
 
 [ext_resource type="Material" uid="uid://dugrrgii3yo6r" path="res://resources/shaders/black_hole_red_shader_material.tres" id="1_acc7x"]
+[ext_resource type="Script" uid="uid://c0crw5hmf54lu" path="res://framework/Controls/GameControl.cs" id="1_pm6yd"]
 [ext_resource type="Script" uid="uid://ds65ixfdddvda" path="res://framework/Controls/UserInterface/ShadowContainerControl.cs" id="2_m5sd2"]
-[ext_resource type="Script" uid="uid://boj0v67jf0aun" path="res://framework/Controls/UserInterface/ResizableUIRootControl.cs" id="3_pm6yd"]
 [ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="4_7diii"]
 [ext_resource type="PackedScene" uid="uid://bo8f56umf4cyh" path="res://scenes/ui/player_spellbar_control.tscn" id="5_uqr57"]
 [ext_resource type="PackedScene" uid="uid://doc842mwy067x" path="res://scenes/ui/player_status_bar_control.tscn" id="6_l0up3"]
 [ext_resource type="PackedScene" uid="uid://5f5oxcj06s1d" path="res://scenes/ui/target_status_bar_control.tscn" id="7_7dayx"]
+[ext_resource type="Script" uid="uid://bsehk71nxuo1d" path="res://framework/Controls/UserInterface/ChatControl.cs" id="8_7diii"]
 [ext_resource type="Texture2D" uid="uid://6ax74jartc2w" path="res://resources/line_fade_texture_1d.tres" id="8_yn477"]
 [ext_resource type="Texture2D" uid="uid://i2nrol3h1vj5" path="res://resources/textures/items/equip_helm_slot_001.jpg" id="9_p6ge2"]
+[ext_resource type="PackedScene" uid="uid://8em4ux3h447s" path="res://scenes/controls/chat_item_label.tscn" id="9_uqr57"]
 [ext_resource type="Texture2D" uid="uid://xdfj8bkwp0k7" path="res://resources/textures/items/equip_shoulder_slot_001.jpg" id="10_14brh"]
 [ext_resource type="Texture2D" uid="uid://c3wj8sp7frto1" path="res://resources/textures/items/equip_chest_slot_001.jpg" id="11_alo1g"]
 [ext_resource type="Texture2D" uid="uid://b0h2x43fs0plb" path="res://resources/textures/items/equip_bracer_slot_001.jpg" id="12_ghuhc"]
@@ -22,7 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://02rn78t56e8w" path="res://resources/textures/icon_wind.png" id="20_o7duk"]
 [ext_resource type="Texture2D" uid="uid://cxi6mr1onhja5" path="res://resources/textures/icon_fire.png" id="21_spxj2"]
 [ext_resource type="Texture2D" uid="uid://dbvf6of3phug5" path="res://resources/textures/crosshair_001.png" id="22_wlhl8"]
-[ext_resource type="PackedScene" uid="uid://dpmgtuk4lb7kq" path="res://scenes/maps/initial_player_spawn_map.tscn" id="23_m5sd2"]
+[ext_resource type="PackedScene" uid="uid://cbxvb647iqdvu" path="res://Tools/UI.tscn" id="23_pm6yd"]
+[ext_resource type="Script" uid="uid://dm2nrviftgoac" path="res://framework/Controls/Maps/MapControl.cs" id="24_7diii"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ae2y"]
 border_width_bottom = 1
@@ -195,7 +198,9 @@ font_color = Color(1, 0.309804, 0.196078, 1)
 outline_size = 22
 outline_color = Color(0, 0, 0, 1)
 
-[node name="GameControl" type="Node3D"]
+[node name="GameControl" type="Node3D" node_paths=PackedStringArray("MapControl")]
+script = ExtResource("1_pm6yd")
+MapControl = NodePath("MapControl")
 
 [node name="ShadowLayer" type="CanvasLayer" parent="."]
 
@@ -217,7 +222,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_pm6yd")
 
 [node name="TopStatusBar" type="MarginContainer" parent="UICanvasLayer/GameUIRoot"]
 custom_minimum_size = Vector2(0, 36)
@@ -574,8 +578,7 @@ text = "Not enough chakra!"
 label_settings = SubResource("LabelSettings_gh4yx")
 horizontal_alignment = 1
 
-[node name="ChatControl" type="MarginContainer" parent="UICanvasLayer/GameUIRoot"]
-visible = false
+[node name="ChatControl" type="MarginContainer" parent="UICanvasLayer/GameUIRoot" node_paths=PackedStringArray("ChatItemsList")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.01
@@ -587,6 +590,8 @@ offset_top = -0.320068
 offset_right = -0.320068
 offset_bottom = 0.519897
 grow_vertical = 0
+script = ExtResource("8_7diii")
+ChatItemsList = NodePath("PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/ChatItems")
 
 [node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/GameUIRoot/ChatControl"]
 layout_mode = 2
@@ -631,21 +636,16 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_derr4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="ChatItems" type="VBoxContainer" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/ChatItems" instance=ExtResource("9_uqr57")]
 layout_mode = 2
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[p][color=4ac4ff][21:55:34][/color] [color=gray][Leatha][/color]: Nice day for fishing, ain't it? Hua hua. And even longer?[/p]"
-fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/ChatItems"]
 layout_mode = 2
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/normal_font_size = 20
@@ -653,7 +653,7 @@ bbcode_enabled = true
 text = "[p][color=4ac4ff][21:55:34][/color] [Leatha]: Nice day for fishing, ain't it? Hua hua.[/p]"
 fit_content = true
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="UICanvasLayer/GameUIRoot/ChatControl/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/ChatItems"]
 layout_mode = 2
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/normal_font_size = 20
@@ -693,6 +693,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_17t4e")
 placeholder_text = "Press \"Enter\" to start typing ..."
 
 [node name="DialogsRoot" type="Control" parent="UICanvasLayer"]
+visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -1261,6 +1262,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("22_wlhl8")
 
-[node name="MapControl" type="Node3D" parent="."]
+[node name="UI" parent="UICanvasLayer" instance=ExtResource("23_pm6yd")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 30.0
+offset_top = -478.0
+offset_right = 30.0
+offset_bottom = -478.0
+grow_horizontal = 1
+grow_vertical = 0
 
-[node name="InitialPlayerSpawnMap" parent="MapControl" instance=ExtResource("23_m5sd2")]
+[node name="MapControl" type="Node3D" parent="."]
+script = ExtResource("24_7diii")

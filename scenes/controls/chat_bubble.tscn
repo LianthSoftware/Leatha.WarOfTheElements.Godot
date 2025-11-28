@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp0s3i88bb10j"]
+
+[ext_resource type="Script" uid="uid://bwrvlcnio5at" path="res://framework/Controls/UserInterface/ChatBubble.cs" id="1_s8taw"]
+
+[sub_resource type="Gradient" id="Gradient_31ajd"]
+offsets = PackedFloat32Array(0, 0.15, 0.85, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.588235, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s8taw"]
+gradient = SubResource("Gradient_31ajd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8taw"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_s8taw")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_trl57"]
+size = Vector2(12, 2.3)
+
+[node name="ChatBubble" type="Node3D"]
+script = ExtResource("1_s8taw")
+
+[node name="BubblePanel" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_s8taw")
+mesh = SubResource("QuadMesh_trl57")
+
+[node name="BubbleText" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03)
+pixel_size = 0.01
+billboard = 2
+text = "Welcome! I am always glad to see a new adept to master the elements."
+font_size = 35
+outline_size = 25
+autowrap_mode = 3
+width = 800.0

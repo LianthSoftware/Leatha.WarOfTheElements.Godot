@@ -1,7 +1,9 @@
-using System.Threading.Tasks;
 using Godot;
+using Leatha.WarOfTheElements.Godot.framework.Controls;
 using Leatha.WarOfTheElements.Godot.framework.Controls.Maps;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
+using System.Threading.Tasks;
+using static Godot.HttpRequest;
 
 namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
 {
@@ -33,51 +35,63 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
 
         private async void LoadData()
         {
+            var loadDataResult = await LoadDataInternal();
+            if (!string.IsNullOrWhiteSpace(loadDataResult))
+            {
+                GD.PrintErr(loadDataResult);
+
+                GetTree().ChangeSceneToFile(NodePathHelper.MainMenu_CharacterSelection_Path);
+
+                // #TODO: Let the character selection control know about the error.
+            }
+        }
+
+        private async Task<string> LoadDataInternal()
+        {
             var selectedCharacter = ObjectAccessor.SessionService.CurrentCharacter;
             if (selectedCharacter == null)
-            {
-                GD.PrintErr("Selected character is null.");
-                return;
-            }
+                return "Selected character is null."; // #TODO: better way.
 
             var result = await ObjectAccessor.GameHubService
                 .GetClientHandler()
                 .EnterWorld(selectedCharacter.PlayerId);
 
             if (result.IsError || result.Data == null)
-            {
-                GD.PrintErr("PlayerEnterWorld encountered an error: " + result.ErrorMessage);
-                return;
-            }
+                return "PlayerEnterWorld encountered an error: " + result.ErrorMessage; // #TODO: better way.
 
             SetLoadingBarValue(25.0f); // #TODO: TEST ONLY
 
             var snapshot = result.Data;
+
+            // Create game control.
+            var gameControl = CreateGameControl();
+
+            // Load particular map info.
             var mapInfo = ObjectAccessor.TemplateService.GetMapInfo(snapshot.MapId);
             if (mapInfo == null)
-            {
-                GD.PrintErr("Map was not found.");
-                return;
-            }
+                return $"Map (Id = \"{ snapshot.MapId }\") was not found."; // #TODO: better way.
 
-            var scene = GD.Load<PackedScene>(mapInfo.MapPath);
-            if (scene == null)
-            {
-                GD.PrintErr("Scene could not be loaded.");
-                return;
-            }
+            // Load map scene.
+            var mapScene = GD.Load<PackedScene>(mapInfo.MapPath);
+            if (mapScene == null)
+                return $"Map Scene (\"{ mapInfo.MapPath }\") could not be loaded."; // #TODO: better way.
 
             SetLoadingBarValue(30.0f); // #TODO: TEST ONLY
 
-            var mapControl = scene.Instantiate<MapControl>();
+            // Initialize map control.
+            var mapControl = gameControl.MapControl;
             mapControl.SetMapInfo(mapInfo);
+
+            // Load the particular map.
+            var loadedMap = mapScene.Instantiate<Node3D>(); // #TODO: Is "Node3D" correct? Add some control.
+            mapControl.AddChild(loadedMap);
 
             SetLoadingBarValue(50.0f); // #TODO: TEST ONLY
 
             // #TODO: Load map.
 
-            GetTree().Root.AddChild(mapControl);
-            mapControl.Visible = false;
+            GetTree().Root.AddChild(gameControl);
+            gameControl.Visible = false;
 
             SetLoadingBarValue(100.0f); // #TODO: TEST ONLY
 
@@ -86,8 +100,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
             await this.RunOnMainThreadAsync(() =>
             {
                 GetTree().CurrentScene.QueueFree(); // Remove loading scene
-                GetTree().CurrentScene = mapControl;
-                mapControl.Visible = true;
+                GetTree().CurrentScene = gameControl;
+                gameControl.Visible = true;
 
                 GD.Print($"*** Switched to game map \"{mapControl.MapInfo.MapName}\" ***");
 
@@ -98,6 +112,21 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
 
                 return Task.CompletedTask;
             });
+
+            return string.Empty;
+        }
+
+        private static GameControl CreateGameControl()
+        {
+            var gameScene = GD.Load<PackedScene>(NodePathHelper.Game_GameControlScene_Path);
+            if (gameScene == null)
+            {
+                GD.PrintErr($"Game scene (\"{ NodePathHelper.Game_GameControlScene_Path }\") could not be loaded.");
+                return null;
+            }
+
+            var gameControl = gameScene.Instantiate<GameControl>();
+            return gameControl;
         }
     }
 }

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://xu0eymjy6u3a"]
+
+[ext_resource type="Script" uid="uid://ep8v4ithyjj" path="res://framework/Controls/Entities/WorldObjectActivateOptionControl.cs" id="1_1d83n"]
+[ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="1_eugaf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d83n"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_eugaf")
+disable_receive_shadows = true
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_fyn2w"]
+size = Vector2(0.35, 0.35)
+
+[node name="WorldObjectActivateOption" type="Node3D" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel")]
+script = ExtResource("1_1d83n")
+KeyBindLabel = NodePath("KeyBindLabel")
+InteractionLabel = NodePath("InteractionLabel")
+
+[node name="KeyBindLabel" type="Label3D" parent="."]
+billboard = 2
+modulate = Color(0.866091, 0.704497, 0.16361, 1)
+text = "F"
+font_size = 35
+outline_size = 25
+autowrap_mode = 3
+width = 800.0
+
+[node name="InteractionLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.03)
+billboard = 2
+modulate = Color(0.113725, 0.862745, 0.415686, 1)
+text = "Activate"
+font_size = 35
+outline_size = 25
+autowrap_mode = 3
+width = 800.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_1d83n")
+mesh = SubResource("QuadMesh_fyn2w")

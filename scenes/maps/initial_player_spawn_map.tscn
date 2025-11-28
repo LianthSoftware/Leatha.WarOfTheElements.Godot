@@ -1,38 +1,631 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpmgtuk4lb7kq"]
+[gd_scene load_steps=65 format=3 uid="uid://dpmgtuk4lb7kq"]
 
 [ext_resource type="Sky" uid="uid://deixec4t7t1w0" path="res://resources/textures/Environment/NightSky_001/NightSkyHDRI008_4K.tres" id="1_1w7ym"]
+[ext_resource type="Script" uid="uid://b7tol038j1umt" path="res://framework/Controls/Effects/FogEffect.cs" id="2_u8jh7"]
+[ext_resource type="Material" uid="uid://dnmr18dwnkt61" path="res://resources/materials/wall_fade_world_y.tres" id="3_tyjim"]
+[ext_resource type="PackedScene" uid="uid://cekpury1qtolx" path="res://scenes/controls/entities/non_player_character_control.tscn" id="4_a6qfw"]
+[ext_resource type="Script" uid="uid://fqh5lwjjmy12" path="res://framework/Scripts/InitialSpawnMapControl.cs" id="4_bg5rj"]
+[ext_resource type="PackedScene" uid="uid://56guprqidjif" path="res://scenes/controls/effects/initial_map_element_light_control.tscn" id="4_rthf5"]
+[ext_resource type="PackedScene" uid="uid://xu0eymjy6u3a" path="res://scenes/controls/world_object_activate_option.tscn" id="8_3k15d"]
+[ext_resource type="Script" uid="uid://bma0d2uwkj1eb" path="res://Tools/WaypointVisualizer.cs" id="8_v1y75"]
 
 [sub_resource type="Environment" id="Environment_yexna"]
 background_mode = 2
 background_energy_multiplier = 0.1
 sky = ExtResource("1_1w7ym")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.815686, 0.815686, 0.815686, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_gi_inject = 3.0
+volumetric_fog_length = 50.0
+volumetric_fog_sky_affect = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_yexna"]
-size = Vector3(100, 1, 100)
+[sub_resource type="Shader" id="Shader_rthf5"]
+code = "shader_type spatial;
+
+// Alpha gradient based on local Y of a 20-unit tall wall
+// - Color: base wall color
+// - FadeStart: 0..1, where fade to transparent begins
+// - Invert: flip bottom/top
+render_mode blend_mix, cull_back, unshaded;
+
+uniform vec4 color : source_color = vec4(0.2, 0.4, 1.0, 1.0); // base color
+uniform float fade_start : hint_range(0.0, 1.0, 0.01) = 0.3;  // 0 = fade from bottom, 1 = only very top fades
+uniform bool invert = false;
+
+varying float v_local_y;
+
+void vertex() {
+    v_local_y = VERTEX.y; // local-space Y
+}
+
+float compute_alpha(float t) {
+    // Optionally flip vertical direction
+    if (invert) {
+        t = 1.0 - t;
+    }
+
+    t = clamp(t, 0.0, 1.0);
+
+    // Before fade_start -> fully solid
+    if (t <= fade_start) {
+        return 1.0;
+    }
+
+    // From fade_start -> 1.0 fade to 0
+    float denom = max(1.0 - fade_start, 0.0001);
+    float k = (t - fade_start) / denom; // 0..1
+    return 1.0 - k; // 1 -> 0
+}
+
+void fragment() {
+    // Your BoxMesh is 20 high, centered => local Y in [-10, 10]
+    const float LOCAL_BOTTOM_Y = -10.0;
+    const float LOCAL_TOP_Y    =  10.0;
+
+    // Normalize local Y to 0..1
+    float t = (v_local_y - LOCAL_BOTTOM_Y) / (LOCAL_TOP_Y - LOCAL_BOTTOM_Y);
+
+    float a = compute_alpha(t);
+
+    ALBEDO = color.rgb;
+    ALPHA  = color.a * a; // 1 at bottom, fades to 0 at top (depending on fade_start & invert)
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg5rj"]
+render_priority = 0
+shader = SubResource("Shader_rthf5")
+shader_parameter/color = Color(0.000427263, 4.81308e-08, 0.205075, 1)
+shader_parameter/fade_start = 0.5
+shader_parameter/invert = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_bg5rj"]
+size = Vector3(120, 1, 80)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w7ym"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_u8jh7"]
+offsets = PackedFloat32Array(0, 0.48, 0.52, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tyjim"]
+noise_type = 0
+frequency = 0.66
+domain_warp_enabled = true
+domain_warp_amplitude = 0.05
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_a6qfw"]
+seamless = true
+normalize = false
+color_ramp = SubResource("Gradient_u8jh7")
+noise = SubResource("FastNoiseLite_tyjim")
+
+[sub_resource type="FogMaterial" id="FogMaterial_6w0wb"]
+density = 2.5
+height_falloff = 6.0
+density_texture = SubResource("NoiseTexture3D_a6qfw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rthf5"]
+transparency = 1
+albedo_color = Color(0.920022, 0.744113, 0.389569, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u8jh7"]
+material = SubResource("StandardMaterial3D_rthf5")
+top_radius = 5.0
+bottom_radius = 5.0
+height = 1.0
+
+[sub_resource type="Gradient" id="Gradient_6w0wb"]
+colors = PackedColorArray(0.921569, 0.745098, 0.388235, 1, 0.921569, 0.745098, 0.388235, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rthf5"]
+gradient = SubResource("Gradient_6w0wb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6w0wb"]
+lifetime_randomness = 1.0
+emission_shape_offset = Vector3(0, 0.5, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 45, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.5
+color = Color(0.921569, 0.745098, 0.388235, 1)
+color_ramp = SubResource("GradientTexture1D_rthf5")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6w0wb"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg5rj"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.921569, 0.745098, 0.388235, 1)
+albedo_texture = SubResource("CompressedTexture2D_6w0wb")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_3k15d"]
+material = SubResource("StandardMaterial3D_bg5rj")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3k15d"]
+height = 1.0
+radius = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyjim"]
+size = Vector3(35, 20, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3k15d"]
+points = PackedVector3Array(17.5, 10, 0.25, 17.5, 10, -0.25, -17.5, 10, 0.25, 17.5, -10, 0.25, 17.5, -10, -0.25, -17.5, 10, -0.25, -17.5, -10, 0.25, -17.5, -10, -0.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v1y75"]
+points = PackedVector3Array(17.5, 10, 0.25, 17.5, 10, -0.25, -17.5, 10, 0.25, 17.5, -10, 0.25, 17.5, -10, -0.25, -17.5, 10, -0.25, -17.5, -10, 0.25, -17.5, -10, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3k15d"]
+size = Vector3(25, 20, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k8vcq"]
+points = PackedVector3Array(12.5, 10, 0.25, 12.5, 10, -0.25, -12.5, 10, 0.25, 12.5, -10, 0.25, 12.5, -10, -0.25, -12.5, 10, -0.25, -12.5, -10, 0.25, -12.5, -10, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k8vcq"]
+size = Vector3(20, 20, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ip6tl"]
+points = PackedVector3Array(10, 10, 0.25, 10, 10, -0.25, -10, 10, 0.25, 10, -10, 0.25, 10, -10, -0.25, -10, 10, -0.25, -10, -10, 0.25, -10, -10, -0.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_83bfx"]
+points = PackedVector3Array(10, 10, 0.25, 10, 10, -0.25, -10, 10, 0.25, 10, -10, 0.25, 10, -10, -0.25, -10, 10, -0.25, -10, -10, 0.25, -10, -10, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a6qfw"]
+size = Vector3(30, 20, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_efqqu"]
+points = PackedVector3Array(15, 10, 0.25, 15, 10, -0.25, -15, 10, 0.25, 15, -10, 0.25, 15, -10, -0.25, -15, 10, -0.25, -15, -10, 0.25, -15, -10, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6w0wb"]
+size = Vector3(30, 20, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7x2cj"]
+points = PackedVector3Array(15, 10, 0.25, 15, 10, -0.25, -15, 10, 0.25, 15, -10, 0.25, 15, -10, -0.25, -15, 10, -0.25, -15, -10, 0.25, -15, -10, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1y75"]
+size = Vector3(20, 20, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_147f4"]
+points = PackedVector3Array(10, 10, 0.25, 10, 10, -0.25, -10, 10, 0.25, 10, -10, 0.25, 10, -10, -0.25, -10, 10, -0.25, -10, -10, 0.25, -10, -10, -0.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ylyfp"]
+points = PackedVector3Array(10, 10, 0.25, 10, 10, -0.25, -10, 10, 0.25, 10, -10, 0.25, 10, -10, -0.25, -10, 10, -0.25, -10, -10, 0.25, -10, -10, -0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rthf5"]
+size = Vector3(2, 20, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8jh7"]
+shading_mode = 0
+albedo_color = Color(0.0745098, 0.0745098, 0.333333, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_edsrv"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fhi6m"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uk04y"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bxxpm"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nv67r"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jkf6s"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ts21"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fk4ym"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bfe4p"]
+points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k15d"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ip6tl"]
+size = Vector3(0.1, 0.1, 20.8087)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83bfx"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_efqqu"]
+size = Vector3(0.1, 0.1, 31.6425)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7x2cj"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_147f4"]
+size = Vector3(0.1, 0.1, 26.2488)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylyfp"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_edsrv"]
+size = Vector3(0.1, 0.1, 22.9456)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhi6m"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uk04y"]
+size = Vector3(0.1, 0.1, 33.0766)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxxpm"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nv67r"]
+size = Vector3(0.1, 0.1, 31.3857)
+
 [node name="InitialPlayerSpawnMap" type="Node3D"]
+script = ExtResource("4_bg5rj")
+MapId = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yexna")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.662745, 0.733333, 1, 1)
+light_energy = 1.5
 shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="Objects" type="Node3D" parent="Environment"]
+[node name="GameObjectHolder" type="Node3D" parent="Environment"]
 
-[node name="Floor001" type="MeshInstance3D" parent="Environment/Objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_yexna")
-skeleton = NodePath("../../..")
+[node name="Floor001" type="MeshInstance3D" parent="Environment/GameObjectHolder" node_paths=PackedStringArray("FogVolumeNode")]
+material_override = SubResource("ShaderMaterial_bg5rj")
+mesh = SubResource("BoxMesh_bg5rj")
+skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+script = ExtResource("2_u8jh7")
+ScrollSpeed = 0.1
+FogVolumeNode = NodePath("FogVolume2")
+
+[node name="FogVolume2" type="FogVolume" parent="Environment/GameObjectHolder/Floor001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
+size = Vector3(100, 2, 100)
+material = SubResource("FogMaterial_6w0wb")
+
+[node name="Podium" type="Node3D" parent="Environment/GameObjectHolder"]
+
+[node name="PodiumObject" type="StaticBody3D" parent="Environment/GameObjectHolder/Podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PodiumMesh" type="MeshInstance3D" parent="Environment/GameObjectHolder/Podium/PodiumObject"]
+mesh = SubResource("CylinderMesh_u8jh7")
+skeleton = NodePath("../..")
+
+[node name="MiddleLight" type="OmniLight3D" parent="Environment/GameObjectHolder/Podium/PodiumObject/PodiumMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.921569, 0.745098, 0.388235, 1)
+light_energy = 2.0
+light_indirect_energy = 10.0
+light_volumetric_fog_energy = 20.0
+omni_range = 7.41
+omni_attenuation = 0.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Environment/GameObjectHolder/Podium/PodiumObject/PodiumMesh/MiddleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.09964, 0)
+amount = 200
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_6w0wb")
+draw_pass_1 = SubResource("QuadMesh_3k15d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Podium/PodiumObject"]
+shape = SubResource("CylinderShape3D_3k15d")
+
+[node name="Walls" type="Node3D" parent="Environment/GameObjectHolder"]
+
+[node name="Wall001" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 30)
+
+[node name="Wall001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall001"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tyjim")
+skeleton = NodePath("../../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall001"]
+shape = SubResource("ConvexPolygonShape3D_3k15d")
+
+[node name="Wall002" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -30)
+
+[node name="Wall002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall002"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tyjim")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall002"]
+shape = SubResource("ConvexPolygonShape3D_v1y75")
+
+[node name="Wall003" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 55.5, 10, 0)
+
+[node name="Wall003" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall003"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_3k15d")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall003"]
+shape = SubResource("ConvexPolygonShape3D_k8vcq")
+
+[node name="Wall004" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, -14.029)
+
+[node name="Wall004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall004"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_k8vcq")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall004"]
+shape = SubResource("ConvexPolygonShape3D_ip6tl")
+
+[node name="Wall009" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, 14)
+
+[node name="Wall009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall009"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_k8vcq")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall009"]
+shape = SubResource("ConvexPolygonShape3D_83bfx")
+
+[node name="Wall005" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(-0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -24.5, 10, 15)
+
+[node name="Wall005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall005"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_a6qfw")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall005"]
+shape = SubResource("ConvexPolygonShape3D_efqqu")
+
+[node name="Wall006" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -24.5, 10, -15)
+
+[node name="Wall006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall006"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_6w0wb")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall006"]
+shape = SubResource("ConvexPolygonShape3D_7x2cj")
+
+[node name="Wall007" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 26.5, 10, 22)
+
+[node name="Wall007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall007"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_v1y75")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall007"]
+shape = SubResource("ConvexPolygonShape3D_147f4")
+
+[node name="Wall008" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 26.5, 10, -22)
+
+[node name="Wall008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall008"]
+material_override = ExtResource("3_tyjim")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_v1y75")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall008"]
+shape = SubResource("ConvexPolygonShape3D_ylyfp")
+
+[node name="WallPillar001" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 10, -30)
+
+[node name="WallPillar001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar001"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar001"]
+shape = SubResource("ConvexPolygonShape3D_edsrv")
+
+[node name="WallPillar002" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 10, 14)
+
+[node name="WallPillar002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar002"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar002"]
+shape = SubResource("ConvexPolygonShape3D_fhi6m")
+
+[node name="WallPillar008" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 10, -14)
+
+[node name="WallPillar008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar008"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar008"]
+shape = SubResource("ConvexPolygonShape3D_uk04y")
+
+[node name="WallPillar009" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 10, -14)
+
+[node name="WallPillar009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar009"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar009"]
+shape = SubResource("ConvexPolygonShape3D_bxxpm")
+
+[node name="WallPillar010" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 10, 14)
+
+[node name="WallPillar010" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar010"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar010"]
+shape = SubResource("ConvexPolygonShape3D_nv67r")
+
+[node name="WallPillar004" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
+
+[node name="WallPillar004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar004"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar004"]
+shape = SubResource("ConvexPolygonShape3D_jkf6s")
+
+[node name="WallPillar005" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 10, 30)
+
+[node name="WallPillar005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar005"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar005"]
+shape = SubResource("ConvexPolygonShape3D_2ts21")
+
+[node name="WallPillar006" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 10, 30)
+
+[node name="WallPillar006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar006"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar006"]
+shape = SubResource("ConvexPolygonShape3D_fk4ym")
+
+[node name="WallPillar007" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 10, -30)
+
+[node name="WallPillar007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar007"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_rthf5")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar007"]
+shape = SubResource("ConvexPolygonShape3D_bfe4p")
+
+[node name="Elements" type="Node3D" parent="Environment/GameObjectHolder"]
+
+[node name="FiretLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 25)
+ElementType = 2
+
+[node name="AirLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 25)
+ElementType = 1
+
+[node name="LightningLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
+ElementType = 4
+
+[node name="NatureLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -25)
+ElementType = 8
+
+[node name="WaterLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -25)
+ElementType = 16
 
 [node name="Lights" type="Node3D" parent="Environment"]
 
 [node name="CharacterHolder" type="Node3D" parent="."]
+
+[node name="NonPlayerCharacterControl" parent="CharacterHolder" instance=ExtResource("4_a6qfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.695, 0)
+
+[node name="WorldObjectActivateOption" parent="CharacterHolder/NonPlayerCharacterControl" instance=ExtResource("8_3k15d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="WaypointVisualizer" type="Node3D" parent="."]
+process_mode = 3
+script = ExtResource("8_v1y75")
+Waypoints = PackedVector3Array(5, 1, 5, 17, 1, 22, -14.5, 1, 25, -22.5, 1, 0, -18, 1, -22.5, 15, 1, -24.75, 5, 1, 5)
+_waypoints = PackedVector3Array(5, 1, 5, 17, 1, 22, -14.5, 1, 25, -22.5, 1, 0, -18, 1, -22.5, 15, 1, -24.75, 5, 1, 5)
+
+[node name="Segment_0" type="MeshInstance3D" parent="WaypointVisualizer"]
+transform = Transform3D(0.816968, 0, 0.576683, 0, 1, 0, -0.576683, 0, 0.816968, 11, 1, 13.5)
+material_override = SubResource("StandardMaterial3D_3k15d")
+mesh = SubResource("BoxMesh_ip6tl")
+
+[node name="Segment_1" type="MeshInstance3D" parent="WaypointVisualizer"]
+transform = Transform3D(0.0948091, 0, -0.995495, 0, 1, 0, 0.995495, 0, 0.0948091, 1.25, 1, 23.5)
+material_override = SubResource("StandardMaterial3D_83bfx")
+mesh = SubResource("BoxMesh_efqqu")
+
+[node name="Segment_2" type="MeshInstance3D" parent="WaypointVisualizer"]
+transform = Transform3D(-0.952424, 0, -0.304776, 0, 1, 0, 0.304776, 0, -0.952424, -18.5, 1, 12.5)
+material_override = SubResource("StandardMaterial3D_7x2cj")
+mesh = SubResource("BoxMesh_147f4")
+
+[node name="Segment_3" type="MeshInstance3D" parent="WaypointVisualizer"]
+transform = Transform3D(-0.980581, 0, 0.196116, 0, 1, 0, -0.196116, 0, -0.980581, -20.25, 1, -11.25)
+material_override = SubResource("StandardMaterial3D_ylyfp")
+mesh = SubResource("BoxMesh_edsrv")
+
+[node name="Segment_4" type="MeshInstance3D" parent="WaypointVisualizer"]
+transform = Transform3D(-0.0680239, 0, 0.997684, 0, 1, 0, -0.997684, 0, -0.0680239, -1.5, 1, -23.625)
+material_override = SubResource("StandardMaterial3D_fhi6m")
+mesh = SubResource("BoxMesh_uk04y")
+
+[node name="Segment_5" type="MeshInstance3D" parent="WaypointVisualizer"]
+transform = Transform3D(0.947884, 0, -0.318616, 0, 1, 0, 0.318616, 0, 0.947884, 10, 1, -9.875)
+material_override = SubResource("StandardMaterial3D_bxxpm")
+mesh = SubResource("BoxMesh_nv67r")

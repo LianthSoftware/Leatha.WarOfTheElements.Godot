@@ -4,8 +4,9 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="framework\Controls\NewFolder\**" />
-    <EmbeddedResource Remove="framework\Controls\NewFolder\**" />
+    <None Include="Tools\UI.gd" />
+    <None Include="Tools\UI.gd.uid" />
+    <None Include="Tools\UI.tscn" />
   </ItemGroup>
 
   <ItemGroup>

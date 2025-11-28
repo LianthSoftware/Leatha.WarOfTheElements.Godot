@@ -5,6 +5,7 @@ using Leatha.WarOfTheElements.Common.Communication.Utilities;
 using Leatha.WarOfTheElements.Godot.framework.Controls.Entities;
 using Leatha.WarOfTheElements.Godot.framework.Controls.UserInterface;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
+using Leatha.WarOfTheElements.Godot.framework.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,10 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
         void CharacterApplyAura(AuraObject auraObject);
 
         void CharacterRemoveAura(AuraObject auraObject);
+
+
+
+        void CharacterTalked(ChatMessageObject chatMessage);
     }
 
     public sealed partial class CharacterService : Node, ICharacterService
@@ -162,6 +167,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
             var charStatusControl = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_PlayerStatusBar_Path);
             control.SetResources(state, charStatusControl);
+
+            // #TODO
+            //Controls.UserInterface.ChatBubble._camera = control.GetNode<Camera3D>(control.CameraPath);
 
             // #TODO: Add auras.
 
@@ -324,6 +332,23 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             charStatusControl.RemoveAura(auraObject);
         }
 
+        public void CharacterTalked(ChatMessageObject chatMessage)
+        {
+            var chatControl = GetTree().CurrentScene.GetNode<ChatControl>(NodePathHelper.GameUI_ChatControl_Path);
+            chatControl?.AddMessage(chatMessage);
+
+            GD.Print("Character Talked = " + chatMessage.PlainMessage + " | Color = " + chatMessage.TextColor);
+
+            var nonPlayerControl = GetCharacterHolderControl()
+                .GetChildren<NonPlayerCharacterControl>()
+                .SingleOrDefault(i => i.NonPlayerId == chatMessage.TalkerId);
+            if (nonPlayerControl == null)
+                return;
+
+            var chatBubble = nonPlayerControl.GetNode<ChatBubble>(nameof(ChatBubble));
+            chatBubble.SetText(chatMessage.PlainMessage, new Color(chatMessage.TextColor), chatMessage.Duration);
+        }
+
         public void ShowErrorMessage(string errorMessage, float duration = 3.0f)
         {
             ShowMessage(errorMessage, Color.FromHtml("#ff1a28"), duration);
@@ -423,7 +448,11 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         private Node3D GetCharacterHolderControl()
         {
-            return GetTree().CurrentScene.GetNode<Node3D>("CharacterHolder"); // #TODO: Make sure it's on EVERY *WORLD* MAP.
+            var gameControl = this.GetGameControl();
+            return gameControl
+                .MapControl
+                .GetChild(0) // This is the particular map control.
+                .GetNode<Node3D>("CharacterHolder");
         }
 
         private void AddControlDeferred(NonPlayerCharacterControl control)

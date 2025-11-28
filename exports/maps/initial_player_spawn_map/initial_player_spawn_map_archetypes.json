@@ -1,0 +1,40 @@
+{
+  "Archetypes": [
+    {
+      "ArchetypeName": "cylinder",
+      "Name": "Cylinder",
+      "ShapeType": "Cylinder",
+      "Size": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "HullVertices": null,
+      "IsStaticDefault": true
+    },
+    {
+      "ArchetypeName": "convexhull_unit",
+      "Name": "Convex Hull Unit",
+      "ShapeType": "ConvexHull",
+      "Size": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "HullVertices": null,
+      "IsStaticDefault": true
+    },
+    {
+      "ArchetypeName": "box_unit",
+      "Name": "Box Unit",
+      "ShapeType": "Box",
+      "Size": {
+        "X": 1,
+        "Y": 1,
+        "Z": 1
+      },
+      "HullVertices": null,
+      "IsStaticDefault": true
+    }
+  ]
+}

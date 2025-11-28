@@ -1,0 +1,61 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dnmr18dwnkt61"]
+
+[sub_resource type="Shader" id="1"]
+code = "shader_type spatial;
+
+// Alpha gradient based on local Y of a 20-unit tall wall
+// - Color: base wall color
+// - FadeStart: 0..1, where fade to transparent begins
+// - Invert: flip bottom/top
+render_mode blend_mix, cull_back, unshaded;
+
+uniform vec4 color : source_color = vec4(0.2, 0.4, 1.0, 1.0); // base color
+uniform float fade_start : hint_range(0.0, 1.0, 0.01) = 0.3;  // 0 = fade from bottom, 1 = only very top fades
+uniform bool invert = false;
+
+varying float v_local_y;
+
+void vertex() {
+    v_local_y = VERTEX.y; // local-space Y
+}
+
+float compute_alpha(float t) {
+    // Optionally flip vertical direction
+    if (invert) {
+        t = 1.0 - t;
+    }
+
+    t = clamp(t, 0.0, 1.0);
+
+    // Before fade_start -> fully solid
+    if (t <= fade_start) {
+        return 1.0;
+    }
+
+    // From fade_start -> 1.0 fade to 0
+    float denom = max(1.0 - fade_start, 0.0001);
+    float k = (t - fade_start) / denom; // 0..1
+    return 1.0 - k; // 1 -> 0
+}
+
+void fragment() {
+    // Your BoxMesh is 20 high, centered => local Y in [-10, 10]
+    const float LOCAL_BOTTOM_Y = -10.0;
+    const float LOCAL_TOP_Y    =  10.0;
+
+    // Normalize local Y to 0..1
+    float t = (v_local_y - LOCAL_BOTTOM_Y) / (LOCAL_TOP_Y - LOCAL_BOTTOM_Y);
+
+    float a = compute_alpha(t);
+
+    ALBEDO = color.rgb;
+    ALPHA  = color.a * a; // 1 at bottom, fades to 0 at top (depending on fade_start & invert)
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("1")
+shader_parameter/color = Color(0.000427263, 4.81308e-08, 0.205075, 1)
+shader_parameter/fade_start = 0.25
+shader_parameter/invert = false

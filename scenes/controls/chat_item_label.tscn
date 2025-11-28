@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://8em4ux3h447s"]
+
+[node name="ChatItemLabel" type="RichTextLabel"]
+custom_minimum_size = Vector2(400, 0)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[p][color=4ac4ff][21:55:34][/color] [color=gray][Leatha][/color]: Nice day for fishing, ain't it? Hua hua. And even longer?[/p]"
+fit_content = true
