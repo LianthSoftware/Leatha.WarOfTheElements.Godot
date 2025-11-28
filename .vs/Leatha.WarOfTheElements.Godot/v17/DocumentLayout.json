@@ -198,7 +198,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 19,
           "Children": [
             {
               "$type": "Bookmark",
@@ -253,10 +253,6 @@
               "Name": "ST:0:0:{e3fb24c2-2e84-3146-a5f8-bc25bbc68f8a}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "MapScene.cs",
@@ -266,8 +262,7 @@
               "RelativeToolTip": "framework\\Controls\\Maps\\MapScene.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T15:43:01.461Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-28T15:43:01.461Z"
             },
             {
               "$type": "Document",
@@ -279,8 +274,7 @@
               "RelativeToolTip": "Tools\\MapColliderExporter.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAWwDMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T23:35:51.506Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-27T23:35:51.506Z"
             },
             {
               "$type": "Document",
@@ -292,8 +286,7 @@
               "RelativeToolTip": "framework\\Services\\CharacterService.cs",
               "ViewState": "AgIAAEQBAAAAAAAAAAAjwGgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T21:46:03.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-16T21:46:03.158Z"
             },
             {
               "$type": "Document",
@@ -305,8 +298,7 @@
               "RelativeToolTip": "framework\\Extensions\\NodePathHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T09:36:22.554Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T09:36:22.554Z"
             },
             {
               "$type": "Document",
@@ -318,8 +310,7 @@
               "RelativeToolTip": "framework\\Extensions\\ControlExtensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T22:05:40.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T22:05:40.027Z"
             },
             {
               "$type": "Document",
@@ -331,8 +322,7 @@
               "RelativeToolTip": "framework\\Scripts\\InitialSpawnMapControl.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T09:20:50.628Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T09:20:50.628Z"
             },
             {
               "$type": "Document",
@@ -342,14 +332,10 @@
               "RelativeDocumentMoniker": "framework\\Controls\\Entities\\PlayerController.cs",
               "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\PlayerController.cs",
               "RelativeToolTip": "framework\\Controls\\Entities\\PlayerController.cs",
-              "ViewState": "AgIAAJ8BAAAAAAAAAAAmwLUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJ8BAAAAAAAAAAAjwLMBAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T00:56:50.892Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
@@ -361,8 +347,7 @@
               "RelativeToolTip": "framework\\Controls\\Maps\\MapControl.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T21:31:02.832Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-18T21:31:02.832Z"
             },
             {
               "$type": "Document",
@@ -374,8 +359,7 @@
               "RelativeToolTip": "framework\\Controls\\GameControl.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T11:52:19.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T11:52:19.975Z"
             },
             {
               "$type": "Document",
@@ -387,8 +371,7 @@
               "RelativeToolTip": "framework\\UI\\menu\\WorldLoadingControl.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAwwFEAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T11:42:54.872Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T11:42:54.872Z"
             },
             {
               "$type": "Document",
@@ -833,6 +816,14 @@
               "ViewState": "AgIAACUAAAAAAAAAAAAjwD4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T22:06:06.167Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         },

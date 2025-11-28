@@ -438,11 +438,11 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
             // 4) Update local view angles from predicted orientation
             //    Only if we're NOT locked and we didn't just unlock.
-            if (_lockedCharacter == null && !_ignoreNextServerYaw)
-            {
-                _yaw = _predYaw;
-                _pitch = _predPitch;
-            }
+            //if (_lockedCharacter == null && !_ignoreNextServerYaw)
+            //{
+            //    _yaw = _predYaw;
+            //    _pitch = _predPitch;
+            //}
 
             // After one snapshot, allow server yaw again
             _ignoreNextServerYaw = false;
@@ -454,12 +454,12 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
         private void SimulateLocally(PlayerInputObject input, PlayerStateObject s)
         {
-            // same math as server ComputeDesiredVelocity
+            // Same yaw as server (radians)
             var sin = Mathf.Sin(_predYaw);
             var cos = Mathf.Cos(_predYaw);
 
-            // IMPORTANT: this matches server forward/right convention
-            var fwd = new Vector3(sin, 0, cos);
+            // GODOT / server convention: -Z is forward
+            var fwd = new Vector3(-sin, 0, -cos);
             var right = new Vector3(cos, 0, -sin);
 
             var mv = new Vector2(input.Right, input.Forward);
@@ -482,6 +482,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             _predYaw = input.Yaw;
             _predPitch = input.Pitch;
         }
+
 
         private void UpdateCameraMode()
         {

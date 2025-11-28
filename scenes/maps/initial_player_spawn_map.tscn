@@ -300,8 +300,8 @@ mesh = SubResource("BoxMesh_bg5rj")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 script = ExtResource("2_u8jh7")
-ScrollSpeed = 0.1
 FogVolumeNode = NodePath("FogVolume2")
+ScrollSpeed = 0.1
 
 [node name="FogVolume2" type="FogVolume" parent="Environment/GameObjectHolder/Floor001"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
@@ -598,7 +598,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 process_mode = 3
 script = ExtResource("8_v1y75")
 Waypoints = PackedVector3Array(5, 1, 5, 17, 1, 22, -14.5, 1, 25, -22.5, 1, 0, -18, 1, -22.5, 15, 1, -24.75, 5, 1, 5)
-_waypoints = PackedVector3Array(5, 1, 5, 17, 1, 22, -14.5, 1, 25, -22.5, 1, 0, -18, 1, -22.5, 15, 1, -24.75, 5, 1, 5)
 
 [node name="Segment_0" type="MeshInstance3D" parent="WaypointVisualizer"]
 transform = Transform3D(0.816968, 0, 0.576683, 0, 1, 0, -0.576683, 0, 0.816968, 11, 1, 13.5)
