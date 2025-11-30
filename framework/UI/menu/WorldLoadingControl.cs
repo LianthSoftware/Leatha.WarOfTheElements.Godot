@@ -83,7 +83,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
             mapControl.SetMapInfo(mapInfo);
 
             // Load the particular map.
-            var loadedMap = mapScene.Instantiate<Node3D>(); // #TODO: Is "Node3D" correct? Add some control.
+            var loadedMap = mapScene.Instantiate<MapScene>(); // #TODO: Is "Node3D" correct? Add some control.
             mapControl.AddChild(loadedMap);
 
             SetLoadingBarValue(50.0f); // #TODO: TEST ONLY
@@ -107,6 +107,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
 
                 ObjectAccessor.SessionService.IsWorldLoaded = true;
                 ObjectAccessor.CharacterService.ApplySnapshot(result.Data);
+
+                loadedMap.OnPlayerEnteredMap(result.Data);
 
                 GD.Print($"Player \"{result.Data.WorldObjectId.ObjectId}\" entered the world!");
 

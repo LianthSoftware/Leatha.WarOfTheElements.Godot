@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Effects;
 using Leatha.WarOfTheElements.Godot.framework.Controls.Entities.GameObjects;
+using Leatha.WarOfTheElements.Godot.framework.Objects;
 using static Godot.WebSocketPeer;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
@@ -52,6 +54,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
         private PlayerInputObject _lastSentInput;
 
         private CharacterStatusBarControl _characterStatusBarControl;
+        private InteractionControl _interactionControl;
 
         private int _sequence;
 
@@ -94,6 +97,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 
             //_run = true;
             //_forward = 1.0f;
+
+            _interactionControl = GetTree().CurrentScene.GetNode<InteractionControl>("UICanvasLayer/InteractionControl");
         }
 
         public override void _Process(double delta)
@@ -137,7 +142,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 {
                     // 🔒 LOCK onto current selected target
                     _lockedCharacter = target;
-                    ObjectAccessor.CharacterService.ShowTargetFrame(target?.LastState, target);
+                    ObjectAccessor.CharacterService.ShowTargetFrame(target?.CharacterState, target);
                 }
             }
         }
@@ -173,7 +178,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 From = origin,
                 To = to,
                 CollideWithAreas = true,
-                CollideWithBodies = true
+                CollideWithBodies = true,
             };
 
             var result = spaceState.IntersectRay(query);
@@ -187,38 +192,68 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 if (collider is NonPlayerCharacterControl body)
                     hitTarget = body;
 
-                // #TODO: Check if GameObjectControl is hit.
-
-                if (collider is GameObjectControl gameObject)
+                if (collider is GameObjectControl gameObject && gameObject.GetInteractionOptions().Any())
                 {
                     //if (_lastInteractionControl is GameObjectControl inter)
                     //    inter.ShowInteraction(null);
 
-                    if (gameObject != _lastInteractionControl)
+                    if (gameObject != _lastInteractionControl && GlobalPosition.DistanceTo(gameObject.GlobalPosition) <= 10.0f)
                     {
-                        _lastInteractionControl?.ShowInteraction(null);
+                        _interactionControl.HideInteraction();
+                        _lastInteractionControl = gameObject;
+                        _interactionControl.ShowInteraction(gameObject.GetInteractionOptions());
+
+                        //_interactionControl.ShowInteraction([
+                        //    new WorldObjectInteractionOption
+                        //    {
+                        //        OptionTitle = $"Choose X Element",
+                        //        Offset = Vector2.Zero,
+                        //        ActivateKey = Key.F,
+                        //        ActivationDuration = 1.0f,
+                        //        Action = () => { GD.Print("Clicked ONE"); }
+                        //    },
+                        //    new WorldObjectInteractionOption
+                        //    {
+                        //        OptionTitle = $"Test One",
+                        //        Offset = Vector2.Zero,
+                        //        ActivateKey = Key.G,
+                        //        ActivationDuration = 1.0f,
+                        //    },
+                        //    new WorldObjectInteractionOption
+                        //    {
+                        //        OptionTitle = $"Test Two",
+                        //        Offset = Vector2.Zero,
+                        //        ActivateKey = Key.H,
+                        //        ActivationDuration = 1.0f,
+                        //    }
+                        //]);
+                    }
+                    else
+                    {
+                        _interactionControl.HideInteraction();
                         _lastInteractionControl = null;
                     }
 
                     //gameObject.ShowInteraction(this);
-                    _lastInteractionControl = gameObject;
+                    //_lastInteractionControl = gameObject;
                     //gameObject.ShowInteraction(this);
                 }
                 else
                 {
-                    _lastInteractionControl?.ShowInteraction(null);
+                    _interactionControl.HideInteraction();
                     _lastInteractionControl = null;
                 }
             }
             else
             {
-                _lastInteractionControl?.ShowInteraction(null);
+                _interactionControl.HideInteraction();
                 _lastInteractionControl = null;
             }
 
-            ObjectAccessor.CharacterService.ShowTargetFrame(hitTarget?.LastState, hitTarget);
-            _lastInteractionControl?.ShowInteraction(this);
-            _lastInteractionControl?.UpdateMarkerPoint(this);
+            ObjectAccessor.CharacterService.ShowTargetFrame(hitTarget?.CharacterState, hitTarget);
+            //if (_lastInteractionControl != null && !_lastInteractionControl.ShowInteraction(this))
+            //    _lastInteractionControl = null;
+            //_lastInteractionControl?.UpdateMarkerPoint(this);
         }
 
         private GameObjectControl _lastInteractionControl; // #TODO: Make it WorldObject
@@ -419,7 +454,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 return;
 
             // 1) Reset predicted state to server authoritative state
-            _predPos = new Vector3(s.X, s.Y, s.Z);
+            _predPos = s.Position.ToGodotVector3();
 
             _predYaw = s.Yaw;
             _predPitch = s.Pitch;

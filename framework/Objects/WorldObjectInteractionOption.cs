@@ -16,5 +16,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Objects
         public Key ActivateKey { get; set; }
 
         public Action Action { get; set; }
+
+        public double ActivationDuration { get; set; }
     }
 }

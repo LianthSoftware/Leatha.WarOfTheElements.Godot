@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Godot;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
@@ -15,9 +16,13 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         Dictionary<int, MapInfoObject> MapTemplates { get; }
 
+        Dictionary<int, GameObjectInfoObject> GameObjectTemplates { get; }
+
         SpellInfoObject GetSpellInfo(int spellId);
 
         MapInfoObject GetMapInfo(int mapId);
+
+        GameObjectInfoObject GetGameObjectTemplate(int gameObjectId);
 
 
 
@@ -27,6 +32,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
         Task LoadSpellTemplatesAsync();
 
         Task LoadMapTemplatesAsync();
+
+        Task LoadGameObjectTemplatesAsync();
     }
 
     public sealed partial class TemplateService : Node, ITemplateService
@@ -34,6 +41,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
         public Dictionary<int, SpellInfoObject> SpellTemplates { get; private set; } = [];
 
         public Dictionary<int, MapInfoObject> MapTemplates { get; private set; } = [];
+
+        public Dictionary<int, GameObjectInfoObject> GameObjectTemplates { get; private set; } = [];
 
         public override void _Ready()
         {
@@ -52,10 +61,16 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             return MapTemplates.GetValueOrDefault(mapId);
         }
 
+        public GameObjectInfoObject GetGameObjectTemplate(int gameObjectId)
+        {
+            return GameObjectTemplates.GetValueOrDefault(gameObjectId);
+        }
+
         public async Task LoadTemplatesAsync()
         {
             await LoadSpellTemplatesAsync();
             await LoadMapTemplatesAsync();
+            await LoadGameObjectTemplatesAsync();
         }
 
         public async Task LoadSpellTemplatesAsync()
@@ -68,10 +83,21 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         public async Task LoadMapTemplatesAsync()
         {
-            var templates = await ObjectAccessor.ApiService.GetSMapTemplatesAsync();
+            var templates = await ObjectAccessor.ApiService.GetMapTemplatesAsync();
             MapTemplates = templates.ToDictionary(i => i.MapId, n => n);
 
             GD.Print($"Loaded { templates.Count } map templates.");
+        }
+
+        public async Task LoadGameObjectTemplatesAsync()
+        {
+            var templates = await ObjectAccessor.ApiService.GetGameObjectTemplatesAsync();
+
+            GD.Print("JSON = " + JsonSerializer.Serialize(templates));
+
+            GameObjectTemplates = templates.ToDictionary(i => i.GameObjectId, n => n);
+
+            GD.Print($"Loaded {templates.Count} game object templates.");
         }
     }
 }

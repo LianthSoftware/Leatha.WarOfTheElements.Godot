@@ -27,7 +27,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         Task<List<SpellInfoObject>> GetSpellTemplatesAsync();
 
-        Task<List<MapInfoObject>> GetSMapTemplatesAsync();
+        Task<List<MapInfoObject>> GetMapTemplatesAsync();
+
+        Task<List<GameObjectInfoObject>> GetGameObjectTemplatesAsync();
     }
 
     public sealed partial class ApiService : Node, IApiService
@@ -194,11 +196,25 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             }
         }
 
-        public async Task<List<MapInfoObject>> GetSMapTemplatesAsync()
+        public async Task<List<MapInfoObject>> GetMapTemplatesAsync()
         {
             try
             {
                 var response = await _serverClient.ApiGameDataTemplatesMapTemplateAsync();
+                return response.ToList();
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr(ex);
+                return [];
+            }
+        }
+
+        public async Task<List<GameObjectInfoObject>> GetGameObjectTemplatesAsync()
+        {
+            try
+            {
+                var response = await _serverClient.ApiGameDataTemplatesGameObjectTemplateAsync();
                 return response.ToList();
             }
             catch (Exception ex)

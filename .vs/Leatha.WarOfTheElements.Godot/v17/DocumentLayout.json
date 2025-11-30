@@ -7,64 +7,12 @@
       "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\effects\\interactioncontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\effects\\interactioncontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\scripts\\initialspawnmapcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\scripts\\initialspawnmapcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\tools\\mapcolliderexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:tools\\mapcolliderexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\extensions\\nodepathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\extensions\\nodepathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\maps\\mapscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\maps\\mapscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\maps\\mapcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\maps\\mapcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\ui\\menu\\worldloadingcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\ui\\menu\\worldloadingcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\gamecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\gamecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\extensions\\controlextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\extensions\\controlextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\tools\\environmentexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:tools\\environmentexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\tools\\waypointvisualizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:tools\\waypointvisualizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\userinterface\\chatbubble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\userinterface\\chatbubble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\characterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\characterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\gamehubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\gamehubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\userinterface\\chatcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\userinterface\\chatcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\objects\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\objects\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\scripts\\effects\\initialmapelementlightcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -75,8 +23,87 @@
       "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\gameobjects\\gameobjectcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\gameobjectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\gameobjectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\entities\\worldobjectactivateoptioncontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\worldobjectactivateoptioncontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\gamehubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\gamehubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\scripts\\effects\\initialmapelementpillarcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\scripts\\effects\\initialmapelementpillarcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\objects\\worldobjectinteractionoption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\objects\\worldobjectinteractionoption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\extensions\\objectaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\extensions\\objectaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\characterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\characterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\maps\\mapscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\maps\\mapscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\extensions\\nodepathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\extensions\\nodepathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\gamecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\gamecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\templateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\templateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\davih\\AppData\\Local\\Temp\\.vsdbgsrc\\b464e4b3e6c7ff7f26bee4bf5d7f85e4503ac72846b2ee8dcfb251e1961f4\\HubConnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\entities\\charactercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\charactercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\entities\\nonplayercharactercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\nonplayercharactercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\entities\\playercharactercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\playercharactercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\tools\\mapcolliderexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:tools\\mapcolliderexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\tools\\environmentexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:tools\\environmentexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\userinterface\\chatbubble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\userinterface\\chatbubble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\userinterface\\chatcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\userinterface\\chatcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\objects\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\objects\\gameconstants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\effects\\fogeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -113,14 +140,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\controls\\entities\\castbarcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\controls\\entities\\castbarcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\extensions\\objectaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\extensions\\objectaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\templateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|solutionrelative:framework\\services\\templateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{630DABFC-148D-4D71-A8ED-9C36160C1F70}|Leatha.WarOfTheElements.Godot.csproj|c:\\leatha\\work\\godot\\leatha.waroftheelements.godot\\framework\\services\\mainthreaddispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -198,7 +217,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 19,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -254,75 +273,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MapScene.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Maps\\MapScene.cs",
-              "RelativeDocumentMoniker": "framework\\Controls\\Maps\\MapScene.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Maps\\MapScene.cs",
-              "RelativeToolTip": "framework\\Controls\\Maps\\MapScene.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T15:43:01.461Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MapColliderExporter.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\MapColliderExporter.cs",
-              "RelativeDocumentMoniker": "Tools\\MapColliderExporter.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\MapColliderExporter.cs",
-              "RelativeToolTip": "Tools\\MapColliderExporter.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAWwDMAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T23:35:51.506Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CharacterService.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\CharacterService.cs",
-              "RelativeDocumentMoniker": "framework\\Services\\CharacterService.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\CharacterService.cs",
-              "RelativeToolTip": "framework\\Services\\CharacterService.cs",
-              "ViewState": "AgIAAEQBAAAAAAAAAAAjwGgBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T21:46:03.158Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NodePathHelper.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\NodePathHelper.cs",
-              "RelativeDocumentMoniker": "framework\\Extensions\\NodePathHelper.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\NodePathHelper.cs",
-              "RelativeToolTip": "framework\\Extensions\\NodePathHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T09:36:22.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ControlExtensions.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\ControlExtensions.cs",
-              "RelativeDocumentMoniker": "framework\\Extensions\\ControlExtensions.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\ControlExtensions.cs",
-              "RelativeToolTip": "framework\\Extensions\\ControlExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T22:05:40.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "InitialSpawnMapControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\InitialSpawnMapControl.cs",
               "RelativeDocumentMoniker": "framework\\Scripts\\InitialSpawnMapControl.cs",
               "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\InitialSpawnMapControl.cs",
               "RelativeToolTip": "framework\\Scripts\\InitialSpawnMapControl.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwBcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T09:20:50.628Z"
+              "WhenOpened": "2025-11-26T09:20:50.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GameObjectService.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\GameObjectService.cs",
+              "RelativeDocumentMoniker": "framework\\Services\\GameObjectService.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\GameObjectService.cs",
+              "RelativeToolTip": "framework\\Services\\GameObjectService.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAswFsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T16:02:42.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InitialMapElementLightControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
+              "RelativeDocumentMoniker": "framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
+              "RelativeToolTip": "framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAewNIAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T15:29:55.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameObjectControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
+              "RelativeToolTip": "framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAqwC0AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T14:01:18.907Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -332,62 +331,243 @@
               "RelativeDocumentMoniker": "framework\\Controls\\Entities\\PlayerController.cs",
               "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\PlayerController.cs",
               "RelativeToolTip": "framework\\Controls\\Entities\\PlayerController.cs",
-              "ViewState": "AgIAAJ8BAAAAAAAAAAAjwLMBAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAALsAAAAAAAAAAAAwwM4AAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T00:56:50.892Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MapControl.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Maps\\MapControl.cs",
-              "RelativeDocumentMoniker": "framework\\Controls\\Maps\\MapControl.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Maps\\MapControl.cs",
-              "RelativeToolTip": "framework\\Controls\\Maps\\MapControl.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "InteractionControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Effects\\InteractionControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Effects\\InteractionControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Effects\\InteractionControl.cs",
+              "RelativeToolTip": "framework\\Controls\\Effects\\InteractionControl.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAgwI4AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T21:31:02.832Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GameControl.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\GameControl.cs",
-              "RelativeDocumentMoniker": "framework\\Controls\\GameControl.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\GameControl.cs",
-              "RelativeToolTip": "framework\\Controls\\GameControl.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T11:52:19.975Z"
+              "WhenOpened": "2025-11-29T22:37:36.22Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "WorldLoadingControl.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\UI\\menu\\WorldLoadingControl.cs",
-              "RelativeDocumentMoniker": "framework\\UI\\menu\\WorldLoadingControl.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\UI\\menu\\WorldLoadingControl.cs",
-              "RelativeToolTip": "framework\\UI\\menu\\WorldLoadingControl.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAwwFEAAAA0AAAAAAAAAA==",
+              "Title": "WorldObjectActivateOptionControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
+              "RelativeToolTip": "framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T11:42:54.872Z"
+              "WhenOpened": "2025-11-26T19:19:11.324Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "GameHubService.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\GameHubService.cs",
               "RelativeDocumentMoniker": "framework\\Services\\GameHubService.cs",
               "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\GameHubService.cs",
               "RelativeToolTip": "framework\\Services\\GameHubService.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAADwv74AAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAwwHkAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T16:19:20.858Z"
+              "WhenOpened": "2025-11-29T14:42:13.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InitialMapElementPillarControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\Effects\\InitialMapElementPillarControl.cs",
+              "RelativeDocumentMoniker": "framework\\Scripts\\Effects\\InitialMapElementPillarControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\Effects\\InitialMapElementPillarControl.cs",
+              "RelativeToolTip": "framework\\Scripts\\Effects\\InitialMapElementPillarControl.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAQwF4AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T19:52:20.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WorldObjectInteractionOption.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Objects\\WorldObjectInteractionOption.cs",
+              "RelativeDocumentMoniker": "framework\\Objects\\WorldObjectInteractionOption.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Objects\\WorldObjectInteractionOption.cs",
+              "RelativeToolTip": "framework\\Objects\\WorldObjectInteractionOption.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T20:48:16.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ObjectAccessor.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\ObjectAccessor.cs",
+              "RelativeDocumentMoniker": "framework\\Extensions\\ObjectAccessor.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\ObjectAccessor.cs",
+              "RelativeToolTip": "framework\\Extensions\\ObjectAccessor.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAA+wEcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T19:25:17.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CharacterService.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\CharacterService.cs",
+              "RelativeDocumentMoniker": "framework\\Services\\CharacterService.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\CharacterService.cs",
+              "RelativeToolTip": "framework\\Services\\CharacterService.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAIAwwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T21:46:03.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MapScene.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Maps\\MapScene.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Maps\\MapScene.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Maps\\MapScene.cs",
+              "RelativeToolTip": "framework\\Controls\\Maps\\MapScene.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T15:43:01.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
+              "Title": "GameControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\GameControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\GameControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\GameControl.cs",
+              "RelativeToolTip": "framework\\Controls\\GameControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T11:52:19.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NodePathHelper.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\NodePathHelper.cs",
+              "RelativeDocumentMoniker": "framework\\Extensions\\NodePathHelper.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\NodePathHelper.cs",
+              "RelativeToolTip": "framework\\Extensions\\NodePathHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T09:36:22.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TemplateService.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\TemplateService.cs",
+              "RelativeDocumentMoniker": "framework\\Services\\TemplateService.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\TemplateService.cs",
+              "RelativeToolTip": "framework\\Services\\TemplateService.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAApwFgAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T21:29:47.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ApiService.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\ApiService.cs",
+              "RelativeDocumentMoniker": "framework\\Services\\ApiService.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\ApiService.cs",
+              "RelativeToolTip": "framework\\Services\\ApiService.cs",
+              "ViewState": "AgIAALoAAAAAAAAAAAAjwNgAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T16:15:37.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "HubConnection.cs",
+              "DocumentMoniker": "C:\\Users\\davih\\AppData\\Local\\Temp\\.vsdbgsrc\\b464e4b3e6c7ff7f26bee4bf5d7f85e4503ac72846b2ee8dcfb251e1961f4\\HubConnection.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\davih\\AppData\\Local\\Temp\\.vsdbgsrc\\b464e4b3e6c7ff7f26bee4bf5d7f85e4503ac72846b2ee8dcfb251e1961f4\\HubConnection.cs",
+              "ToolTip": "C:\\Users\\davih\\AppData\\Local\\Temp\\.vsdbgsrc\\b464e4b3e6c7ff7f26bee4bf5d7f85e4503ac72846b2ee8dcfb251e1961f4\\HubConnection.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Users\\davih\\AppData\\Local\\Temp\\.vsdbgsrc\\b464e4b3e6c7ff7f26bee4bf5d7f85e4503ac72846b2ee8dcfb251e1961f4\\HubConnection.cs",
+              "ViewState": "AgIAAAAHAAAAAAAAAAAjwBkHAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T14:43:11.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CharacterControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\CharacterControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\CharacterControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\CharacterControl.cs",
+              "RelativeToolTip": "framework\\Controls\\Entities\\CharacterControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T12:57:51.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "NonPlayerCharacterControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\NonPlayerCharacterControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\NonPlayerCharacterControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\NonPlayerCharacterControl.cs",
+              "RelativeToolTip": "framework\\Controls\\Entities\\NonPlayerCharacterControl.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwDMAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T00:16:29.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PlayerCharacterControl.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\PlayerCharacterControl.cs",
+              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\PlayerCharacterControl.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\PlayerCharacterControl.cs",
+              "RelativeToolTip": "framework\\Controls\\Entities\\PlayerCharacterControl.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAADwvxQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T00:19:33.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MapColliderExporter.cs",
+              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\MapColliderExporter.cs",
+              "RelativeDocumentMoniker": "Tools\\MapColliderExporter.cs",
+              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\MapColliderExporter.cs",
+              "RelativeToolTip": "Tools\\MapColliderExporter.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAWwDMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T23:35:51.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
               "Title": "ChatControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\ChatControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\ChatControl.cs",
@@ -399,19 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "WaypointVisualizer.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\WaypointVisualizer.cs",
-              "RelativeDocumentMoniker": "Tools\\WaypointVisualizer.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\WaypointVisualizer.cs",
-              "RelativeToolTip": "Tools\\WaypointVisualizer.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBsAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T14:50:44.714Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 22,
               "Title": "EnvironmentExporter.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Tools\\EnvironmentExporter.cs",
               "RelativeDocumentMoniker": "Tools\\EnvironmentExporter.cs",
@@ -423,7 +591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 23,
               "Title": "ChatBubble.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\ChatBubble.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\ChatBubble.cs",
@@ -435,7 +603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 25,
               "Title": "GameConstants.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Objects\\GameConstants.cs",
               "RelativeDocumentMoniker": "framework\\Objects\\GameConstants.cs",
@@ -447,43 +615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "InitialMapElementLightControl.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
-              "RelativeDocumentMoniker": "framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
-              "RelativeToolTip": "framework\\Scripts\\Effects\\InitialMapElementLightControl.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAD4v1UAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T10:53:08.064Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "GameObjectControl.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
-              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
-              "RelativeToolTip": "framework\\Controls\\Entities\\GameObjects\\GameObjectControl.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAqwGQAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T14:01:18.907Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "WorldObjectActivateOptionControl.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
-              "RelativeDocumentMoniker": "framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
-              "RelativeToolTip": "framework\\Controls\\Entities\\WorldObjectActivateOptionControl.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T19:19:11.324Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 28,
               "Title": "CharacterStatusBarControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\CharacterStatusBarControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\CharacterStatusBarControl.cs",
@@ -495,7 +627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 27,
               "Title": "SpellActionBarSlot.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\SpellActionBarSlot.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\SpellActionBarSlot.cs",
@@ -507,7 +639,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 26,
               "Title": "FogEffect.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Effects\\FogEffect.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\Effects\\FogEffect.cs",
@@ -519,7 +651,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 29,
               "Title": "ClientToServerHandler.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\communication\\ClientToServerHandler.cs",
               "RelativeDocumentMoniker": "framework\\communication\\ClientToServerHandler.cs",
@@ -531,7 +663,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 31,
               "Title": "CharacterSelectionControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\UI\\menu\\CharacterSelectionControl.cs",
               "RelativeDocumentMoniker": "framework\\UI\\menu\\CharacterSelectionControl.cs",
@@ -543,7 +675,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 30,
               "Title": "PlayerSpellBarControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\PlayerSpellBarControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\PlayerSpellBarControl.cs",
@@ -555,19 +687,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ObjectAccessor.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\ObjectAccessor.cs",
-              "RelativeDocumentMoniker": "framework\\Extensions\\ObjectAccessor.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Extensions\\ObjectAccessor.cs",
-              "RelativeToolTip": "framework\\Extensions\\ObjectAccessor.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAjwE0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T19:25:17.645Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 33,
               "Title": "AuraControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\AuraControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\AuraControl.cs",
@@ -579,7 +699,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 32,
               "Title": "ResizableUIRootControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\UserInterface\\ResizableUIRootControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\UserInterface\\ResizableUIRootControl.cs",
@@ -591,7 +711,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 34,
               "Title": "CastBarControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Entities\\CastBarControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\Entities\\CastBarControl.cs",
@@ -603,19 +723,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "TemplateService.cs",
-              "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\TemplateService.cs",
-              "RelativeDocumentMoniker": "framework\\Services\\TemplateService.cs",
-              "ToolTip": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\TemplateService.cs",
-              "RelativeToolTip": "framework\\Services\\TemplateService.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAA1wCUAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-18T21:29:47.342Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "MainThreadDispatcher.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\MainThreadDispatcher.cs",
               "RelativeDocumentMoniker": "framework\\Services\\MainThreadDispatcher.cs",
@@ -627,7 +735,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "SessionService.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Services\\SessionService.cs",
               "RelativeDocumentMoniker": "framework\\Services\\SessionService.cs",
@@ -639,7 +747,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "LoadingControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\UI\\menu\\LoadingControl.cs",
               "RelativeDocumentMoniker": "framework\\UI\\menu\\LoadingControl.cs",
@@ -651,7 +759,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "BootControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\UI\\menu\\BootControl.cs",
               "RelativeDocumentMoniker": "framework\\UI\\menu\\BootControl.cs",
@@ -663,7 +771,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "CharacterSelectionItemControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\UI\\menu\\CharacterSelectionItemControl.cs",
               "RelativeDocumentMoniker": "framework\\UI\\menu\\CharacterSelectionItemControl.cs",
@@ -675,7 +783,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "SpellBookItemControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\SpellBook\\SpellBookItemControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\SpellBook\\SpellBookItemControl.cs",
@@ -687,7 +795,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "HellfireControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Spells\\HellfireControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\Spells\\HellfireControl.cs",
@@ -699,7 +807,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 43,
               "Title": "EnhancementControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\SpellBook\\EnhancementControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\SpellBook\\EnhancementControl.cs",
@@ -711,7 +819,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 44,
               "Title": "SpellDetailControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\SpellBook\\SpellDetailControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\SpellBook\\SpellDetailControl.cs",
@@ -723,7 +831,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 45,
               "Title": "TalentsControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Talents\\TalentsControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\Talents\\TalentsControl.cs",
@@ -735,7 +843,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 42,
               "Title": "SpellBookControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\SpellBook\\SpellBookControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\SpellBook\\SpellBookControl.cs",
@@ -747,7 +855,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 46,
               "Title": "EnhancementItemControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\SpellBook\\EnhancementItemControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\SpellBook\\EnhancementItemControl.cs",
@@ -759,7 +867,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 47,
               "Title": "RealmList.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Objects\\RealmList.cs",
               "RelativeDocumentMoniker": "framework\\Objects\\RealmList.cs",
@@ -771,7 +879,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 48,
               "Title": "SignalHubConnectionStateChangedEventArgs.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Objects\\SignalHubConnectionStateChangedEventArgs.cs",
               "RelativeDocumentMoniker": "framework\\Objects\\SignalHubConnectionStateChangedEventArgs.cs",
@@ -783,7 +891,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 51,
               "Title": "Leatha.WarOfTheElements.Godot.csproj",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\Leatha.WarOfTheElements.Godot.csproj",
               "RelativeDocumentMoniker": "Leatha.WarOfTheElements.Godot.csproj",
@@ -795,7 +903,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 50,
               "Title": "TalentTooltipControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Talents\\TalentTooltipControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\Talents\\TalentTooltipControl.cs",
@@ -807,7 +915,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 49,
               "Title": "TalentItemControl.cs",
               "DocumentMoniker": "C:\\Leatha\\WORK\\GODOT\\Leatha.WarOfTheElements.Godot\\framework\\Controls\\Talents\\TalentItemControl.cs",
               "RelativeDocumentMoniker": "framework\\Controls\\Talents\\TalentItemControl.cs",
@@ -816,14 +924,6 @@
               "ViewState": "AgIAACUAAAAAAAAAAAAjwD4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T22:06:06.167Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         },

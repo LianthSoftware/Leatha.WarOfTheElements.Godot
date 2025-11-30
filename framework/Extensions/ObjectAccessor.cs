@@ -1,3 +1,4 @@
+using Leatha.WarOfTheElements.Godot.framework.Controls;
 using Leatha.WarOfTheElements.Godot.framework.Services;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Extensions
@@ -68,6 +69,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             }
         }
 
+        public static IGameObjectService GameObjectService
+        {
+            get => _gameObjectService;
+            set
+            {
+                if (_gameObjectService != null)
+                    return;
+
+                _gameObjectService = value;
+            }
+        }
+
         public static ITemplateService TemplateService
         {
             get => _templateService;
@@ -97,6 +110,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         private static ISessionService _sessionService;
         private static IPlayerInputService _playerInputService;
         private static ICharacterService _characterService;
+        private static IGameObjectService _gameObjectService;
         private static ITemplateService _templateService;
         private static MainThreadDispatcher _mainThreadDispatcher;
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Common.Communication.Transfer;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Maps
 {
@@ -11,5 +12,9 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Maps
     {
         [Export]
         public int MapId { get; set; }
+
+        public virtual void OnPlayerEnteredMap(PlayerStateObject playerState)
+        {
+        }
     }
 }

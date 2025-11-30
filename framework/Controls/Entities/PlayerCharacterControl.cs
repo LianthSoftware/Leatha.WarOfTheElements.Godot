@@ -1,13 +1,14 @@
 using Godot;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
+using Leatha.WarOfTheElements.Common.Communication.Utilities;
+using Leatha.WarOfTheElements.Godot.framework.Extensions;
+using Leatha.WarOfTheElements.Godot.framework.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Leatha.WarOfTheElements.Common.Communication.Utilities;
-using Leatha.WarOfTheElements.Godot.framework.Services;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 {
@@ -24,10 +25,10 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
                 return;
 
             // Position
-            GlobalPosition = new Vector3(state.X, state.Y, state.Z);
+            GlobalPosition = state.Position.ToGodotVector3();
 
             // Orientation from quaternion
-            var godotQuat = new Quaternion(state.Qx, state.Qy, state.Qz, state.Qw);
+            var godotQuat = state.Orientation.ToGodotQuaternion();
             var basis = new Basis(godotQuat);
             GlobalTransform = new Transform3D(basis, GlobalTransform.Origin);
 

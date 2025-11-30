@@ -24,6 +24,7 @@ PlayerInputService="*res://framework/Services/PlayerInputService.cs"
 CharacterService="*res://framework/Services/CharacterService.cs"
 TemplateService="*res://framework/Services/TemplateService.cs"
 MainThreadDispatcher="*res://framework/Services/MainThreadDispatcher.cs"
+GameObjectService="*res://framework/Services/GameObjectService.cs"
 
 [display]
 

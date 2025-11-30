@@ -13,12 +13,12 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 {
     public abstract partial class CharacterControl : CharacterBody3D
     {
-        public ICharacterStateObject LastState { get; private set; }
+        public ICharacterStateObject CharacterState { get; private set; }
 
         public void ApplyServerState(ICharacterStateObject state)
         {
             //GD.Print("LastState = " + JsonSerializer.Serialize(state));
-            LastState = state;
+            CharacterState = state;
             OnApplyServerState(state);
         }
 

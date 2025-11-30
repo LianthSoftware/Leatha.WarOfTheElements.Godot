@@ -1176,13 +1176,13 @@
       ]
     },
     {
-      "ArchetypeName": "box_unit",
-      "Name": "FiretLight",
+      "ArchetypeName": "convexhull_unit",
+      "Name": "ElementPillar001",
       "MapId": 1,
       "Position": {
-        "X": 17,
-        "Y": 0,
-        "Z": 25
+        "X": 0,
+        "Y": 2.5,
+        "Z": 5.5
       },
       "RotationDegrees": {
         "X": -0,
@@ -1191,21 +1191,62 @@
       },
       "ColliderSize": {
         "X": 1,
-        "Y": 1,
+        "Y": 5,
         "Z": 1
       },
-      "ShapeType": "Box",
+      "ShapeType": "ConvexHull",
       "IsStatic": true,
-      "ConvexHullPoints": null
+      "ConvexHullPoints": [
+        {
+          "X": -0.5,
+          "Y": -2.5,
+          "Z": -0.5
+        },
+        {
+          "X": -0.5,
+          "Y": -2.5,
+          "Z": 0.5
+        },
+        {
+          "X": -0.5,
+          "Y": 2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": -2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": -2.5,
+          "Z": 0.5
+        },
+        {
+          "X": -0.5,
+          "Y": 2.5,
+          "Z": 0.5
+        },
+        {
+          "X": 0.5,
+          "Y": 2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": 2.5,
+          "Z": 0.5
+        }
+      ]
     },
     {
-      "ArchetypeName": "box_unit",
-      "Name": "AirLight",
+      "ArchetypeName": "convexhull_unit",
+      "Name": "ElementPillar002",
       "MapId": 1,
       "Position": {
-        "X": -17,
-        "Y": 0,
-        "Z": 25
+        "X": 0,
+        "Y": 2.5,
+        "Z": -5.5
       },
       "RotationDegrees": {
         "X": -0,
@@ -1214,20 +1255,61 @@
       },
       "ColliderSize": {
         "X": 1,
-        "Y": 1,
+        "Y": 5,
         "Z": 1
       },
-      "ShapeType": "Box",
+      "ShapeType": "ConvexHull",
       "IsStatic": true,
-      "ConvexHullPoints": null
+      "ConvexHullPoints": [
+        {
+          "X": -0.5,
+          "Y": -2.5,
+          "Z": -0.5
+        },
+        {
+          "X": -0.5,
+          "Y": -2.5,
+          "Z": 0.5
+        },
+        {
+          "X": -0.5,
+          "Y": 2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": -2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": -2.5,
+          "Z": 0.5
+        },
+        {
+          "X": -0.5,
+          "Y": 2.5,
+          "Z": 0.5
+        },
+        {
+          "X": 0.5,
+          "Y": 2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": 2.5,
+          "Z": 0.5
+        }
+      ]
     },
     {
-      "ArchetypeName": "box_unit",
-      "Name": "LightningLight",
+      "ArchetypeName": "convexhull_unit",
+      "Name": "ElementPillar003",
       "MapId": 1,
       "Position": {
-        "X": -25,
-        "Y": 0,
+        "X": -5.5,
+        "Y": 2.5,
         "Z": 0
       },
       "RotationDegrees": {
@@ -1237,58 +1319,53 @@
       },
       "ColliderSize": {
         "X": 1,
-        "Y": 1,
+        "Y": 5,
         "Z": 1
       },
-      "ShapeType": "Box",
+      "ShapeType": "ConvexHull",
       "IsStatic": true,
-      "ConvexHullPoints": null
-    },
-    {
-      "ArchetypeName": "box_unit",
-      "Name": "NatureLight",
-      "MapId": 1,
-      "Position": {
-        "X": -18,
-        "Y": 0,
-        "Z": -25
-      },
-      "RotationDegrees": {
-        "X": -0,
-        "Y": 0,
-        "Z": 0
-      },
-      "ColliderSize": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1
-      },
-      "ShapeType": "Box",
-      "IsStatic": true,
-      "ConvexHullPoints": null
-    },
-    {
-      "ArchetypeName": "box_unit",
-      "Name": "WaterLight",
-      "MapId": 1,
-      "Position": {
-        "X": 17,
-        "Y": 0,
-        "Z": -25
-      },
-      "RotationDegrees": {
-        "X": -0,
-        "Y": 0,
-        "Z": 0
-      },
-      "ColliderSize": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1
-      },
-      "ShapeType": "Box",
-      "IsStatic": true,
-      "ConvexHullPoints": null
+      "ConvexHullPoints": [
+        {
+          "X": -0.5,
+          "Y": -2.5,
+          "Z": -0.5
+        },
+        {
+          "X": -0.5,
+          "Y": -2.5,
+          "Z": 0.5
+        },
+        {
+          "X": -0.5,
+          "Y": 2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": -2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": -2.5,
+          "Z": 0.5
+        },
+        {
+          "X": -0.5,
+          "Y": 2.5,
+          "Z": 0.5
+        },
+        {
+          "X": 0.5,
+          "Y": 2.5,
+          "Z": -0.5
+        },
+        {
+          "X": 0.5,
+          "Y": 2.5,
+          "Z": 0.5
+        }
+      ]
     }
   ]
 }

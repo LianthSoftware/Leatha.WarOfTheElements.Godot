@@ -1,20 +1,18 @@
 using Godot;
+using Leatha.WarOfTheElements.Common.Communication.Messages;
 using Leatha.WarOfTheElements.Common.Communication.Transfer.Enums;
 using Leatha.WarOfTheElements.Godot.framework.Controls.Entities.GameObjects;
-using Leatha.WarOfTheElements.Godot.framework.Extensions;
 using Leatha.WarOfTheElements.Godot.framework.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
+using Color = Godot.Color;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 {
     public sealed partial class InitialMapElementLightControl : GameObjectControl
     {
-        [Export]
         public ElementTypes ElementType { get; private set; }
 
         private OmniLight3D _light;
@@ -23,20 +21,20 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
         private CollisionShape3D _collisionShape;
         private QuadMesh _logoMesh;
         private GpuParticles3D _particles;
+        private GpuParticles3D _lightParticles;
 
         private Tween _activateTween;
         private Tween _movingLogoTween;
 
         public override void _Ready()
         {
-            GD.Print("READY");
-
             base._Ready();
 
             _light = GetNode<OmniLight3D>("Light");
             _collisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
             _energyBallMesh = GetNode<MeshInstance3D>("EnergyBallMesh");
             _particles = GetNode<GpuParticles3D>("EnergyBallMesh/Particles");
+            _lightParticles = GetNode<GpuParticles3D>("Light/LightParticles");
             _energyLogo = GetNode<MeshInstance3D>("EnergyLogo");
 
             // Set up.
@@ -49,6 +47,22 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             _collisionShape.Visible = false;
 
             _energyLogo.Visible = false;
+
+            _particles.Emitting = false;
+            _lightParticles.Emitting = false;
+        }
+
+        public override void OnSetGameObjectStateType(SetGameStateMessage message)
+        {
+            if (message.StateParameters.TryGetValue("Element", out var value))
+                ElementType = (ElementTypes)((JsonElement)value).GetInt32();
+
+            if (ElementType == ElementTypes.None)
+            {
+                GD.Print("[OnSetGameObjectStateType]: No Element was set.");
+                return;
+            }
+
             if (_energyLogo.Mesh is QuadMesh quadMesh)
             {
                 if (quadMesh.Duplicate() is QuadMesh logoMesh)
@@ -59,8 +73,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             }
             else
                 GD.PrintErr("[InitialMapElementLightControl]: Energy logo is not QuadMesh.");
-
-            _particles.Emitting = false;
 
             var color = GameConstants.GetColorForElement(ElementType);
             _light.LightColor = color;
@@ -83,7 +95,14 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
                 }
             }
 
-            if (_particles.ProcessMaterial is ParticleProcessMaterial particleMaterial)
+            SetupParticles(_particles, color);
+            SetupParticles(_lightParticles, color);
+            ActivateLight(ElementType);
+        }
+
+        private void SetupParticles(GpuParticles3D particles, Color color)
+        {
+            if (particles.ProcessMaterial is ParticleProcessMaterial particleMaterial)
             {
                 if (particleMaterial.Duplicate() is ParticleProcessMaterial material)
                 {
@@ -107,7 +126,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 
                     material.ColorRamp = gradient;
 
-                    if (_particles.DrawPass1 is QuadMesh qm)
+                    if (particles.DrawPass1 is QuadMesh qm)
                     {
                         if (qm.Duplicate() is QuadMesh copyQuadMesh)
                         {
@@ -119,22 +138,11 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 
                             GD.Print($"Color = {color}");
 
-                            _particles.DrawPass1 = copyQuadMesh;
+                            particles.DrawPass1 = copyQuadMesh;
                         }
                     }
 
-                    //if (_particles.DrawPass1 is QuadMesh { Material: StandardMaterial3D particleMat } qm)
-                    //{
-                    //    if (particleMat.Duplicate() is StandardMaterial3D drawPass)
-                    //    {
-                    //        drawPass.AlbedoColor = color;
-                    //        qm.Material = drawPass;
-                    //    }
-
-                    //    GD.Print($"Color = { color }");
-                    //}
-
-                    _particles.ProcessMaterial = material;
+                    particles.ProcessMaterial = material;
                 }
             }
         }
@@ -150,6 +158,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             }
 
             var duration = 5.0f;
+
+            GD.Print($"[ActivateLight]: Started on { DateTime.Now:HH:mm:ss.ffff}");
 
             _energyLogo.Scale = Vector3.Zero;
 
@@ -171,16 +181,19 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 
             _activateTween.SetParallel(false);
 
+            _activateTween.TweenCallback(Callable.From(() =>
+            {
+                GD.Print($"Callback 1: Started on {DateTime.Now:HH:mm:ss.ffff}");
+                _lightParticles.Emitting = true;
+            }));
+
             _activateTween.TweenProperty(_energyLogo, Node3D.PropertyName.Scale.ToString(), Vector3.One,
                 1.0f);
 
             _activateTween.TweenCallback(Callable.From(() =>
             {
-                GD.Print("Callback");
-
-                _energyLogo.Visible = true;
-
                 _energyLogo.Scale = Vector3.One;
+                _energyLogo.Visible = true;
 
                 _movingLogoTween?.Kill();
                 _movingLogoTween = _energyLogo.CreateTween().SetLoops();
@@ -191,6 +204,32 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 
         public override List<WorldObjectInteractionOption> GetInteractionOptions()
         {
+            return
+            [
+                new WorldObjectInteractionOption
+                {
+                    OptionTitle = $"Choose { ElementType } Element",
+                    Offset = Vector2.Zero,
+                    ActivateKey = Key.F,
+                    ActivationDuration = 1.0f,
+                    Action = () => { GD.Print("Clicked ONE"); }
+                },
+                //new WorldObjectInteractionOption
+                //{
+                //    OptionTitle = $"Test One",
+                //    Offset = Vector2.Zero,
+                //    ActivateKey = Key.G,
+                //    ActivationDuration = 1.0f,
+                //},
+                //new WorldObjectInteractionOption
+                //{
+                //    OptionTitle = $"Test Two",
+                //    Offset = Vector2.Zero,
+                //    ActivateKey = Key.H,
+                //    ActivationDuration = 1.0f,
+                //}
+            ];
+
             if (_test.Any())
                 return _test;
 

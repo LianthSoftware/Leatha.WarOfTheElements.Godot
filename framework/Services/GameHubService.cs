@@ -1,16 +1,18 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
 using Leatha.WarOfTheElements.Common.Communication.Messages;
 using Leatha.WarOfTheElements.Common.Communication.Services;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
 using Leatha.WarOfTheElements.Godot.framework.communication;
-using Leatha.WarOfTheElements.Godot.framework.Controls.Entities;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
 using Leatha.WarOfTheElements.Godot.framework.Objects;
 using Microsoft.AspNetCore.SignalR.Client;
+using System;
+using System.Collections.Concurrent;
+using System.Reflection;
+using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Godot.framework.Controls;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Maps;
+using Microsoft.Extensions.DependencyInjection;
 using static Leatha.WarOfTheElements.Godot.framework.Extensions.FileExtensions;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Services
@@ -65,13 +67,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             if (_checkStateTimer <= 0.0D)
             {
                 _checkStateTimer = 10.0D;
-                GD.Print($"Connection state to server = \"{ _connection.State }\"");
-
-                InvokeCurrentStateChange();
-
-                // Try to connect to the server every 10s if disconnected.
-                if (_connection.State == HubConnectionState.Disconnected)
-                    await ConnectToServerAsync();
+                _ = ConnectToServer();
             }
             else
                 _checkStateTimer -= delta;
@@ -88,6 +84,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                 {
                     options.AccessTokenProvider = () => Task.FromResult(GetAccessToken());
                 })
+                .AddJsonProtocol(i => i.PayloadSerializerOptions.IncludeFields = true)
                 .WithAutomaticReconnect()
                 .Build();
 
@@ -122,19 +119,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             {
                 _connection.On<WorldSnapshotMessage>(nameof(IServerToClientHandler.SendSnapshot), message =>
                 {
-                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
                     ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
                         if (!ObjectAccessor.SessionService.IsWorldLoaded)
                             return;
 
                         ObjectAccessor.CharacterService.ApplySnapshot(message);
+                        ObjectAccessor.GameObjectService.ApplySnapshot(message);
                     });
                 });
 
                 _connection.On<SpellObject>(nameof(IServerToClientHandler.SendSpellStart), message =>
                 {
-                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
                     ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
                         if (!ObjectAccessor.SessionService.IsWorldLoaded)
@@ -146,7 +142,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
                 _connection.On<SpellObject>(nameof(IServerToClientHandler.SendSpellFinished), spellObject =>
                 {
-                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
                     ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
                         if (!ObjectAccessor.SessionService.IsWorldLoaded)
@@ -158,7 +153,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
                 _connection.On<AuraObject>(nameof(IServerToClientHandler.SendAuraApply), auraObject =>
                 {
-                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
                     ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
                         if (!ObjectAccessor.SessionService.IsWorldLoaded)
@@ -170,7 +164,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
                 _connection.On<AuraObject>(nameof(IServerToClientHandler.SendAuraRemove), auraObject =>
                 {
-                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
                     ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
                         if (!ObjectAccessor.SessionService.IsWorldLoaded)
@@ -182,7 +175,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
                 _connection.On<ChatMessageObject>(nameof(IServerToClientHandler.Talk), message =>
                 {
-                    //GD.Print($"*** Message from server - {nameof(IServerToClientHandler.SendSnapshot)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
                     ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
                     {
                         if (!ObjectAccessor.SessionService.IsWorldLoaded)
@@ -192,72 +184,32 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                     });
                 });
 
-                // *** Games ***
-                //_connection.On<StartGameMessage>(nameof(IServerToClientHandler.StartGame), async message =>
-                //{
-                //    GD.PrintErr($"*** Message from server - {nameof(IServerToClientHandler.StartGame)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                //    await this.RunOnMainThreadAsync(() =>
-                //    {
-                //        this.GetGameControl().OnGameStarted(message);
-                //        return Task.CompletedTask;
-                //    });
-                //});
+                _connection.On<SetGameStateMessage>(nameof(IServerToClientHandler.SetGameObjectState), message =>
+                {
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
 
-                //_connection.On<HeroSelectionMessage>(nameof(IServerToClientHandler.SetHeroSelection), async message =>
-                //{
-                //    GD.PrintErr($"*** Message from server - {nameof(IServerToClientHandler.SetHeroSelection)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                //    await this.RunOnMainThreadAsync(() =>
-                //    {
-                //        if (GetTree().CurrentScene is MainMenuControl mainMenu)
-                //        {
-                //            mainMenu.OnGameStarted(() =>
-                //            {
-                //                //this.GetGameControl().ShowHeroSelection();
-                //                //this.GetGameControl().OnGameStarted(message.GameId);
-                //            });
-                //        }
-                //        return Task.CompletedTask;
-                //    });
-                //});
+                        ObjectAccessor.GameObjectService.SetGameObjectStateType(message);
+                    });
+                });
 
-                //_connection.On<ApplyEndOfTurnEffectsMessage>(nameof(IServerToClientHandler.ApplyEndOfTurnEffects), async message =>
-                //{
-                //    GD.PrintErr($"*** Message from server - {nameof(IServerToClientHandler.ApplyEndOfTurnEffects)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                //    await this.RunOnMainThreadAsync(() =>
-                //    {
-                //        this.GetGameControl().OnEndOfTurn(message);
-                //        return Task.CompletedTask;
-                //    });
-                //});
+                _connection.On<PlayerStateObject>(nameof(IServerToClientHandler.PlayerEnteredMap), message =>
+                {
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
 
-                //_connection.On<CardListActionMessage>(nameof(IServerToClientHandler.RollNewShop), async message =>
-                //{
-                //    GD.PrintErr($"*** Message from server - {nameof(IServerToClientHandler.RollNewShop)} ({ DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                //    await this.RunOnMainThreadAsync(async () =>
-                //    {
-                //        await this.GetGameControl().RefreshShopCardsAsync(message);
-                //    });
-                //});
-
-                //_connection.On<BattleCalculatedMessage>(nameof(IServerToClientHandler.BattleCalculated), async message =>
-                //{
-                //    GD.PrintErr($"*** Message from server - {nameof(IServerToClientHandler.BattleCalculated)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                //    await this.RunOnMainThreadAsync(() =>
-                //    {
-                //        this.GetGameControl().OnBattleCalculatedMessage(message);
-                //        return Task.CompletedTask;
-                //    });
-                //});
-
-                //_connection.On<ApplyStartOfTurnEffectsMessage>(nameof(IServerToClientHandler.ApplyStartOfTurnEffects), async message =>
-                //{
-                //    GD.PrintErr($"*** Message from server - {nameof(IServerToClientHandler.ApplyStartOfTurnEffects)} ({DateTime.UtcNow:dd.MM.yyyy HH:mm:ss.ffff}) ***");
-                //    //await this.RunOnMainThreadAsync(() =>
-                //    //{
-                //    //    this.GetGameControl().OnBattleCalculatedMessage(message);
-                //    //    return Task.CompletedTask;
-                //    //});
-                //});
+                        if (GetTree().CurrentScene is GameControl gameControl
+                            && gameControl.MapControl.GetChild<MapScene>(0) is { } mapScene)
+                        {
+                            // Player entered the map.
+                            mapScene.OnPlayerEnteredMap(message);
+                        }
+                    });
+                });
             }
 
             _initialized = true;
@@ -305,6 +257,17 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
         private async Task RefreshTokenAsync()
         {
             await ObjectAccessor.ApiService.RegenerateTokenAsync();
+        }
+
+        private async Task ConnectToServer()
+        {
+            GD.Print($"Connection state to server = \"{_connection.State}\"");
+
+            InvokeCurrentStateChange();
+
+            // Try to connect to the server every 10s if disconnected.
+            if (_connection.State == HubConnectionState.Disconnected)
+                await ConnectToServerAsync();
         }
     }
 }

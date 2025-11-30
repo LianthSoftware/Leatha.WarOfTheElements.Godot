@@ -23,18 +23,6 @@
       },
       "HullVertices": null,
       "IsStaticDefault": true
-    },
-    {
-      "ArchetypeName": "box_unit",
-      "Name": "Box Unit",
-      "ShapeType": "Box",
-      "Size": {
-        "X": 1,
-        "Y": 1,
-        "Z": 1
-      },
-      "HullVertices": null,
-      "IsStaticDefault": true
     }
   ]
 }

@@ -3,16 +3,21 @@
 [ext_resource type="Sky" uid="uid://deixec4t7t1w0" path="res://resources/textures/Environment/NightSky_001/NightSkyHDRI008_4K.tres" id="1_1w7ym"]
 [ext_resource type="Script" uid="uid://b7tol038j1umt" path="res://framework/Controls/Effects/FogEffect.cs" id="2_u8jh7"]
 [ext_resource type="Material" uid="uid://dnmr18dwnkt61" path="res://resources/materials/wall_fade_world_y.tres" id="3_tyjim"]
-[ext_resource type="PackedScene" uid="uid://cekpury1qtolx" path="res://scenes/controls/entities/non_player_character_control.tscn" id="4_a6qfw"]
 [ext_resource type="Script" uid="uid://fqh5lwjjmy12" path="res://framework/Scripts/InitialSpawnMapControl.cs" id="4_bg5rj"]
-[ext_resource type="PackedScene" uid="uid://56guprqidjif" path="res://scenes/controls/effects/initial_map_element_light_control.tscn" id="4_rthf5"]
-[ext_resource type="PackedScene" uid="uid://xu0eymjy6u3a" path="res://scenes/controls/world_object_activate_option.tscn" id="8_3k15d"]
-[ext_resource type="Script" uid="uid://bma0d2uwkj1eb" path="res://Tools/WaypointVisualizer.cs" id="8_v1y75"]
+[ext_resource type="PackedScene" uid="uid://bl7om8cmlsm72" path="res://scenes/controls/effects/common/initial_map_element_pillar.tscn" id="5_3k15d"]
+[ext_resource type="Texture2D" uid="uid://dkgo8mhex6hve" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Color.png" id="5_rthf5"]
+[ext_resource type="Texture2D" uid="uid://dy8vqrt0nvcje" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_NormalGL.png" id="6_bg5rj"]
+[ext_resource type="Texture2D" uid="uid://dik87dbmrg233" path="res://resources/textures/Environment/Tiles130_2K-PNG/crack_mask.png" id="6_k8vcq"]
+[ext_resource type="Texture2D" uid="uid://b8mwjdt83wn7" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_AmbientOcclusion.png" id="6_v1y75"]
+[ext_resource type="Texture2D" uid="uid://kn3vf2tqwbsn" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Roughness.png" id="7_3k15d"]
+[ext_resource type="Texture2D" uid="uid://bbrrvo2b54qtj" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Displacement.png" id="7_k8vcq"]
+[ext_resource type="PackedScene" uid="uid://dfeyc6qu1kdmh" path="res://scenes/controls/effects/common/torch_control.tscn" id="13_efqqu"]
 
 [sub_resource type="Environment" id="Environment_yexna"]
 background_mode = 2
 background_energy_multiplier = 0.1
 sky = ExtResource("1_1w7ym")
+glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_albedo = Color(0.815686, 0.815686, 0.815686, 1)
@@ -21,71 +26,43 @@ volumetric_fog_gi_inject = 3.0
 volumetric_fog_length = 50.0
 volumetric_fog_sky_affect = 0.0
 
-[sub_resource type="Shader" id="Shader_rthf5"]
-code = "shader_type spatial;
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ip6tl"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
 
-// Alpha gradient based on local Y of a 20-unit tall wall
-// - Color: base wall color
-// - FadeStart: 0..1, where fade to transparent begins
-// - Invert: flip bottom/top
-render_mode blend_mix, cull_back, unshaded;
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_83bfx"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
 
-uniform vec4 color : source_color = vec4(0.2, 0.4, 1.0, 1.0); // base color
-uniform float fade_start : hint_range(0.0, 1.0, 0.01) = 0.3;  // 0 = fade from bottom, 1 = only very top fades
-uniform bool invert = false;
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efqqu"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
 
-varying float v_local_y;
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7x2cj"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
 
-void vertex() {
-    v_local_y = VERTEX.y; // local-space Y
-}
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_147f4"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
 
-float compute_alpha(float t) {
-    // Optionally flip vertical direction
-    if (invert) {
-        t = 1.0 - t;
-    }
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ylyfp"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
 
-    t = clamp(t, 0.0, 1.0);
-
-    // Before fade_start -> fully solid
-    if (t <= fade_start) {
-        return 1.0;
-    }
-
-    // From fade_start -> 1.0 fade to 0
-    float denom = max(1.0 - fade_start, 0.0001);
-    float k = (t - fade_start) / denom; // 0..1
-    return 1.0 - k; // 1 -> 0
-}
-
-void fragment() {
-    // Your BoxMesh is 20 high, centered => local Y in [-10, 10]
-    const float LOCAL_BOTTOM_Y = -10.0;
-    const float LOCAL_TOP_Y    =  10.0;
-
-    // Normalize local Y to 0..1
-    float t = (v_local_y - LOCAL_BOTTOM_Y) / (LOCAL_TOP_Y - LOCAL_BOTTOM_Y);
-
-    float a = compute_alpha(t);
-
-    ALBEDO = color.rgb;
-    ALPHA  = color.a * a; // 1 at bottom, fades to 0 at top (depending on fade_start & invert)
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg5rj"]
-render_priority = 0
-shader = SubResource("Shader_rthf5")
-shader_parameter/color = Color(0.000427263, 4.81308e-08, 0.205075, 1)
-shader_parameter/fade_start = 0.5
-shader_parameter/invert = false
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edsrv"]
+albedo_color = Color(0.74902, 0.8, 0.85098, 1)
+roughness_texture = SubResource("CompressedTexture2D_ylyfp")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_147f4")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_ip6tl")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_7x2cj")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_83bfx")
+detail_normal = SubResource("CompressedTexture2D_efqqu")
+uv1_scale = Vector3(40, 40, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bg5rj"]
 size = Vector3(120, 1, 80)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w7ym"]
-albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_u8jh7"]
 offsets = PackedFloat32Array(0, 0.48, 0.52, 1)
@@ -168,6 +145,9 @@ size = Vector3(35, 20, 0.5)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3k15d"]
 points = PackedVector3Array(17.5, 10, 0.25, 17.5, 10, -0.25, -17.5, 10, 0.25, 17.5, -10, 0.25, 17.5, -10, -0.25, -17.5, 10, -0.25, -17.5, -10, 0.25, -17.5, -10, -0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1w7ym"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v1y75"]
 points = PackedVector3Array(17.5, 10, 0.25, 17.5, 10, -0.25, -17.5, 10, 0.25, 17.5, -10, 0.25, 17.5, -10, -0.25, -17.5, 10, -0.25, -17.5, -10, 0.25, -17.5, -10, -0.25)
 
@@ -207,12 +187,25 @@ points = PackedVector3Array(10, 10, 0.25, 10, 10, -0.25, -10, 10, 0.25, 10, -10,
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ylyfp"]
 points = PackedVector3Array(10, 10, 0.25, 10, 10, -0.25, -10, 10, 0.25, 10, -10, 0.25, 10, -10, -0.25, -10, 10, -0.25, -10, -10, 0.25, -10, -10, -0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6w0wb"]
+albedo_color = Color(0.74902, 0.8, 0.85098, 1)
+roughness_texture = ExtResource("7_3k15d")
+normal_enabled = true
+normal_texture = ExtResource("6_bg5rj")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = ExtResource("6_v1y75")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = ExtResource("7_k8vcq")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("5_rthf5")
+detail_normal = ExtResource("6_k8vcq")
+uv1_scale = Vector3(1, 10, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_rthf5"]
 size = Vector3(2, 20, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8jh7"]
-shading_mode = 0
-albedo_color = Color(0.0745098, 0.0745098, 0.333333, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_edsrv"]
 points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
@@ -241,41 +234,15 @@ points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bfe4p"]
 points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k15d"]
-albedo_color = Color(1, 0, 0, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_ip6tl"]
-size = Vector3(0.1, 0.1, 20.8087)
+size = Vector3(1, 5, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83bfx"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k15d"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_efqqu"]
-size = Vector3(0.1, 0.1, 31.6425)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7x2cj"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_147f4"]
-size = Vector3(0.1, 0.1, 26.2488)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylyfp"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_edsrv"]
-size = Vector3(0.1, 0.1, 22.9456)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhi6m"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_uk04y"]
-size = Vector3(0.1, 0.1, 33.0766)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxxpm"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_nv67r"]
-size = Vector3(0.1, 0.1, 31.3857)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bg5rj"]
+points = PackedVector3Array(-0.5, -2.5, -0.5, -0.5, -2.5, 0.5, -0.5, 2.5, -0.5, 0.5, -2.5, -0.5, 0.5, -2.5, 0.5, -0.5, 2.5, 0.5, 0.5, 2.5, -0.5, 0.5, 2.5, 0.5)
 
 [node name="InitialPlayerSpawnMap" type="Node3D"]
 script = ExtResource("4_bg5rj")
@@ -294,30 +261,31 @@ shadow_enabled = true
 
 [node name="GameObjectHolder" type="Node3D" parent="Environment"]
 
-[node name="Floor001" type="MeshInstance3D" parent="Environment/GameObjectHolder" node_paths=PackedStringArray("FogVolumeNode")]
-material_override = SubResource("ShaderMaterial_bg5rj")
+[node name="Static" type="Node3D" parent="Environment/GameObjectHolder"]
+
+[node name="Floor001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static" node_paths=PackedStringArray("FogVolumeNode")]
+material_override = SubResource("StandardMaterial3D_edsrv")
 mesh = SubResource("BoxMesh_bg5rj")
-skeleton = NodePath("../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
+skeleton = NodePath("../../../../..")
 script = ExtResource("2_u8jh7")
 FogVolumeNode = NodePath("FogVolume2")
 ScrollSpeed = 0.1
 
-[node name="FogVolume2" type="FogVolume" parent="Environment/GameObjectHolder/Floor001"]
+[node name="FogVolume2" type="FogVolume" parent="Environment/GameObjectHolder/Static/Floor001"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
-size = Vector3(100, 2, 100)
+size = Vector3(120, 2, 80)
 material = SubResource("FogMaterial_6w0wb")
 
-[node name="Podium" type="Node3D" parent="Environment/GameObjectHolder"]
+[node name="Podium" type="Node3D" parent="Environment/GameObjectHolder/Static"]
 
-[node name="PodiumObject" type="StaticBody3D" parent="Environment/GameObjectHolder/Podium"]
+[node name="PodiumObject" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Podium"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="PodiumMesh" type="MeshInstance3D" parent="Environment/GameObjectHolder/Podium/PodiumObject"]
+[node name="PodiumMesh" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Podium/PodiumObject"]
 mesh = SubResource("CylinderMesh_u8jh7")
 skeleton = NodePath("../..")
 
-[node name="MiddleLight" type="OmniLight3D" parent="Environment/GameObjectHolder/Podium/PodiumObject/PodiumMesh"]
+[node name="MiddleLight" type="OmniLight3D" parent="Environment/GameObjectHolder/Static/Podium/PodiumObject/PodiumMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_color = Color(0.921569, 0.745098, 0.388235, 1)
 light_energy = 2.0
@@ -326,305 +294,292 @@ light_volumetric_fog_energy = 20.0
 omni_range = 7.41
 omni_attenuation = 0.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Environment/GameObjectHolder/Podium/PodiumObject/PodiumMesh/MiddleLight"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Environment/GameObjectHolder/Static/Podium/PodiumObject/PodiumMesh/MiddleLight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.09964, 0)
 amount = 200
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_6w0wb")
 draw_pass_1 = SubResource("QuadMesh_3k15d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Podium/PodiumObject"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Podium/PodiumObject"]
 shape = SubResource("CylinderShape3D_3k15d")
 
-[node name="Walls" type="Node3D" parent="Environment/GameObjectHolder"]
+[node name="Walls" type="Node3D" parent="Environment/GameObjectHolder/Static"]
 
-[node name="Wall001" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall001" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 30)
 
-[node name="Wall001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall001"]
+[node name="Wall001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall001"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tyjim")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall001"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall001"]
 shape = SubResource("ConvexPolygonShape3D_3k15d")
 
-[node name="Wall002" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall002" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -30)
 
-[node name="Wall002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall002"]
+[node name="Wall002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall002"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tyjim")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall002"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall002"]
 shape = SubResource("ConvexPolygonShape3D_v1y75")
 
-[node name="Wall003" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall003" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 55.5, 10, 0)
 
-[node name="Wall003" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall003"]
+[node name="Wall003" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall003"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_3k15d")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall003"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall003"]
 shape = SubResource("ConvexPolygonShape3D_k8vcq")
 
-[node name="Wall004" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall004" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, -14.029)
 
-[node name="Wall004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall004"]
+[node name="Wall004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall004"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_k8vcq")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall004"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall004"]
 shape = SubResource("ConvexPolygonShape3D_ip6tl")
 
-[node name="Wall009" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall009" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, 14)
 
-[node name="Wall009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall009"]
+[node name="Wall009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall009"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_k8vcq")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall009"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall009"]
 shape = SubResource("ConvexPolygonShape3D_83bfx")
 
-[node name="Wall005" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall005" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(-0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -24.5, 10, 15)
 
-[node name="Wall005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall005"]
+[node name="Wall005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall005"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_a6qfw")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall005"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall005"]
 shape = SubResource("ConvexPolygonShape3D_efqqu")
 
-[node name="Wall006" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall006" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -24.5, 10, -15)
 
-[node name="Wall006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall006"]
+[node name="Wall006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall006"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_6w0wb")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall006"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall006"]
 shape = SubResource("ConvexPolygonShape3D_7x2cj")
 
-[node name="Wall007" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall007" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 26.5, 10, 22)
 
-[node name="Wall007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall007"]
+[node name="Wall007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall007"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_v1y75")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall007"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall007"]
 shape = SubResource("ConvexPolygonShape3D_147f4")
 
-[node name="Wall008" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="Wall008" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 26.5, 10, -22)
 
-[node name="Wall008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/Wall008"]
+[node name="Wall008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall008"]
 material_override = ExtResource("3_tyjim")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_v1y75")
-skeleton = NodePath("../../../../..")
+skeleton = NodePath("../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/Wall008"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall008"]
 shape = SubResource("ConvexPolygonShape3D_ylyfp")
 
-[node name="WallPillar001" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar001" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 10, -30)
 
-[node name="WallPillar001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar001"]
+[node name="WallPillar001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar001"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar001"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar001"]
 shape = SubResource("ConvexPolygonShape3D_edsrv")
 
-[node name="WallPillar002" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar002" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 10, 14)
 
-[node name="WallPillar002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar002"]
+[node name="WallPillar002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar002"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar002"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar002"]
 shape = SubResource("ConvexPolygonShape3D_fhi6m")
 
-[node name="WallPillar008" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar008" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 10, -14)
 
-[node name="WallPillar008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar008"]
+[node name="WallPillar008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar008"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar008"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar008"]
 shape = SubResource("ConvexPolygonShape3D_uk04y")
 
-[node name="WallPillar009" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar009" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 10, -14)
 
-[node name="WallPillar009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar009"]
+[node name="WallPillar009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar009"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar009"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar009"]
 shape = SubResource("ConvexPolygonShape3D_bxxpm")
 
-[node name="WallPillar010" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar010" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5, 10, 14)
 
-[node name="WallPillar010" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar010"]
+[node name="WallPillar010" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar010"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar010"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar010"]
 shape = SubResource("ConvexPolygonShape3D_nv67r")
 
-[node name="WallPillar004" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar004" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
 
-[node name="WallPillar004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar004"]
+[node name="WallPillar004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar004"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar004"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar004"]
 shape = SubResource("ConvexPolygonShape3D_jkf6s")
 
-[node name="WallPillar005" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar005" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 10, 30)
 
-[node name="WallPillar005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar005"]
+[node name="WallPillar005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar005"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar005"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar005"]
 shape = SubResource("ConvexPolygonShape3D_2ts21")
 
-[node name="WallPillar006" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar006" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 10, 30)
 
-[node name="WallPillar006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar006"]
+[node name="WallPillar006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar006"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar006"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar006"]
 shape = SubResource("ConvexPolygonShape3D_fk4ym")
 
-[node name="WallPillar007" type="StaticBody3D" parent="Environment/GameObjectHolder/Walls"]
+[node name="WallPillar007" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 10, -30)
 
-[node name="WallPillar007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Walls/WallPillar007"]
+[node name="WallPillar007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar007"]
+material_override = SubResource("StandardMaterial3D_6w0wb")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_rthf5")
-skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8jh7")
+skeleton = NodePath("../../../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Walls/WallPillar007"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar007"]
 shape = SubResource("ConvexPolygonShape3D_bfe4p")
 
-[node name="Elements" type="Node3D" parent="Environment/GameObjectHolder"]
+[node name="ElementPillar001" parent="Environment/GameObjectHolder/Static/Walls" instance=ExtResource("5_3k15d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 5.5)
+visible = false
 
-[node name="FiretLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 25)
-ElementType = 2
+[node name="ElementPillar002" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -5.5)
+visible = false
 
-[node name="AirLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 25)
-ElementType = 1
+[node name="WallPillar006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/ElementPillar002"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ip6tl")
+skeleton = NodePath("../../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k15d")
 
-[node name="LightningLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
-ElementType = 4
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/ElementPillar002"]
+shape = SubResource("ConvexPolygonShape3D_bg5rj")
 
-[node name="NatureLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -25)
-ElementType = 8
+[node name="ElementPillar003" parent="Environment/GameObjectHolder/Static/Walls" instance=ExtResource("5_3k15d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 2.5, 0)
+visible = false
 
-[node name="WaterLight" parent="Environment/GameObjectHolder/Elements" instance=ExtResource("4_rthf5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -25)
-ElementType = 16
+[node name="Lights" type="Node3D" parent="Environment/GameObjectHolder/Static"]
 
-[node name="Lights" type="Node3D" parent="Environment"]
+[node name="Torch001" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 33.5, 2.65, 12.75)
+
+[node name="Torch002" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 33.5, 2.65, -12.75)
+
+[node name="Torch003" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 55, 2.65, -12.75)
+
+[node name="Torch004" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 55, 2.65, 12.75)
+
+[node name="Torch005" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 18.33, 2.65, -28.75)
+
+[node name="Torch006" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 18.33, 2.65, 28.75)
+
+[node name="Torch007" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -18.33, 2.65, 28.75)
+
+[node name="Torch008" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -18.3, 2.65, -28.75)
+
+[node name="Torch009" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -28.75, 2.65, 0)
+
+[node name="Dynamic" type="Node3D" parent="Environment/GameObjectHolder"]
 
 [node name="CharacterHolder" type="Node3D" parent="."]
-
-[node name="NonPlayerCharacterControl" parent="CharacterHolder" instance=ExtResource("4_a6qfw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.695, 0)
-
-[node name="WorldObjectActivateOption" parent="CharacterHolder/NonPlayerCharacterControl" instance=ExtResource("8_3k15d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="WaypointVisualizer" type="Node3D" parent="."]
-process_mode = 3
-script = ExtResource("8_v1y75")
-Waypoints = PackedVector3Array(5, 1, 5, 17, 1, 22, -14.5, 1, 25, -22.5, 1, 0, -18, 1, -22.5, 15, 1, -24.75, 5, 1, 5)
-
-[node name="Segment_0" type="MeshInstance3D" parent="WaypointVisualizer"]
-transform = Transform3D(0.816968, 0, 0.576683, 0, 1, 0, -0.576683, 0, 0.816968, 11, 1, 13.5)
-material_override = SubResource("StandardMaterial3D_3k15d")
-mesh = SubResource("BoxMesh_ip6tl")
-
-[node name="Segment_1" type="MeshInstance3D" parent="WaypointVisualizer"]
-transform = Transform3D(0.0948091, 0, -0.995495, 0, 1, 0, 0.995495, 0, 0.0948091, 1.25, 1, 23.5)
-material_override = SubResource("StandardMaterial3D_83bfx")
-mesh = SubResource("BoxMesh_efqqu")
-
-[node name="Segment_2" type="MeshInstance3D" parent="WaypointVisualizer"]
-transform = Transform3D(-0.952424, 0, -0.304776, 0, 1, 0, 0.304776, 0, -0.952424, -18.5, 1, 12.5)
-material_override = SubResource("StandardMaterial3D_7x2cj")
-mesh = SubResource("BoxMesh_147f4")
-
-[node name="Segment_3" type="MeshInstance3D" parent="WaypointVisualizer"]
-transform = Transform3D(-0.980581, 0, 0.196116, 0, 1, 0, -0.196116, 0, -0.980581, -20.25, 1, -11.25)
-material_override = SubResource("StandardMaterial3D_ylyfp")
-mesh = SubResource("BoxMesh_edsrv")
-
-[node name="Segment_4" type="MeshInstance3D" parent="WaypointVisualizer"]
-transform = Transform3D(-0.0680239, 0, 0.997684, 0, 1, 0, -0.997684, 0, -0.0680239, -1.5, 1, -23.625)
-material_override = SubResource("StandardMaterial3D_fhi6m")
-mesh = SubResource("BoxMesh_uk04y")
-
-[node name="Segment_5" type="MeshInstance3D" parent="WaypointVisualizer"]
-transform = Transform3D(0.947884, 0, -0.318616, 0, 1, 0, 0.318616, 0, 0.947884, 10, 1, -9.875)
-material_override = SubResource("StandardMaterial3D_bxxpm")
-mesh = SubResource("BoxMesh_nv67r")

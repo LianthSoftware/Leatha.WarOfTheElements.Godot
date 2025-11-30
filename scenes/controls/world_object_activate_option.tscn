@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://xu0eymjy6u3a"]
+[gd_scene load_steps=4 format=3 uid="uid://xu0eymjy6u3a"]
 
-[ext_resource type="Script" uid="uid://ep8v4ithyjj" path="res://framework/Controls/Entities/WorldObjectActivateOptionControl.cs" id="1_1d83n"]
 [ext_resource type="Texture2D" uid="uid://c4amdnfdj2gw" path="res://resources/textures/control_panel_001.png" id="1_eugaf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d83n"]
@@ -13,10 +12,7 @@ billboard_mode = 2
 [sub_resource type="QuadMesh" id="QuadMesh_fyn2w"]
 size = Vector2(0.35, 0.35)
 
-[node name="WorldObjectActivateOption" type="Node3D" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel")]
-script = ExtResource("1_1d83n")
-KeyBindLabel = NodePath("KeyBindLabel")
-InteractionLabel = NodePath("InteractionLabel")
+[node name="WorldObjectActivateOption" type="Node3D"]
 
 [node name="KeyBindLabel" type="Label3D" parent="."]
 billboard = 2

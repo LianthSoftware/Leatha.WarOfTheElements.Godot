@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Leatha.WarOfTheElements.Godot.framework.Controls;
 using SystemVector3 = System.Numerics.Vector3;
+using SystemQuaternion = System.Numerics.Quaternion;
 using GodotVector3 = Godot.Vector3;
+using GodotQuaternion = Godot.Quaternion;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Extensions
 {
@@ -100,6 +102,16 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         public static GodotVector3 ToGodotVector3(this SystemVector3 vector)
         {
             return new GodotVector3(vector.X, vector.Y, vector.Z);
+        }
+
+        public static SystemQuaternion FromGodotQuaternion(this GodotQuaternion quaternion)
+        {
+            return new SystemQuaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
+        }
+
+        public static GodotQuaternion ToGodotQuaternion(this SystemQuaternion quaternion)
+        {
+            return new GodotQuaternion(quaternion.X, quaternion.Y, quaternion.Z, quaternion.W);
         }
     }
 }

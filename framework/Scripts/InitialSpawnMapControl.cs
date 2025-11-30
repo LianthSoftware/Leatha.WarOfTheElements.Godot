@@ -7,59 +7,40 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Common.Communication.Transfer;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Scripts
 {
     public sealed partial class InitialSpawnMapControl : MapScene
     {
-        public override void _Ready()
+        private enum GameObjects
         {
-            GD.Print("MAP READY");
-
-            base._Ready();
-
-            return;
-
-            //var testTween = CreateTween();
-
-            var elements = new List<ElementTypes>
-            {
-                ElementTypes.Fire,
-                ElementTypes.Air,
-                ElementTypes.Lightning,
-                ElementTypes.Nature,
-                ElementTypes.Water
-            };
-
-            var controls = GetNode<Node3D>("Environment/Objects/Elements")
-                .GetChildren<InitialMapElementLightControl>();
-
-            for (var n = 0; n < elements.Count; ++n)
-            {
-                _ = RunActivate(elements[n], controls, n);
-
-                //var control = controls.SingleOrDefault(i => i.ElementType == _elements[n]);
-                //control?.ActivateLight(_elements[n]);
-
-                //await Task.Delay(10000 * (n + 1));
-                //var index = n;
-                //testTween.TweenProperty(this, Node3D.PropertyName.Visible.ToString(), true, 0.1f);
-                //testTween.TweenCallback(Callable.From(() =>
-                //{
-                //    GD.Print("Callback -> " + elements[index]);
-
-                //    var control = controls.SingleOrDefault(i => i.ElementType == elements[index]);
-                //    control?.ActivateLight(elements[index]);
-                //})).SetDelay(10000 * (n + 1));
-            }
+            PrimaryChakraPillar         = 6,
+            SecondaryChakraPillar       = 7,
+            TertiaryChakraPillar        = 8,
         }
 
-        private async Task RunActivate(ElementTypes elementType, List<InitialMapElementLightControl> controls, int index)
+        public override async void OnPlayerEnteredMap(PlayerStateObject playerState)
         {
-            await Task.Delay(10000 * (index + 1));
+            base.OnPlayerEnteredMap(playerState);
 
-            var control = controls.SingleOrDefault(i => i.ElementType == elementType);
-            control?.ActivateLight(elementType);
+            await Task.Delay(500);
+
+            // Activate Chakra Pillars.
+            ActivateChakraPillar((int)GameObjects.PrimaryChakraPillar, playerState.Resources.PrimaryChakra.Element);
+            ActivateChakraPillar((int)GameObjects.SecondaryChakraPillar, playerState.Resources.SecondaryChakra.Element);
+            ActivateChakraPillar((int)GameObjects.TertiaryChakraPillar, playerState.Resources.TertiaryChakra.Element);
+        }
+
+        private static void ActivateChakraPillar(int gameObjectId, ElementTypes elementType)
+        {
+            GD.Print("Activate - " + elementType);
+            if (elementType == ElementTypes.None)
+                return;
+
+            var gameObjectControl = ObjectAccessor.GameObjectService.GetGameObjectControl(gameObjectId);
+            if (gameObjectControl is InitialMapElementPillarControl control)
+                control.Activate(elementType);
         }
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://32kbip1w5nlk"]
+[gd_scene load_steps=58 format=3 uid="uid://32kbip1w5nlk"]
 
 [ext_resource type="Material" uid="uid://dugrrgii3yo6r" path="res://resources/shaders/black_hole_red_shader_material.tres" id="1_acc7x"]
 [ext_resource type="Script" uid="uid://c0crw5hmf54lu" path="res://framework/Controls/GameControl.cs" id="1_pm6yd"]
@@ -25,7 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://cxi6mr1onhja5" path="res://resources/textures/icon_fire.png" id="21_spxj2"]
 [ext_resource type="Texture2D" uid="uid://dbvf6of3phug5" path="res://resources/textures/crosshair_001.png" id="22_wlhl8"]
 [ext_resource type="PackedScene" uid="uid://cbxvb647iqdvu" path="res://Tools/UI.tscn" id="23_pm6yd"]
+[ext_resource type="Script" uid="uid://ep8v4ithyjj" path="res://framework/Controls/Entities/WorldObjectActivateOptionControl.cs" id="24_7dayx"]
 [ext_resource type="Script" uid="uid://dm2nrviftgoac" path="res://framework/Controls/Maps/MapControl.cs" id="24_7diii"]
+[ext_resource type="Texture2D" uid="uid://ld7dh36hqkqn" path="res://resources/textures/white_texture_box.png" id="24_l0up3"]
+[ext_resource type="Script" uid="uid://b1f8d72mp1rnw" path="res://framework/Controls/Effects/InteractionControl.cs" id="24_yn477"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ae2y"]
 border_width_bottom = 1
@@ -196,6 +199,28 @@ shadow_size = 5
 font_size = 30
 font_color = Color(1, 0.309804, 0.196078, 1)
 outline_size = 22
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqr57"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dayx"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqr57"]
+font_size = 25
+font_color = Color(0.866667, 0.705882, 0.164706, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l0up3"]
+font_size = 20
+outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [node name="GameControl" type="Node3D" node_paths=PackedStringArray("MapControl")]
@@ -1261,6 +1286,380 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("22_wlhl8")
+
+[node name="InteractionControl" type="Control" parent="UICanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_yn477")
+
+[node name="Option001" type="VBoxContainer" parent="UICanvasLayer/InteractionControl" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel", "InteractionProgress")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -58.5
+offset_right = 42.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_7dayx")
+KeyBindLabel = NodePath("PanelContainer/PanelContainer/TextureRect/KeyBindLabel")
+InteractionLabel = NodePath("InteractionLabel")
+InteractionProgress = NodePath("PanelContainer/TextureProgressBar")
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option001"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqr57")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasLayer/InteractionControl/Option001/PanelContainer"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.001
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("24_l0up3")
+tint_progress = Color(0.866667, 0.705882, 0.164706, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option001/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dayx")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/InteractionControl/Option001/PanelContainer/PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_7diii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyBindLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option001/PanelContainer/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "F"
+label_settings = SubResource("LabelSettings_uqr57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option001"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Activate"
+label_settings = SubResource("LabelSettings_l0up3")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Option002" type="VBoxContainer" parent="UICanvasLayer/InteractionControl" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel", "InteractionProgress")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -58.5
+offset_right = 42.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_7dayx")
+KeyBindLabel = NodePath("PanelContainer/PanelContainer/TextureRect/KeyBindLabel")
+InteractionLabel = NodePath("InteractionLabel")
+InteractionProgress = NodePath("PanelContainer/TextureProgressBar")
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option002"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqr57")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasLayer/InteractionControl/Option002/PanelContainer"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.001
+value = 30.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("24_l0up3")
+tint_progress = Color(0.866667, 0.705882, 0.164706, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option002/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dayx")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/InteractionControl/Option002/PanelContainer/PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_7diii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyBindLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option002/PanelContainer/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "G"
+label_settings = SubResource("LabelSettings_uqr57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option002"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Talk"
+label_settings = SubResource("LabelSettings_l0up3")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Option003" type="VBoxContainer" parent="UICanvasLayer/InteractionControl" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel", "InteractionProgress")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -58.5
+offset_right = 42.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_7dayx")
+KeyBindLabel = NodePath("PanelContainer/PanelContainer/TextureRect/KeyBindLabel")
+InteractionLabel = NodePath("InteractionLabel")
+InteractionProgress = NodePath("PanelContainer/TextureProgressBar")
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option003"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqr57")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasLayer/InteractionControl/Option003/PanelContainer"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.001
+value = 30.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("24_l0up3")
+tint_progress = Color(0.866667, 0.705882, 0.164706, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option003/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dayx")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/InteractionControl/Option003/PanelContainer/PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_7diii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyBindLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option003/PanelContainer/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "H"
+label_settings = SubResource("LabelSettings_uqr57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option003"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Option 3"
+label_settings = SubResource("LabelSettings_l0up3")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Option004" type="VBoxContainer" parent="UICanvasLayer/InteractionControl" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel", "InteractionProgress")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -58.5
+offset_right = 42.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_7dayx")
+KeyBindLabel = NodePath("PanelContainer/PanelContainer/TextureRect/KeyBindLabel")
+InteractionLabel = NodePath("InteractionLabel")
+InteractionProgress = NodePath("PanelContainer/TextureProgressBar")
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option004"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqr57")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasLayer/InteractionControl/Option004/PanelContainer"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.001
+value = 30.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("24_l0up3")
+tint_progress = Color(0.866667, 0.705882, 0.164706, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option004/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dayx")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/InteractionControl/Option004/PanelContainer/PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_7diii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyBindLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option004/PanelContainer/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "H"
+label_settings = SubResource("LabelSettings_uqr57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option004"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Option 3"
+label_settings = SubResource("LabelSettings_l0up3")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Option005" type="VBoxContainer" parent="UICanvasLayer/InteractionControl" node_paths=PackedStringArray("KeyBindLabel", "InteractionLabel", "InteractionProgress")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -58.5
+offset_right = 42.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_7dayx")
+KeyBindLabel = NodePath("PanelContainer/PanelContainer/TextureRect/KeyBindLabel")
+InteractionLabel = NodePath("InteractionLabel")
+InteractionProgress = NodePath("PanelContainer/TextureProgressBar")
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option005"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqr57")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UICanvasLayer/InteractionControl/Option005/PanelContainer"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.001
+value = 30.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("24_l0up3")
+tint_progress = Color(0.866667, 0.705882, 0.164706, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="UICanvasLayer/InteractionControl/Option005/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7dayx")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvasLayer/InteractionControl/Option005/PanelContainer/PanelContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_7diii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyBindLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option005/PanelContainer/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "H"
+label_settings = SubResource("LabelSettings_uqr57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionLabel" type="Label" parent="UICanvasLayer/InteractionControl/Option005"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Option 3"
+label_settings = SubResource("LabelSettings_l0up3")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="UI" parent="UICanvasLayer" instance=ExtResource("23_pm6yd")]
 anchors_preset = 2

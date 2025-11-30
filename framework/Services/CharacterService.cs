@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Entities.GameObjects;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Services
 {
@@ -80,55 +81,54 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             var nonPlayersSeen = new HashSet<Guid>();
 
             // Players.
-            foreach (var playerState in message.Players)
             {
-                playersSeen.Add(playerState.WorldObjectId.ObjectId);
-
-                if (!_players.TryGetValue(playerState.WorldObjectId.ObjectId, out var control))
+                foreach (var playerState in message.Players)
                 {
-                    control = CreatePlayerCharacter(playerState);
-                    _players[playerState.WorldObjectId.ObjectId] = control;
+                    playersSeen.Add(playerState.WorldObjectId.ObjectId);
+
+                    if (!_players.TryGetValue(playerState.WorldObjectId.ObjectId, out var control))
+                    {
+                        control = CreatePlayerCharacter(playerState);
+                        _players[playerState.WorldObjectId.ObjectId] = control;
+                    }
+
+                    control.ApplyServerState(playerState);
                 }
 
-                control.ApplyServerState(playerState);
-            }
-
-            // Remove players who are no longer present in snapshot
-            foreach (var kvp in _players.ToArray())
-            {
-                if (!playersSeen.Contains(kvp.Key))
+                // Remove players who are no longer present in snapshot
+                foreach (var kvp in _players.ToArray())
                 {
-                    kvp.Value.QueueFree();
-                    _players.Remove(kvp.Key);
+                    if (!playersSeen.Contains(kvp.Key))
+                    {
+                        kvp.Value.QueueFree();
+                        _players.Remove(kvp.Key);
+                    }
                 }
             }
 
             // NonPlayers.
-            foreach (var nonPlayerState in message.NonPlayers)
             {
-                nonPlayersSeen.Add(nonPlayerState.WorldObjectId.ObjectId);
-
-                if (!_nonPlayers.TryGetValue(nonPlayerState.WorldObjectId.ObjectId, out var control))
+                foreach (var nonPlayerState in message.NonPlayers)
                 {
-                    //await this.RunOnMainThreadAsync(() =>
-                    //{
+                    nonPlayersSeen.Add(nonPlayerState.WorldObjectId.ObjectId);
+
+                    if (!_nonPlayers.TryGetValue(nonPlayerState.WorldObjectId.ObjectId, out var control))
+                    {
                         control = CreateNonPlayerCharacter(nonPlayerState);
                         _nonPlayers[nonPlayerState.WorldObjectId.ObjectId] = control;
+                    }
 
-                    //    return Task.CompletedTask;
-                    //});
+                    control.ApplyServerState(nonPlayerState);
                 }
 
-                control.ApplyServerState(nonPlayerState);
-            }
-
-            // Remove players who are no longer present in snapshot
-            foreach (var kvp in _nonPlayers.ToArray())
-            {
-                if (!nonPlayersSeen.Contains(kvp.Key))
+                // Remove non players who are no longer present in snapshot
+                foreach (var kvp in _nonPlayers.ToArray())
                 {
-                    kvp.Value.QueueFree();
-                    _nonPlayers.Remove(kvp.Key);
+                    if (!nonPlayersSeen.Contains(kvp.Key))
+                    {
+                        kvp.Value.QueueFree();
+                        _nonPlayers.Remove(kvp.Key);
+                    }
                 }
             }
 
@@ -264,14 +264,14 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             var mapLabel = control.GetNode<Label>("MapName");
             var positionLabel = control.GetNode<RichTextLabel>("MarginContainer/Position");
 
-            var state = playerController.LastState;
+            var state = playerController.CharacterState;
             if (state != null)
             {
                 var mapInfo = ObjectAccessor.TemplateService.GetMapInfo(state.MapId);
                 if (mapInfo != null)
                     mapLabel.Text = mapInfo.MapName;
 
-                positionLabel.Text = string.Format(PositionTemplate, state.X.ToString("F2"), state.Z.ToString("F2"));
+                positionLabel.Text = string.Format(PositionTemplate, state.Position.X.ToString("F2"), state.Position.Z.ToString("F2"));
             }
         }
 

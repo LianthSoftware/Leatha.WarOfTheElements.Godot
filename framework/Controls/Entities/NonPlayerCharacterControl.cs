@@ -1,6 +1,7 @@
 using Godot;
 using Leatha.WarOfTheElements.Common.Communication.Transfer;
 using Leatha.WarOfTheElements.Common.Communication.Utilities;
+using Leatha.WarOfTheElements.Godot.framework.Extensions;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
 {
@@ -39,19 +40,19 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             if (state.WorldObjectId != NonPlayerId)
                 return;
 
-            _serverPos = new Vector3(state.X, state.Y, state.Z);
+            _serverPos = state.Position.ToGodotVector3();
 
             // Orientation from quaternion
-            var godotQuat = new Quaternion(state.Qx, state.Qy, state.Qz, state.Qw);
+            var godotQuat = state.Orientation.ToGodotQuaternion();
             var basis = new Basis(godotQuat);
             GlobalTransform = new Transform3D(basis, GlobalTransform.Origin);
 
             //GD.Print("Global Position = " + GlobalPosition);
 
-            Rotation = new Vector3(
-                Rotation.X,
-                state.Yaw,
-                Rotation.Z);
+            //Rotation = new Vector3( // #TODO: Not needed, right?
+            //    Rotation.X,
+            //    state.Yaw,
+            //    Rotation.Z);
         }
 
         public void SetNonPlayerId(WorldObjectId nonPlayerId)
