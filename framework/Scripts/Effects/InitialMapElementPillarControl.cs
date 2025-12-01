@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Effects;
 using Leatha.WarOfTheElements.Godot.framework.Extensions;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
@@ -17,16 +18,14 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 
         private Node3D _pillar;
         private Node3D _energyLogos;
-        private MeshInstance3D _energyBallMesh;
-        private GpuParticles3D _particles;
+        private FireEffectControl _fireEffectControl;
 
         public override void _Ready()
         {
             base._Ready();
 
             _pillar = GetNode<Node3D>("Pillar");
-            _energyBallMesh = GetNode<MeshInstance3D>("Pillar/EnergyBallMesh");
-            _particles = GetNode<GpuParticles3D>("Pillar/EnergyBallMesh/Particles");
+            _fireEffectControl = GetNode<FireEffectControl>("Pillar/FireEffect");
             _energyLogos = GetNode<Node3D>("Pillar/Logos");
 
             _pillar.Visible = false;
@@ -37,8 +36,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             ElementType = elementType;
 
             // Set up.
-            _particles.Emitting = false;
-
             if (ElementType == ElementTypes.None)
             {
                 GD.Print("[InitialMapElementPillarControl.Activate]: No Element was set.");
@@ -64,72 +61,29 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
                 }
             }
 
-            if (_energyBallMesh.MaterialOverride.Duplicate() is StandardMaterial3D ballMaterial)
+            _fireEffectControl.FlameColor = color;
+            _fireEffectControl.FireGradientTexture = new GradientTexture1D
             {
-                ballMaterial.AlbedoColor = color;
-                _energyBallMesh.MaterialOverride = ballMaterial;
-            }
-
-            //if (_energyBallMesh.MaterialOverride is StandardMaterial3D ballMaterial)
-            //{
-            //    if (ballMaterial.Duplicate() is StandardMaterial3D material)
-            //    {
-            //        material.AlbedoColor = color;
-            //        _energyBallMesh.MaterialOverride = material;
-            //    }
-            //}
-
-            SetupParticles(_particles, color);
-
-            _particles.Emitting = true;
-            _pillar.Visible = true;
-        }
-
-        private void SetupParticles(GpuParticles3D particles, Color color)
-        {
-            if (particles.ProcessMaterial is ParticleProcessMaterial particleMaterial)
-            {
-                if (particleMaterial.Duplicate() is ParticleProcessMaterial material)
+                Gradient = new Gradient
                 {
-                    material.Color = color;
-                    var gradient = new GradientTexture1D
-                    {
-                        Gradient = new Gradient
-                        {
-                            Offsets =
-                            [
-                                0.0f,
-                                1.0f
-                            ],
-                            Colors =
-                            [
-                                color,
-                                new Color(color, 0.0f)
-                            ]
-                        }
-                    };
-
-                    material.ColorRamp = gradient;
-
-                    if (particles.DrawPass1 is QuadMesh qm)
-                    {
-                        if (qm.Duplicate() is QuadMesh copyQuadMesh)
-                        {
-                            if (copyQuadMesh.Material.Duplicate() is StandardMaterial3D drawPass)
-                            {
-                                drawPass.AlbedoColor = color;
-                                copyQuadMesh.Material = drawPass;
-                            }
-
-                            GD.Print($"Color = {color}");
-
-                            particles.DrawPass1 = copyQuadMesh;
-                        }
-                    }
-
-                    particles.ProcessMaterial = material;
+                    Offsets =
+                    [
+                        0.0f,
+                        0.3f,
+                        0.7f,
+                        1.0f
+                    ],
+                    Colors =
+                    [
+                        new Color(color, 0.2f),
+                        color,
+                        color,
+                        Color.FromHtml("#00000000")
+                    ]
                 }
-            }
+            };
+
+            _pillar.Visible = true;
         }
     }
 }

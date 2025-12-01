@@ -1,0 +1,194 @@
+[gd_scene load_steps=29 format=3 uid="uid://dr8y1iqt6orlm"]
+
+[ext_resource type="Texture2D" uid="uid://cifejn4wbiejs" path="res://resources/textures/particle_001.png" id="1_7pkcu"]
+[ext_resource type="Script" uid="uid://cnepoevwfnb5j" path="res://framework/Controls/Spells/SpellControl.cs" id="1_ygs6y"]
+[ext_resource type="Texture2D" uid="uid://dik87dbmrg233" path="res://resources/textures/Environment/Tiles130_2K-PNG/crack_mask.png" id="2_qd8c5"]
+
+[sub_resource type="Gradient" id="Gradient_ygs6y"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 1, 0.701961, 0.278431, 1, 0.752941, 0.27451, 0.113725, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f4nqa"]
+gradient = SubResource("Gradient_ygs6y")
+
+[sub_resource type="Curve" id="Curve_6qbkp"]
+_data = [Vector2(0, 0.101887), 0.0, 0.0, 0, 0, Vector2(0.295566, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sjj61"]
+curve = SubResource("Curve_6qbkp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mgwjy"]
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 5, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_sjj61")
+color_ramp = SubResource("GradientTexture1D_f4nqa")
+turbulence_noise_strength = 17.09
+turbulence_noise_scale = 0.203
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ygs6y"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4nqa"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_ygs6y")
+grow_amount = 1.26
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qy8id"]
+material = SubResource("StandardMaterial3D_f4nqa")
+top_radius = 0.1
+bottom_radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pkcu"]
+diffuse_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.105882, 0.121569, 1)
+emission_enabled = true
+emission = Color(0.913725, 0, 0, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("1_7pkcu")
+detail_normal = ExtResource("2_qd8c5")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7pkcu"]
+radius = 0.04
+height = 0.08
+
+[sub_resource type="Gradient" id="Gradient_7pkcu"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 1, 0.701961, 0.278431, 1, 0.752941, 0.27451, 0.113725, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qd8c5"]
+gradient = SubResource("Gradient_7pkcu")
+
+[sub_resource type="Curve" id="Curve_vt4yo"]
+_data = [Vector2(0, 0.101887), 0.0, 0.0, 0, 0, Vector2(0.295566, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2c5y6"]
+curve = SubResource("Curve_vt4yo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_echnc"]
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2c5y6")
+color_ramp = SubResource("GradientTexture1D_qd8c5")
+turbulence_noise_strength = 17.09
+turbulence_noise_scale = 0.203
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7pkcu"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd8c5"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_7pkcu")
+grow_amount = 1.26
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7pkcu"]
+material = SubResource("StandardMaterial3D_qd8c5")
+top_radius = 0.1
+bottom_radius = 0.05
+height = 0.1
+
+[sub_resource type="Gradient" id="Gradient_pbsml"]
+colors = PackedColorArray(1, 0.309804, 0.196078, 1, 1, 0.309804, 0.196078, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ygs6y"]
+gradient = SubResource("Gradient_pbsml")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f4nqa"]
+lifetime_randomness = 1.0
+emission_shape_offset = Vector3(0, 0.5, 0)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.309804, 0.196078, 1)
+color_ramp = SubResource("GradientTexture1D_ygs6y")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pbsml"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygs6y"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.309804, 0.196078, 1)
+albedo_texture = SubResource("CompressedTexture2D_pbsml")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_mgwjy"]
+material = SubResource("StandardMaterial3D_ygs6y")
+size = Vector2(0.005, 0.005)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pbsml"]
+radius = 0.15
+
+[node name="SpellFireball" type="Node3D"]
+script = ExtResource("1_ygs6y")
+
+[node name="DestroyEffect" type="Node3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="DestroyParticles" type="GPUParticles3D" parent="DestroyEffect"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, -0.115226)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mgwjy")
+draw_pass_1 = SubResource("CylinderMesh_qy8id")
+
+[node name="Fireball" type="Node3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="Fireball"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 2.4818
+
+[node name="Fireball" type="MeshInstance3D" parent="Fireball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_7pkcu")
+mesh = SubResource("SphereMesh_7pkcu")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="Fireball"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_echnc")
+draw_pass_1 = SubResource("CylinderMesh_7pkcu")
+
+[node name="Particles" type="GPUParticles3D" parent="Fireball"]
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_f4nqa")
+draw_pass_1 = SubResource("QuadMesh_mgwjy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fireball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121372, 0)
+shape = SubResource("SphereShape3D_pbsml")

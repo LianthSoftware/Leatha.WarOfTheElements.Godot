@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfeyc6qu1kdmh"]
+[gd_scene load_steps=11 format=3 uid="uid://dfeyc6qu1kdmh"]
 
+[ext_resource type="Script" uid="uid://b1ttqitkfqbnt" path="res://framework/Controls/Effects/TorchControl.cs" id="1_jcs5a"]
 [ext_resource type="PackedScene" uid="uid://dqmpjqstvqamj" path="res://scenes/controls/effects/common/fire_effect.tscn" id="1_r6105"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83bfx"]
@@ -29,8 +30,17 @@ top_radius = 0.033
 bottom_radius = 0.033
 height = 0.25
 
-[node name="Torch" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_t4bhj"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 1, 0.701961, 0.278431, 1, 0.752941, 0.27451, 0.113725, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r6105"]
+gradient = SubResource("Gradient_t4bhj")
+
+[node name="Torch" type="Node3D" node_paths=PackedStringArray("FireEffectControl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_jcs5a")
+FireEffectControl = NodePath("FireEffect")
 
 [node name="TorchTop" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0)
@@ -44,5 +54,6 @@ mesh = SubResource("CylinderMesh_7x2cj")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, -0.13253, 0.118929)
 mesh = SubResource("CylinderMesh_147f4")
 
-[node name="FireEffect004" parent="." instance=ExtResource("1_r6105")]
+[node name="FireEffect" parent="." instance=ExtResource("1_r6105")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.191166, -0.00112534)
+FireGradientTexture = SubResource("GradientTexture1D_r6105")

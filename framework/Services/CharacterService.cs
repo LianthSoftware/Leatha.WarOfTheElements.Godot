@@ -10,7 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Leatha.WarOfTheElements.Common.Communication.Transfer.Enums;
+using Leatha.WarOfTheElements.Godot.framework.Controls;
 using Leatha.WarOfTheElements.Godot.framework.Controls.Entities.GameObjects;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Maps;
+using Leatha.WarOfTheElements.Godot.framework.Controls.Spells;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Services
 {
@@ -25,6 +29,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
         PlayerCharacterControl CreatePlayerCharacter(PlayerStateObject state);
 
         NonPlayerCharacterControl CreateNonPlayerCharacter(NonPlayerStateObject state);
+
+        CharacterControl GetCharacterControl(WorldObjectId characterId);
 
         void ShowTargetFrame(ICharacterStateObject state, CharacterControl characterControl);
 
@@ -222,6 +228,17 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             }
         }
 
+        public CharacterControl GetCharacterControl(WorldObjectId characterId)
+        {
+            if (characterId.IsPlayer())
+                return _players.GetValueOrDefault(characterId.ObjectId);
+
+            if (characterId.IsNonPlayer())
+                return _nonPlayers.GetValueOrDefault(characterId.ObjectId);
+
+            return null;
+        }
+
         public void ShowTargetFrame(ICharacterStateObject state, CharacterControl characterControl)
         {
             var control = GetTree().CurrentScene.GetNode<CharacterStatusBarControl>(NodePathHelper.GameUI_TargetStatusBar_Path);
@@ -300,6 +317,22 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
                 control.OnSpellCastStarted(spellObject);
             }
+
+            //if (spellObject.SpellInfo.SpellFlags.HasFlag(SpellFlags.IsProjectile))
+            //{
+            //    // Visual Spell -> if we don't have it, do not show spell visual.
+            //    if (string.IsNullOrWhiteSpace(spellObject.VisualSpellPath))
+            //        return;
+
+            //    var packedScene = GD.Load<PackedScene>(spellObject.VisualSpellPath);
+            //    if (packedScene == null)
+            //        return;
+
+            //    var projectileScene = packedScene.Instantiate<SpellControl>();
+            //    projectileScene.SpellSpell(spellObject);
+
+            //    AddControlDeferred(projectileScene);
+            //}
         }
 
         public void CharacterFinishedSpellCast(SpellObject spellObject)

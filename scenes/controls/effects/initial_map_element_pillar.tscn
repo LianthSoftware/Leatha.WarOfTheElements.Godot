@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bl7om8cmlsm72"]
+[gd_scene load_steps=9 format=3 uid="uid://bl7om8cmlsm72"]
 
 [ext_resource type="Script" uid="uid://bpx6urmmvc8s8" path="res://framework/Scripts/Effects/InitialMapElementPillarControl.cs" id="1_b8lmh"]
 [ext_resource type="PackedScene" uid="uid://dqmpjqstvqamj" path="res://scenes/controls/effects/common/fire_effect.tscn" id="2_gxi8n"]
@@ -9,51 +9,6 @@ size = Vector3(1, 5, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k15d"]
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1y75"]
-resource_local_to_scene = true
-albedo_color = Color(1, 0.309804, 0.196078, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_k8vcq"]
-
-[sub_resource type="Gradient" id="Gradient_ip6tl"]
-colors = PackedColorArray(1, 0.309804, 0.196078, 1, 1, 0.309804, 0.196078, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1wdg1"]
-gradient = SubResource("Gradient_ip6tl")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_83bfx"]
-lifetime_randomness = 1.0
-emission_shape_offset = Vector3(0, 0.5, 0)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 45, 1)
-emission_ring_height = 0.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
-emission_ring_cone_angle = 90.0
-velocity_pivot = Vector3(0, 1, 0)
-direction = Vector3(0, 1, 0)
-initial_velocity_min = 0.5
-initial_velocity_max = 1.0
-gravity = Vector3(0, 0, 0)
-color = Color(1, 0.309804, 0.196078, 1)
-color_ramp = SubResource("GradientTexture1D_1wdg1")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efqqu"]
-load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5aq6"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(1, 0.309804, 0.196078, 1)
-albedo_texture = SubResource("CompressedTexture2D_efqqu")
-disable_receive_shadows = true
-billboard_mode = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_7x2cj"]
-material = SubResource("StandardMaterial3D_e5aq6")
-size = Vector2(0.1, 0.1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bg5rj"]
 load_path = "res://.godot/imported/icon_fire.png-35653777cb18c433d638fcdbf645a605.s3tc.ctex"
@@ -82,20 +37,6 @@ mesh = SubResource("BoxMesh_ip6tl")
 skeleton = NodePath("../../../../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k15d")
 
-[node name="EnergyBallMesh" type="MeshInstance3D" parent="Pillar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_v1y75")
-mesh = SubResource("SphereMesh_k8vcq")
-skeleton = NodePath("")
-
-[node name="Particles" type="GPUParticles3D" parent="Pillar/EnergyBallMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.535088, 0)
-amount = 50
-lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_83bfx")
-draw_pass_1 = SubResource("QuadMesh_7x2cj")
-
 [node name="Logos" type="Node3D" parent="Pillar"]
 
 [node name="EnergyLogo001" type="MeshInstance3D" parent="Pillar/Logos"]
@@ -111,7 +52,7 @@ mesh = SubResource("QuadMesh_ip6tl")
 skeleton = NodePath("")
 
 [node name="FireEffect" parent="Pillar" instance=ExtResource("2_gxi8n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66651, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_bg5rj")

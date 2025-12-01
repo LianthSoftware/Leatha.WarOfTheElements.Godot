@@ -25,6 +25,7 @@ CharacterService="*res://framework/Services/CharacterService.cs"
 TemplateService="*res://framework/Services/TemplateService.cs"
 MainThreadDispatcher="*res://framework/Services/MainThreadDispatcher.cs"
 GameObjectService="*res://framework/Services/GameObjectService.cs"
+SpellService="*res://framework/Services/SpellService.cs"
 
 [display]
 

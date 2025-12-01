@@ -67,7 +67,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                         _gameObjects[gameObjectState.WorldObjectId.ObjectId] = control;
                     }
 
-                    control.ApplyServerState(gameObjectState);
+                    control?.ApplyServerState(gameObjectState);
                 }
 
                 // Remove game objects that are no longer present in snapshot

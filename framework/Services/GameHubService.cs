@@ -126,6 +126,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
                         ObjectAccessor.CharacterService.ApplySnapshot(message);
                         ObjectAccessor.GameObjectService.ApplySnapshot(message);
+                        ObjectAccessor.SpellService.ApplySnapshot(message);
                     });
                 });
 
@@ -148,6 +149,17 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
                             return;
 
                         ObjectAccessor.CharacterService.CharacterFinishedSpellCast(spellObject);
+                    });
+                });
+
+                _connection.On<SpellObject>(nameof(IServerToClientHandler.SendProjectileHit), spellObject =>
+                {
+                    ObjectAccessor.MainThreadDispatcher.Enqueue(() =>
+                    {
+                        if (!ObjectAccessor.SessionService.IsWorldLoaded)
+                            return;
+
+                        ObjectAccessor.SpellService.OnProjectileHit(spellObject);
                     });
                 });
 

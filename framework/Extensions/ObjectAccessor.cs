@@ -81,6 +81,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             }
         }
 
+        public static ISpellService SpellService
+        {
+            get => _spellService;
+            set
+            {
+                if (_spellService != null)
+                    return;
+
+                _spellService = value;
+            }
+        }
+
         public static ITemplateService TemplateService
         {
             get => _templateService;
@@ -111,6 +123,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         private static IPlayerInputService _playerInputService;
         private static ICharacterService _characterService;
         private static IGameObjectService _gameObjectService;
+        private static ISpellService _spellService;
         private static ITemplateService _templateService;
         private static MainThreadDispatcher _mainThreadDispatcher;
     }

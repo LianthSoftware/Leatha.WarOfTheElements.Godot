@@ -1,16 +1,17 @@
-[gd_scene load_steps=65 format=3 uid="uid://dpmgtuk4lb7kq"]
+[gd_scene load_steps=66 format=3 uid="uid://dpmgtuk4lb7kq"]
 
 [ext_resource type="Sky" uid="uid://deixec4t7t1w0" path="res://resources/textures/Environment/NightSky_001/NightSkyHDRI008_4K.tres" id="1_1w7ym"]
 [ext_resource type="Script" uid="uid://b7tol038j1umt" path="res://framework/Controls/Effects/FogEffect.cs" id="2_u8jh7"]
 [ext_resource type="Material" uid="uid://dnmr18dwnkt61" path="res://resources/materials/wall_fade_world_y.tres" id="3_tyjim"]
 [ext_resource type="Script" uid="uid://fqh5lwjjmy12" path="res://framework/Scripts/InitialSpawnMapControl.cs" id="4_bg5rj"]
-[ext_resource type="PackedScene" uid="uid://bl7om8cmlsm72" path="res://scenes/controls/effects/common/initial_map_element_pillar.tscn" id="5_3k15d"]
+[ext_resource type="PackedScene" uid="uid://bl7om8cmlsm72" path="res://scenes/controls/effects/initial_map_element_pillar.tscn" id="5_3k15d"]
 [ext_resource type="Texture2D" uid="uid://dkgo8mhex6hve" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Color.png" id="5_rthf5"]
 [ext_resource type="Texture2D" uid="uid://dy8vqrt0nvcje" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_NormalGL.png" id="6_bg5rj"]
 [ext_resource type="Texture2D" uid="uid://dik87dbmrg233" path="res://resources/textures/Environment/Tiles130_2K-PNG/crack_mask.png" id="6_k8vcq"]
 [ext_resource type="Texture2D" uid="uid://b8mwjdt83wn7" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_AmbientOcclusion.png" id="6_v1y75"]
 [ext_resource type="Texture2D" uid="uid://kn3vf2tqwbsn" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Roughness.png" id="7_3k15d"]
 [ext_resource type="Texture2D" uid="uid://bbrrvo2b54qtj" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Displacement.png" id="7_k8vcq"]
+[ext_resource type="PackedScene" uid="uid://dr8y1iqt6orlm" path="res://scenes/controls/effects/spells/spell_fireball.tscn" id="13_7x2cj"]
 [ext_resource type="PackedScene" uid="uid://dfeyc6qu1kdmh" path="res://scenes/controls/effects/common/torch_control.tscn" id="13_efqqu"]
 
 [sub_resource type="Environment" id="Environment_yexna"]
@@ -580,6 +581,11 @@ transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228
 [node name="Torch009" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
 transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -28.75, 2.65, 0)
 
+[node name="SpellFireball" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_7x2cj")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 23.9897, 0.875998, -3.40278)
+
 [node name="Dynamic" type="Node3D" parent="Environment/GameObjectHolder"]
 
 [node name="CharacterHolder" type="Node3D" parent="."]
+
+[node name="SpellHolder" type="Node3D" parent="."]
