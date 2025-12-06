@@ -1,5 +1,6 @@
 using Leatha.WarOfTheElements.Godot.framework.Controls;
 using Leatha.WarOfTheElements.Godot.framework.Services;
+using Leatha.WarOfTheElements.Godot.framework.UI.menu;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Extensions
 {
@@ -117,6 +118,18 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
             }
         }
 
+        public static IShadowCircleWrapperControl ShadowCircleWrapper
+        {
+            get => _shadowCircleWrapper;
+            set
+            {
+                if (_shadowCircleWrapper != null)
+                    return;
+
+                _shadowCircleWrapper = value;
+            }
+        }
+
         private static IApiService _apiService;
         private static IGameHubService _gameHubService;
         private static ISessionService _sessionService;
@@ -126,5 +139,6 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         private static ISpellService _spellService;
         private static ITemplateService _templateService;
         private static MainThreadDispatcher _mainThreadDispatcher;
+        private static IShadowCircleWrapperControl _shadowCircleWrapper;
     }
 }

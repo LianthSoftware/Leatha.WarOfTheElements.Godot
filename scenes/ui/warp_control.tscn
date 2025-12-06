@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://0rhrj37bf2ek"]
+
+[ext_resource type="Script" uid="uid://baev0u21p5fn2" path="res://framework/UI/menu/WarpControl.cs" id="1_6yr6a"]
+[ext_resource type="VideoStream" uid="uid://do655b3e0xah1" path="res://resources/animations/warp_tunnel_animation_001_fast.ogv" id="2_dmepf"]
+
+[node name="WarpControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6yr6a")
+ShakeAmount = 10.0
+ShakeSpeed = 5.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+self_modulate = Color(0.407102, 0.766016, 0.935811, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.15
+anchor_top = -0.15
+anchor_right = 1.15
+anchor_bottom = 1.15
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_dmepf")
+autoplay = true
+expand = true
+loop = true

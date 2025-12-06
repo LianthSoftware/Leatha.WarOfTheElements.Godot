@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhn7w7lkjgr5j"]
+
+[ext_resource type="Script" uid="uid://6uayv86axuwa" path="res://framework/Scripts/Maps/Map001/CharacterCreationEventControl.cs" id="1_sfbfh"]
+[ext_resource type="PackedScene" uid="uid://0rhrj37bf2ek" path="res://scenes/ui/warp_control.tscn" id="2_3wumc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rvriq"]
+load_path = "res://.godot/imported/NightSkyHDRI008_4K_HDR.exr-fd65742eaf97894656c2b2ec355bb38f.bptc.ctex"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sfbfh"]
+panorama = SubResource("CompressedTexture2D_rvriq")
+energy_multiplier = 10.0
+
+[sub_resource type="Sky" id="Sky_d412n"]
+sky_material = SubResource("PanoramaSkyMaterial_sfbfh")
+
+[sub_resource type="Environment" id="Environment_jcgm8"]
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_d412n")
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.815686, 0.815686, 0.815686, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_gi_inject = 3.0
+volumetric_fog_length = 50.0
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfbfh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvriq"]
+font_size = 30
+outline_size = 35
+outline_color = Color(0.103743, 0.103744, 0.103744, 1)
+
+[node name="CharacterCreationEventControl" type="Node3D" node_paths=PackedStringArray("TextLabel")]
+script = ExtResource("1_sfbfh")
+TextLabel = NodePath("CanvasLayer/TextContainer/Container/TextLabel")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jcgm8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WarpControl" parent="CanvasLayer" instance=ExtResource("2_3wumc")]
+
+[node name="TextContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sfbfh")
+
+[node name="Container" type="MarginContainer" parent="CanvasLayer/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 100
+
+[node name="TextLabel" type="Label" parent="CanvasLayer/TextContainer/Container"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_rvriq")
+horizontal_alignment = 1
+vertical_alignment = 1

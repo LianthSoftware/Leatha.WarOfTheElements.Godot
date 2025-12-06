@@ -1,0 +1,338 @@
+[gd_scene format=3 uid="uid://dn7jiqklwdynh"]
+
+[node name="Monastery" type="Node3D"]
+
+[node name="Atrium" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Atrium"]
+size = Vector3(200, 1, 200)
+
+[node name="Walls" type="Node3D" parent="Atrium"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -99)
+size = Vector3(200, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 99)
+size = Vector3(200, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99, 4, 0)
+size = Vector3(2, 8, 200)
+
+[node name="Wall_East" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 4, 0)
+size = Vector3(2, 8, 200)
+
+[node name="Cloister" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+
+[node name="Floor" type="CSGBox3D" parent="Cloister"]
+size = Vector3(120, 1, 180)
+
+[node name="Walls" type="Node3D" parent="Cloister"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -89)
+size = Vector3(120, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 89)
+size = Vector3(120, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 4, 0)
+size = Vector3(2, 8, 180)
+
+[node name="Wall_East" type="CSGBox3D" parent="Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 4, 0)
+size = Vector3(2, 8, 180)
+
+[node name="Entrance" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 170)
+
+[node name="Floor" type="CSGBox3D" parent="Entrance"]
+size = Vector3(180, 1, 120)
+
+[node name="Walls" type="Node3D" parent="Entrance"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -59)
+size = Vector3(180, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 59)
+size = Vector3(180, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 4, 0)
+size = Vector3(2, 8, 120)
+
+[node name="Wall_East" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 4, 0)
+size = Vector3(2, 8, 120)
+
+[node name="Vendor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 260)
+
+[node name="Floor" type="CSGBox3D" parent="Vendor"]
+size = Vector3(80, 1, 40)
+
+[node name="Walls" type="Node3D" parent="Vendor"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Vendor/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -19)
+size = Vector3(80, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Vendor/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19)
+size = Vector3(80, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Vendor/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4, 0)
+size = Vector3(2, 8, 40)
+
+[node name="Wall_East" type="CSGBox3D" parent="Vendor/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 4, 0)
+size = Vector3(2, 8, 40)
+
+[node name="HallStone" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 90)
+
+[node name="Floor" type="CSGBox3D" parent="HallStone"]
+size = Vector3(160, 1, 220)
+
+[node name="Walls" type="Node3D" parent="HallStone"]
+
+[node name="Wall_North" type="CSGBox3D" parent="HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -109)
+size = Vector3(160, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 109)
+size = Vector3(160, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 4, 0)
+size = Vector3(2, 8, 220)
+
+[node name="Wall_East" type="CSGBox3D" parent="HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 4, 0)
+size = Vector3(2, 8, 220)
+
+[node name="HallEmbers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190, 0, 90)
+
+[node name="Floor" type="CSGBox3D" parent="HallEmbers"]
+size = Vector3(160, 1, 220)
+
+[node name="Walls" type="Node3D" parent="HallEmbers"]
+
+[node name="Wall_North" type="CSGBox3D" parent="HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -109)
+size = Vector3(160, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 109)
+size = Vector3(160, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 4, 0)
+size = Vector3(2, 8, 220)
+
+[node name="Wall_East" type="CSGBox3D" parent="HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 4, 0)
+size = Vector3(2, 8, 220)
+
+[node name="BarracksW" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -190, 0, 255)
+
+[node name="Floor" type="CSGBox3D" parent="BarracksW"]
+size = Vector3(70, 1, 70)
+
+[node name="Walls" type="Node3D" parent="BarracksW"]
+
+[node name="Wall_North" type="CSGBox3D" parent="BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -34)
+size = Vector3(70, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 34)
+size = Vector3(70, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 4, 0)
+size = Vector3(2, 8, 70)
+
+[node name="Wall_East" type="CSGBox3D" parent="BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 4, 0)
+size = Vector3(2, 8, 70)
+
+[node name="BarracksE" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190, 0, 255)
+
+[node name="Floor" type="CSGBox3D" parent="BarracksE"]
+size = Vector3(70, 1, 70)
+
+[node name="Walls" type="Node3D" parent="BarracksE"]
+
+[node name="Wall_North" type="CSGBox3D" parent="BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -34)
+size = Vector3(70, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 34)
+size = Vector3(70, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 4, 0)
+size = Vector3(2, 8, 70)
+
+[node name="Wall_East" type="CSGBox3D" parent="BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 4, 0)
+size = Vector3(2, 8, 70)
+
+[node name="HallOfTides" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, 0, -75)
+
+[node name="Floor" type="CSGBox3D" parent="HallOfTides"]
+size = Vector3(70, 1, 30)
+
+[node name="Walls" type="Node3D" parent="HallOfTides"]
+
+[node name="Wall_North" type="CSGBox3D" parent="HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -14)
+size = Vector3(70, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 14)
+size = Vector3(70, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 4, 0)
+size = Vector3(2, 8, 30)
+
+[node name="Wall_East" type="CSGBox3D" parent="HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 4, 0)
+size = Vector3(2, 8, 30)
+
+[node name="SecondaryHall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135, 0, -20)
+
+[node name="Floor" type="CSGBox3D" parent="SecondaryHall"]
+size = Vector3(50, 1, 60)
+
+[node name="Walls" type="Node3D" parent="SecondaryHall"]
+
+[node name="Wall_North" type="CSGBox3D" parent="SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -29)
+size = Vector3(50, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 29)
+size = Vector3(50, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 4, 0)
+size = Vector3(2, 8, 60)
+
+[node name="Wall_East" type="CSGBox3D" parent="SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 4, 0)
+size = Vector3(2, 8, 60)
+
+[node name="Archives" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 0, 35)
+
+[node name="Floor" type="CSGBox3D" parent="Archives"]
+size = Vector3(30, 1, 60)
+
+[node name="Walls" type="Node3D" parent="Archives"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -29)
+size = Vector3(30, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 29)
+size = Vector3(30, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 0)
+size = Vector3(2, 8, 60)
+
+[node name="Wall_East" type="CSGBox3D" parent="Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4, 0)
+size = Vector3(2, 8, 60)
+
+[node name="SpireOfStorms" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 0, -40)
+
+[node name="Floor" type="CSGBox3D" parent="SpireOfStorms"]
+size = Vector3(60, 1, 70)
+
+[node name="Walls" type="Node3D" parent="SpireOfStorms"]
+
+[node name="Wall_North" type="CSGBox3D" parent="SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -34)
+size = Vector3(60, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 34)
+size = Vector3(60, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4, 0)
+size = Vector3(2, 8, 70)
+
+[node name="Wall_East" type="CSGBox3D" parent="SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 4, 0)
+size = Vector3(2, 8, 70)
+
+[node name="Vault1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 0, 10)
+
+[node name="Floor" type="CSGBox3D" parent="Vault1"]
+size = Vector3(40, 1, 40)
+
+[node name="Walls" type="Node3D" parent="Vault1"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -19)
+size = Vector3(40, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19)
+size = Vector3(40, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 4, 0)
+size = Vector3(2, 8, 40)
+
+[node name="Wall_East" type="CSGBox3D" parent="Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 4, 0)
+size = Vector3(2, 8, 40)
+
+[node name="Vault2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 0, 60)
+
+[node name="Floor" type="CSGBox3D" parent="Vault2"]
+size = Vector3(40, 1, 40)
+
+[node name="Walls" type="Node3D" parent="Vault2"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -19)
+size = Vector3(40, 8, 2)
+
+[node name="Wall_South" type="CSGBox3D" parent="Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19)
+size = Vector3(40, 8, 2)
+
+[node name="Wall_West" type="CSGBox3D" parent="Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 4, 0)
+size = Vector3(2, 8, 40)
+
+[node name="Wall_East" type="CSGBox3D" parent="Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 4, 0)
+size = Vector3(2, 8, 40)

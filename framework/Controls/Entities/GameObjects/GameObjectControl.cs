@@ -17,7 +17,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities.GameObjects
         public GameObjectStateObject GameObjectState { get; private set; }
 
         
-        public void SetGameObjectState(GameObjectStateObject gameObjectState)
+        public void SetGameObjectInfo(GameObjectStateObject gameObjectState)
         {
             GameObjectId = gameObjectState.WorldObjectId;
             GameObjectState = gameObjectState;

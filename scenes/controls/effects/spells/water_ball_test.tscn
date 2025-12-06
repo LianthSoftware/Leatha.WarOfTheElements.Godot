@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dff4dgicvdmln"]
+
+[ext_resource type="Texture2D" uid="uid://5xqwx2mwag6s" path="res://resources/textures/lines_white_only.png" id="1_sx5cx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdjn3"]
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0.239216, 0.827451, 0.8, 1)
+albedo_texture = ExtResource("1_sx5cx")
+uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mo5h8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.75, 2.68019e-07, -2.71908e-07, 2.28117e-07, 0.0819007, 1.99832, 2.44063e-07, -1.99832, 0.0819007, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fdjn3")
+mesh = SubResource("SphereMesh_mo5h8")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.239216, 0.827451, 0.960784, 1)
+light_energy = 3.73
+omni_range = 16.276

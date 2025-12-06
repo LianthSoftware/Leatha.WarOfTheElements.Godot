@@ -121,7 +121,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
             }
 
             var control = packedScene.Instantiate<GameObjectControl>();
-            control.SetGameObjectState(state);
+            control.Name = state.NodeName;
+            control.SetGameObjectInfo(state);
 
             CallDeferred(nameof(AddControlDeferred), control, false);
 

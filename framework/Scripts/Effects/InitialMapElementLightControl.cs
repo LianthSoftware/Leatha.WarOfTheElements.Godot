@@ -22,6 +22,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
         private QuadMesh _logoMesh;
         private GpuParticles3D _particles;
         private GpuParticles3D _lightParticles;
+        private SpotLight3D _spotLight;
 
         private Tween _activateTween;
         private Tween _movingLogoTween;
@@ -36,6 +37,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             _particles = GetNode<GpuParticles3D>("EnergyBallMesh/Particles");
             _lightParticles = GetNode<GpuParticles3D>("Light/LightParticles");
             _energyLogo = GetNode<MeshInstance3D>("EnergyLogo");
+            _spotLight = GetNode<SpotLight3D>("SpotLight");
 
             // Set up.
             _light.LightEnergy = 0.0f;
@@ -45,6 +47,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             _energyBallMesh.GlobalPosition = new Vector3(currentBallPosition.X, 0.0f, _energyBallMesh.GlobalPosition.Z);
             _energyBallMesh.Visible = false;
             _collisionShape.Visible = false;
+            _spotLight.Visible = false;
 
             _energyLogo.Visible = false;
 
@@ -76,6 +79,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
 
             var color = GameConstants.GetColorForElement(ElementType);
             _light.LightColor = color;
+            _spotLight.LightColor = color;
 
             if (_energyBallMesh.MaterialOverride is StandardMaterial3D ballMaterial)
             {
@@ -194,6 +198,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Scripts.Effects
             {
                 _energyLogo.Scale = Vector3.One;
                 _energyLogo.Visible = true;
+                _spotLight.Visible = true;
 
                 _movingLogoTween?.Kill();
                 _movingLogoTween = _energyLogo.CreateTween().SetLoops();

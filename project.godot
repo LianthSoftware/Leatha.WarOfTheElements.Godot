@@ -26,6 +26,7 @@ TemplateService="*res://framework/Services/TemplateService.cs"
 MainThreadDispatcher="*res://framework/Services/MainThreadDispatcher.cs"
 GameObjectService="*res://framework/Services/GameObjectService.cs"
 SpellService="*res://framework/Services/SpellService.cs"
+ShadowCircleWrapperControl="*res://framework/UI/menu/ShadowCircleWrapperControl.cs"
 
 [display]
 

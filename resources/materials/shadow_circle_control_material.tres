@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xpwvi8ajx2an"]
+
+[ext_resource type="Shader" uid="uid://dob4tqsalyqrj" path="res://resources/shaders/shadow_circle_middle_shader.gdshader" id="1_pp37t"]
+
+[resource]
+shader = ExtResource("1_pp37t")
+shader_parameter/visible_radius = 100.0
+shader_parameter/shadow_radius = 500.0
+shader_parameter/control_size = Vector2(1920, 1080)
+shader_parameter/tint_color = Color(0, 0, 0, 1)

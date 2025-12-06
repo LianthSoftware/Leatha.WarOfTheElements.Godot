@@ -1,0 +1,27 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.4.0">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Tools\UI.gd" />
+    <None Include="Tools\UI.gd.uid" />
+    <None Include="Tools\UI.tscn" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Leatha.WarOfTheElements.Common">
+      <HintPath>lib/Leatha.WarOfTheElements.Common/Leatha.WarOfTheElements.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="framework\Scripts\Maps\Map002\" />
+    <Folder Include="framework\Scripts\Maps\Map003\" />
+  </ItemGroup>
+
+</Project>

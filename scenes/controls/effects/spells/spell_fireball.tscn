@@ -15,7 +15,7 @@ gradient = SubResource("Gradient_ygs6y")
 _data = [Vector2(0, 0.101887), 0.0, 0.0, 0, 0, Vector2(0.295566, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_sjj61"]
+[sub_resource type="CurveTexture" id="CurveTexture_6qbkp"]
 curve = SubResource("Curve_6qbkp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mgwjy"]
@@ -29,7 +29,7 @@ emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 spread = 180.0
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_sjj61")
+scale_curve = SubResource("CurveTexture_6qbkp")
 color_ramp = SubResource("GradientTexture1D_f4nqa")
 turbulence_noise_strength = 17.09
 turbulence_noise_scale = 0.203
@@ -37,7 +37,7 @@ turbulence_noise_scale = 0.203
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ygs6y"]
 load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4nqa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjj61"]
 transparency = 1
 blend_mode = 1
 cull_mode = 2
@@ -48,7 +48,7 @@ albedo_texture = SubResource("CompressedTexture2D_ygs6y")
 grow_amount = 1.26
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qy8id"]
-material = SubResource("StandardMaterial3D_f4nqa")
+material = SubResource("StandardMaterial3D_sjj61")
 top_radius = 0.1
 bottom_radius = 0.05
 height = 0.1
@@ -73,14 +73,14 @@ height = 0.08
 offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
 colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 1, 0.701961, 0.278431, 1, 0.752941, 0.27451, 0.113725, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qd8c5"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ygs6y"]
 gradient = SubResource("Gradient_7pkcu")
 
 [sub_resource type="Curve" id="Curve_vt4yo"]
 _data = [Vector2(0, 0.101887), 0.0, 0.0, 0, 0, Vector2(0.295566, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_2c5y6"]
+[sub_resource type="CurveTexture" id="CurveTexture_f4nqa"]
 curve = SubResource("Curve_vt4yo")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_echnc"]
@@ -89,15 +89,15 @@ spread = 20.0
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_2c5y6")
-color_ramp = SubResource("GradientTexture1D_qd8c5")
+scale_curve = SubResource("CurveTexture_f4nqa")
+color_ramp = SubResource("GradientTexture1D_ygs6y")
 turbulence_noise_strength = 17.09
 turbulence_noise_scale = 0.203
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7pkcu"]
 load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd8c5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qbkp"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -107,7 +107,7 @@ albedo_texture = SubResource("CompressedTexture2D_7pkcu")
 grow_amount = 1.26
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7pkcu"]
-material = SubResource("StandardMaterial3D_qd8c5")
+material = SubResource("StandardMaterial3D_6qbkp")
 top_radius = 0.1
 bottom_radius = 0.05
 height = 0.1
@@ -115,7 +115,7 @@ height = 0.1
 [sub_resource type="Gradient" id="Gradient_pbsml"]
 colors = PackedColorArray(1, 0.309804, 0.196078, 1, 1, 0.309804, 0.196078, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ygs6y"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sjj61"]
 gradient = SubResource("Gradient_pbsml")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f4nqa"]
@@ -126,12 +126,12 @@ initial_velocity_min = 0.25
 initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
 color = Color(1, 0.309804, 0.196078, 1)
-color_ramp = SubResource("GradientTexture1D_ygs6y")
+color_ramp = SubResource("GradientTexture1D_sjj61")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pbsml"]
 load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygs6y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgwjy"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -141,7 +141,7 @@ disable_receive_shadows = true
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_mgwjy"]
-material = SubResource("StandardMaterial3D_ygs6y")
+material = SubResource("StandardMaterial3D_mgwjy")
 size = Vector2(0.005, 0.005)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pbsml"]

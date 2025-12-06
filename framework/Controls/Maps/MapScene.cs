@@ -13,6 +13,14 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Maps
         [Export]
         public int MapId { get; set; }
 
+        public override void _Ready()
+        {
+            base._Ready();
+
+            var editorOnlyNode = GetNodeOrNull<Node3D>("Environment/GameObjectHolder/Editor");
+            editorOnlyNode?.QueueFree();
+        }
+
         public virtual void OnPlayerEnteredMap(PlayerStateObject playerState)
         {
         }

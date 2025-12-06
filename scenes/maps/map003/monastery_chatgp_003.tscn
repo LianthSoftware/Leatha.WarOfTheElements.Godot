@@ -1,0 +1,3705 @@
+[gd_scene load_steps=209 format=3 uid="uid://cfjq810f8ki7w"]
+
+[ext_resource type="PackedScene" uid="uid://dfeyc6qu1kdmh" path="res://scenes/controls/effects/common/torch_control.tscn" id="1_10q5h"]
+[ext_resource type="Texture2D" uid="uid://25tgu0fqjbfo" path="res://resources/textures/Environment/NightSky_001/NightSkyHDRI008.png" id="1_oqcj4"]
+[ext_resource type="Script" uid="uid://b75mtknlw3q7g" path="res://framework/Scripts/Maps/Map003/Map003Control.cs" id="1_s08cm"]
+[ext_resource type="Script" uid="uid://cbowo5eimdst4" path="res://framework/Controls/Common/RotateControl.cs" id="2_oqcj4"]
+[ext_resource type="Texture2D" uid="uid://necm4abvw5u4" path="res://resources/textures/icon_water.png" id="2_vagnm"]
+[ext_resource type="Texture2D" uid="uid://cxi6mr1onhja5" path="res://resources/textures/icon_fire.png" id="3_mnak8"]
+[ext_resource type="Texture2D" uid="uid://02rn78t56e8w" path="res://resources/textures/icon_wind.png" id="4_w5lko"]
+[ext_resource type="Texture2D" uid="uid://dq5lot26f6x2v" path="res://resources/textures/icon_ground.png" id="5_5oioy"]
+[ext_resource type="Texture2D" uid="uid://cpvxl71v6wq35" path="res://resources/textures/icon_lightning.png" id="6_o8l00"]
+[ext_resource type="Texture2D" uid="uid://c2a2s3n1d8c42" path="res://resources/textures/Environment/Marble012_2K-PNG/Marble012_2K-PNG_Color.png" id="7_lh2vg"]
+[ext_resource type="Texture2D" uid="uid://cifejn4wbiejs" path="res://resources/textures/particle_001.png" id="9_o812b"]
+[ext_resource type="Texture2D" uid="uid://dik87dbmrg233" path="res://resources/textures/Environment/Tiles130_2K-PNG/crack_mask.png" id="10_oqcj4"]
+[ext_resource type="Texture2D" uid="uid://ck16socn8noxh" path="res://resources/textures/portal_texture_001.png" id="12_ha56b"]
+[ext_resource type="Script" uid="uid://bmyhpx2fcep7d" path="res://framework/Controls/Common/PortalControl.cs" id="13_suc7o"]
+[ext_resource type="Texture2D" uid="uid://blj3es2o3w88s" path="res://resources/textures/grascale_fill_001.png" id="15_0iks4"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ha56b"]
+panorama = ExtResource("1_oqcj4")
+
+[sub_resource type="Sky" id="Sky_suc7o"]
+sky_material = SubResource("PanoramaSkyMaterial_ha56b")
+
+[sub_resource type="Environment" id="Environment_mnak8"]
+background_mode = 2
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_suc7o")
+ambient_light_color = Color(1, 0.847059, 0.690196, 1)
+ambient_light_sky_contribution = 0.97
+tonemap_mode = 3
+tonemap_exposure = 2.0
+ssr_fade_in = 0.0388223
+ssr_fade_out = 0.901252
+ssao_radius = 0.01
+ssao_intensity = 16.0
+ssao_power = 0.00146484
+ssao_detail = 5.0
+ssao_horizon = 1.0
+ssil_radius = 0.01
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.815686, 0.815686, 0.815686, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_gi_inject = 3.0
+volumetric_fog_length = 50.0
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4v1kq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oxheu"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bu5jr"]
+load_path = "res://.godot/imported/Marble012_2K-PNG_Color.png-80e3869c45ecf48c1a8bd6f6c18dcf20.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wkjrl"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n3l2y"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eudmx"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhehc"]
+roughness_texture = SubResource("CompressedTexture2D_eudmx")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_n3l2y")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_oxheu")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_wkjrl")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_bu5jr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dlh6g"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Color.png-c7bd725bcdbc6f30be12bbfc9439c8ad.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gh4ih"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Displacement.png-abf95cfd14573e527d702d026382090d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uhl8j"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Metalness.png-5b188a43ea7f00035c16a984f55a4a35.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ks0nx"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cxxk2"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Roughness.png-c841c8a9ef01058901cb22d9de114539.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ltvc"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.9
+metallic_specular = 0.97
+metallic_texture = SubResource("CompressedTexture2D_uhl8j")
+roughness_texture = SubResource("CompressedTexture2D_cxxk2")
+emission_enabled = true
+emission = Color(1, 0.827451, 0.419608, 1)
+emission_energy_multiplier = 0.01
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_ks0nx")
+heightmap_enabled = true
+heightmap_scale = 0.2
+heightmap_texture = SubResource("CompressedTexture2D_gh4ih")
+subsurf_scatter_strength = 1.0
+refraction_scale = -1.0
+detail_enabled = true
+detail_albedo = SubResource("CompressedTexture2D_dlh6g")
+detail_normal = ExtResource("10_oqcj4")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ynqid"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Color.png-c7bd725bcdbc6f30be12bbfc9439c8ad.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dnc76"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fxp3n"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Displacement.png-abf95cfd14573e527d702d026382090d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_awoc0"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Metalness.png-5b188a43ea7f00035c16a984f55a4a35.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s3f0f"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_02tt8"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Roughness.png-c841c8a9ef01058901cb22d9de114539.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlh6g"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.9
+metallic_specular = 0.97
+metallic_texture = SubResource("CompressedTexture2D_awoc0")
+roughness_texture = SubResource("CompressedTexture2D_02tt8")
+emission_enabled = true
+emission = Color(1, 0.827451, 0.419608, 1)
+emission_energy_multiplier = 0.01
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_s3f0f")
+heightmap_enabled = true
+heightmap_scale = 0.2
+heightmap_texture = SubResource("CompressedTexture2D_fxp3n")
+subsurf_scatter_strength = 1.0
+refraction_scale = -1.0
+detail_albedo = SubResource("CompressedTexture2D_ynqid")
+detail_normal = SubResource("CompressedTexture2D_dnc76")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wgoes"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0k0pp"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o812b"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oqcj4"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ha56b"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_suc7o"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0iks4"]
+albedo_color = Color(0.666667, 0.803922, 0.980392, 1)
+roughness_texture = SubResource("CompressedTexture2D_suc7o")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_ha56b")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_wgoes")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_oqcj4")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_0k0pp")
+detail_normal = SubResource("CompressedTexture2D_o812b")
+uv1_scale = Vector3(10, 4, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fboo1"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j3kli"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kk2jr"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lfj7y"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1bbg8"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ipx3e"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qvmj"]
+albedo_color = Color(0.666667, 0.803922, 0.980392, 1)
+roughness_texture = SubResource("CompressedTexture2D_ipx3e")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_1bbg8")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_fboo1")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_lfj7y")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_j3kli")
+detail_normal = SubResource("CompressedTexture2D_kk2jr")
+uv1_scale = Vector3(2, 3, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e3rjn"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rsp1m"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t7rvt"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gvuar"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b2t5p"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g8qvh"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2t0x"]
+albedo_color = Color(0.666667, 0.803922, 0.980392, 1)
+roughness_texture = SubResource("CompressedTexture2D_g8qvh")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_b2t5p")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_e3rjn")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_gvuar")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_rsp1m")
+detail_normal = SubResource("CompressedTexture2D_t7rvt")
+uv1_scale = Vector3(5, 6, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sybv6"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jsfuf"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rfrjh"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oe1je"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lu4sx"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jppcs"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fboo1"]
+albedo_color = Color(0.665292, 0.805724, 0.981114, 1)
+roughness_texture = SubResource("CompressedTexture2D_jppcs")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_lu4sx")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_sybv6")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_oe1je")
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_jsfuf")
+detail_normal = SubResource("CompressedTexture2D_rfrjh")
+uv1_scale = Vector3(10, 4, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_74m3s"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y0kj7"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l0vd0"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t4rul"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ffh13"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y6v78"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5n6h5"]
+albedo_color = Color(0.666667, 0.803922, 0.980392, 1)
+roughness_texture = SubResource("CompressedTexture2D_y6v78")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_ffh13")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_74m3s")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_t4rul")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_y0kj7")
+detail_normal = SubResource("CompressedTexture2D_l0vd0")
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2qvmj"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Color.png-c7bd725bcdbc6f30be12bbfc9439c8ad.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h2t0x"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5n6h5"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Displacement.png-abf95cfd14573e527d702d026382090d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pwm2f"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Metalness.png-5b188a43ea7f00035c16a984f55a4a35.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wmo3r"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smtm3"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Roughness.png-c841c8a9ef01058901cb22d9de114539.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkj53"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.9
+metallic_specular = 0.97
+metallic_texture = SubResource("CompressedTexture2D_pwm2f")
+roughness_texture = SubResource("CompressedTexture2D_smtm3")
+emission_enabled = true
+emission = Color(1, 0.827451, 0.419608, 1)
+emission_energy_multiplier = 0.01
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_wmo3r")
+heightmap_enabled = true
+heightmap_scale = 0.2
+heightmap_texture = SubResource("CompressedTexture2D_5n6h5")
+subsurf_scatter_strength = 1.0
+refraction_scale = -1.0
+detail_albedo = SubResource("CompressedTexture2D_2qvmj")
+detail_normal = SubResource("CompressedTexture2D_h2t0x")
+
+[sub_resource type="TextMesh" id="TextMesh_suc7o"]
+material = SubResource("StandardMaterial3D_vkj53")
+text = "PORTAL
+ROOM"
+font_size = 80
+uppercase = true
+depth = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m4p3h"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Color.png-c7bd725bcdbc6f30be12bbfc9439c8ad.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yfqh0"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h2n2r"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Displacement.png-abf95cfd14573e527d702d026382090d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sf0qd"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Metalness.png-5b188a43ea7f00035c16a984f55a4a35.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rphta"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xnut4"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Roughness.png-c841c8a9ef01058901cb22d9de114539.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ts4x2"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.9
+metallic_specular = 0.97
+metallic_texture = SubResource("CompressedTexture2D_sf0qd")
+roughness_texture = SubResource("CompressedTexture2D_xnut4")
+emission_enabled = true
+emission = Color(1, 0.827451, 0.419608, 1)
+emission_energy_multiplier = 0.01
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_rphta")
+heightmap_enabled = true
+heightmap_scale = 0.2
+heightmap_texture = SubResource("CompressedTexture2D_h2n2r")
+subsurf_scatter_strength = 1.0
+refraction_scale = -1.0
+detail_albedo = SubResource("CompressedTexture2D_m4p3h")
+detail_normal = SubResource("CompressedTexture2D_yfqh0")
+
+[sub_resource type="TextMesh" id="TextMesh_uaijs"]
+material = SubResource("StandardMaterial3D_ts4x2")
+text = "KITCHEN
+STORAGE"
+font_size = 120
+uppercase = true
+depth = 0.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vkj53"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Color.png-c7bd725bcdbc6f30be12bbfc9439c8ad.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5tdtb"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bbbvk"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Displacement.png-abf95cfd14573e527d702d026382090d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wey87"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Metalness.png-5b188a43ea7f00035c16a984f55a4a35.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vg4s7"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_18m0k"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Roughness.png-c841c8a9ef01058901cb22d9de114539.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynqid"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.9
+metallic_specular = 0.97
+metallic_texture = SubResource("CompressedTexture2D_wey87")
+roughness_texture = SubResource("CompressedTexture2D_18m0k")
+emission_enabled = true
+emission = Color(1, 0.827451, 0.419608, 1)
+emission_energy_multiplier = 0.01
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_vg4s7")
+heightmap_enabled = true
+heightmap_scale = 0.2
+heightmap_texture = SubResource("CompressedTexture2D_bbbvk")
+subsurf_scatter_strength = 1.0
+refraction_scale = -1.0
+detail_albedo = SubResource("CompressedTexture2D_vkj53")
+detail_normal = SubResource("CompressedTexture2D_5tdtb")
+
+[sub_resource type="TextMesh" id="TextMesh_dnc76"]
+material = SubResource("StandardMaterial3D_ynqid")
+text = "MONASTERY OF THE
+GREAT SEVEN"
+font_size = 80
+uppercase = true
+depth = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5oioy"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.309804, 0.196078, 1)
+albedo_texture = ExtResource("3_mnak8")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mnak8"]
+size = Vector2(0.75, 0.75)
+
+[sub_resource type="Gradient" id="Gradient_0k0pp"]
+colors = PackedColorArray(1, 0.309804, 0.196078, 1, 1, 0.309804, 0.196078, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o812b"]
+gradient = SubResource("Gradient_0k0pp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oqcj4"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.309804, 0.196078, 1)
+color_ramp = SubResource("GradientTexture1D_o812b")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jhxpr"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3of5k"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.309804, 0.196078, 1)
+albedo_texture = SubResource("CompressedTexture2D_jhxpr")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ofsw0"]
+material = SubResource("StandardMaterial3D_3of5k")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8l00"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.772549, 0.772549, 0.772549, 1)
+albedo_texture = ExtResource("4_w5lko")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ofsw0"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sybv6"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.772549, 0.772549, 0.772549, 1)
+albedo_texture = SubResource("CompressedTexture2D_ofsw0")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_jsfuf"]
+material = SubResource("StandardMaterial3D_sybv6")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0k0pp"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 0.486275, 1)
+albedo_texture = ExtResource("6_o8l00")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5ynmx"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfrjh"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 0.486275, 1)
+albedo_texture = SubResource("CompressedTexture2D_5ynmx")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_oe1je"]
+material = SubResource("StandardMaterial3D_rfrjh")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgoes"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.27451, 1, 0.482353, 1)
+albedo_texture = ExtResource("5_5oioy")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3of5k"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofsw0"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.27451, 1, 0.482353, 1)
+albedo_texture = SubResource("CompressedTexture2D_3of5k")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_sybv6"]
+material = SubResource("StandardMaterial3D_ofsw0")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5lko"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.290196, 0.768627, 1, 1)
+albedo_texture = ExtResource("2_vagnm")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6s8hx"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu4sx"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.290196, 0.768627, 1, 1)
+albedo_texture = SubResource("CompressedTexture2D_6s8hx")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_jppcs"]
+material = SubResource("StandardMaterial3D_lu4sx")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lh2vg"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s08cm"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0iks4"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8kfxd"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c6gmt"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iptk5"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu5jr"]
+albedo_color = Color(0.666667, 0.803922, 0.980392, 1)
+roughness_texture = SubResource("CompressedTexture2D_iptk5")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_c6gmt")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_lh2vg")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_8kfxd")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_s08cm")
+detail_normal = SubResource("CompressedTexture2D_0iks4")
+uv1_scale = Vector3(2, 4, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s08cm"]
+albedo_color = Color(0.665292, 0.805724, 0.981114, 1)
+roughness_texture = SubResource("CompressedTexture2D_suc7o")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_ha56b")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_wgoes")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_oqcj4")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_0k0pp")
+detail_normal = SubResource("CompressedTexture2D_o812b")
+uv1_scale = Vector3(10, 4, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxheu"]
+albedo_color = Color(0.666667, 0.803922, 0.980392, 1)
+roughness_texture = SubResource("CompressedTexture2D_iptk5")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_c6gmt")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_lh2vg")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_8kfxd")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_s08cm")
+detail_normal = SubResource("CompressedTexture2D_0iks4")
+uv1_scale = Vector3(2, 4, 1)
+uv1_triplanar_sharpness = 0.00497876
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fhehc"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3savy"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_02qe1"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yit3o"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_shut1"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4oj2"]
+roughness_texture = SubResource("CompressedTexture2D_shut1")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_yit3o")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_fhehc")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_02qe1")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("7_lh2vg")
+detail_normal = SubResource("CompressedTexture2D_3savy")
+uv1_scale = Vector3(10, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o812b"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.74902, 0.74902, 0.486275, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oqcj4"]
+material = SubResource("StandardMaterial3D_o812b")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ha56b"]
+diffuse_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.105882, 0.121569, 1)
+emission_enabled = true
+emission = Color(0.913725, 0, 0, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("9_o812b")
+detail_normal = ExtResource("10_oqcj4")
+
+[sub_resource type="SphereMesh" id="SphereMesh_suc7o"]
+radius = 0.04
+height = 0.08
+
+[sub_resource type="Gradient" id="Gradient_s08cm"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 1, 0.701961, 0.278431, 1, 0.752941, 0.27451, 0.113725, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qd8c5"]
+gradient = SubResource("Gradient_s08cm")
+
+[sub_resource type="Curve" id="Curve_0iks4"]
+_data = [Vector2(0, 0.101887), 0.0, 0.0, 0, 0, Vector2(0.295566, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2c5y6"]
+curve = SubResource("Curve_0iks4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8kfxd"]
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2c5y6")
+color_ramp = SubResource("GradientTexture1D_qd8c5")
+turbulence_noise_strength = 17.09
+turbulence_noise_scale = 0.203
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t4oj2"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd8c5"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_t4oj2")
+grow_amount = 1.26
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gfyyd"]
+material = SubResource("StandardMaterial3D_qd8c5")
+top_radius = 0.1
+bottom_radius = 0.05
+height = 0.1
+
+[sub_resource type="Gradient" id="Gradient_o812b"]
+offsets = PackedFloat32Array(0, 0.3, 1)
+colors = PackedColorArray(0.333333, 0.333333, 0.333333, 0, 0.466667, 0.466667, 0.466667, 0.647059, 0.133333, 0.133333, 0.133333, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oqcj4"]
+gradient = SubResource("Gradient_o812b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ha56b"]
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.2
+initial_velocity_max = 0.55
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_oqcj4")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gfyyd"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhxpr"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.601223, 0.601223, 0.601223, 1)
+albedo_texture = SubResource("CompressedTexture2D_gfyyd")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_3of5k"]
+material = SubResource("StandardMaterial3D_jhxpr")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eudmx"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 0.886275, 0.313726, 0.305882)
+normal_enabled = true
+normal_texture = ExtResource("15_0iks4")
+uv1_triplanar_sharpness = 32.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fhehc"]
+size = Vector2(4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iptk5"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.97808, 0.919903, 0.244938, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_oxheu"]
+material = SubResource("StandardMaterial3D_iptk5")
+inner_radius = 1.75
+outer_radius = 2.0
+rings = 6
+ring_segments = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwsb1"]
+shading_mode = 0
+albedo_color = Color(0.97808, 0.919903, 0.244938, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oqcj4"]
+material = SubResource("StandardMaterial3D_hwsb1")
+size = Vector3(0.1, 0.1, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkjrl"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.156863, 0.8, 0.560784, 1)
+albedo_texture = ExtResource("12_ha56b")
+albedo_texture_force_srgb = true
+heightmap_scale = -16.0
+refraction_scale = 1.0
+grow_amount = -0.241
+
+[sub_resource type="QuadMesh" id="QuadMesh_oqcj4"]
+size = Vector2(3, 3)
+
+[sub_resource type="Gradient" id="Gradient_suc7o"]
+colors = PackedColorArray(1, 0.309804, 0.196078, 1, 1, 0.309804, 0.196078, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s08cm"]
+gradient = SubResource("Gradient_suc7o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0iks4"]
+lifetime_randomness = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.309804, 0.196078, 1)
+color_ramp = SubResource("GradientTexture1D_s08cm")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_276wq"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4qye"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.27451, 1, 0.482353, 1)
+albedo_texture = SubResource("CompressedTexture2D_276wq")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ohwnc"]
+material = SubResource("StandardMaterial3D_l4qye")
+size = Vector2(0.03, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3l2y"]
+transparency = 1
+albedo_color = Color(0.156863, 0.8, 0.560784, 0.0784314)
+normal_enabled = true
+normal_texture = ExtResource("10_oqcj4")
+uv1_scale = Vector3(3, 3, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_suc7o"]
+height = 0.001
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hwsb1"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ts4x2"]
+load_path = "res://.godot/imported/Marble012_2K-PNG_Color.png-80e3869c45ecf48c1a8bd6f6c18dcf20.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uaijs"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aijt8"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_odhob"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13nmy"]
+roughness_texture = SubResource("CompressedTexture2D_odhob")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_aijt8")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_hwsb1")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_uaijs")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_ts4x2")
+uv1_scale = Vector3(1, 3, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_13nmy"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6jihv"]
+load_path = "res://.godot/imported/Marble012_2K-PNG_Color.png-80e3869c45ecf48c1a8bd6f6c18dcf20.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qro57"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e4vug"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_48fbn"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_276wq"]
+roughness_texture = SubResource("CompressedTexture2D_48fbn")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_e4vug")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_13nmy")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_qro57")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_6jihv")
+uv1_scale = Vector3(1, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jihv"]
+roughness_texture = SubResource("CompressedTexture2D_odhob")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_aijt8")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_hwsb1")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_uaijs")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_ts4x2")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lyvra"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2grkr"]
+load_path = "res://.godot/imported/Marble012_2K-PNG_Color.png-80e3869c45ecf48c1a8bd6f6c18dcf20.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ejxpr"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i3cfw"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gssch"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ug7ti"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4p3h"]
+albedo_color = Color(0.699653, 0.699653, 0.699653, 1)
+roughness_texture = SubResource("CompressedTexture2D_ug7ti")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_gssch")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_lyvra")
+heightmap_enabled = true
+heightmap_scale = 0.05
+heightmap_texture = SubResource("CompressedTexture2D_i3cfw")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_2grkr")
+detail_normal = SubResource("CompressedTexture2D_ejxpr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ltvc"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Color.png-c7bd725bcdbc6f30be12bbfc9439c8ad.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t0xxo"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_05nvd"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Displacement.png-abf95cfd14573e527d702d026382090d.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ngc71"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Metalness.png-5b188a43ea7f00035c16a984f55a4a35.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4tt05"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_NormalGL.png-90b4d69c53c36aab7fdfcc11e73ffc08.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6mfm"]
+load_path = "res://.godot/imported/Metal034_2K-PNG_Roughness.png-c841c8a9ef01058901cb22d9de114539.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyvra"]
+albedo_color = Color(1, 0.843137, 0, 1)
+metallic = 0.9
+metallic_specular = 0.97
+metallic_texture = SubResource("CompressedTexture2D_ngc71")
+roughness_texture = SubResource("CompressedTexture2D_x6mfm")
+emission_enabled = true
+emission = Color(1, 0.827451, 0.419608, 1)
+emission_energy_multiplier = 0.01
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_4tt05")
+heightmap_enabled = true
+heightmap_scale = 0.2
+heightmap_texture = SubResource("CompressedTexture2D_05nvd")
+subsurf_scatter_strength = 1.0
+refraction_scale = -1.0
+detail_albedo = SubResource("CompressedTexture2D_0ltvc")
+detail_normal = SubResource("CompressedTexture2D_t0xxo")
+
+[sub_resource type="TextMesh" id="TextMesh_2grkr"]
+material = SubResource("StandardMaterial3D_lyvra")
+text = "DISPATCH
+CHAMBER"
+font_size = 48
+uppercase = true
+depth = 0.5
+
+[sub_resource type="PrismMesh" id="PrismMesh_oqcj4"]
+left_to_right = 2.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oqcj4"]
+radius = 0.2
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suc7o"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_s08cm"]
+radius = 0.15
+height = 0.3
+
+[sub_resource type="PrismMesh" id="PrismMesh_0iks4"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kfxd"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oqcj4"]
+albedo_color = Color(1, 0.662745, 0.0392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6gmt"]
+albedo_color = Color(1, 0.662745, 0.0392157, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ha56b"]
+radius = 0.075
+height = 0.15
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_suc7o"]
+radius = 0.075
+height = 0.15
+
+[node name="Monastery" type="Node3D"]
+script = ExtResource("1_s08cm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mnak8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.765722, 0.910426, 1, 1)
+light_energy = 0.2
+light_indirect_energy = 1.5
+shadow_enabled = true
+
+[node name="CameraHolder" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.122424, 0, 0.992478, 0, 1, 0, -0.992478, 0, 0.122424, 25.7635, 1.57012, 103.72)
+visible = false
+mesh = SubResource("CapsuleMesh_4v1kq")
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15256e-06, 0.515451, -0.575264)
+current = true
+
+[node name="Entrance" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 56.75)
+
+[node name="Floor" type="CSGBox3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(60, 0.5, 40)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+radius = 5.0
+height = 1.0
+sides = 64
+material = SubResource("StandardMaterial3D_0ltvc")
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="Entrance/CSGCylinder3D"]
+transform = Transform3D(-4.37114e-08, -1.00003, 0, 1, -4.37128e-08, 0, 0, 0, 1.00003, 0, 3, 0)
+inner_radius = 1.0
+outer_radius = 1.5
+material = SubResource("StandardMaterial3D_dlh6g")
+script = ExtResource("2_oqcj4")
+
+[node name="CSGTorus3D3" type="CSGTorus3D" parent="Entrance/CSGCylinder3D"]
+transform = Transform3D(-0.0714974, -0.997436, 0, 0.997441, -0.0714971, 0, 0, 0, 0.999995, 0, 3, 0)
+inner_radius = 2.25
+outer_radius = 1.75
+material = SubResource("StandardMaterial3D_dlh6g")
+script = ExtResource("2_oqcj4")
+RotationAxis = Vector3(0, 0, 1)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Entrance/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material = SubResource("StandardMaterial3D_dlh6g")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Entrance"]
+material_override = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Ceiling2" type="CSGBox3D" parent="Entrance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.5, 0)
+size = Vector3(60, 0.5, 40)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Entrance/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.75, 0)
+operation = 2
+radius = 10.0
+sides = 64
+
+[node name="map_001_torch_012" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -29.75, 5.5, 18)
+IsFlameActive = true
+
+[node name="map_001_torch_013" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -29.5, 2, -15)
+IsFlameActive = true
+
+[node name="map_001_torch_014" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -29.75, 2, 8)
+IsFlameActive = true
+
+[node name="map_001_torch_026" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -14, 2, 15.75)
+IsFlameActive = true
+
+[node name="map_001_torch_027" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 14, 2, 15.75)
+IsFlameActive = true
+
+[node name="map_001_torch_015" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 29.75, 5.5, 18)
+IsFlameActive = true
+
+[node name="map_001_torch_019" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 19, 7, 19.75)
+IsFlameActive = true
+
+[node name="map_001_torch_022" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -19, 7, 19.75)
+IsFlameActive = true
+
+[node name="map_001_torch_020" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 12.5, 8.25, 19.75)
+IsFlameActive = true
+
+[node name="map_001_torch_024" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, -1.75, 10.5, 20.5)
+IsFlameActive = true
+
+[node name="map_001_torch_025" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 1.75, 10.5, 20.5)
+IsFlameActive = true
+
+[node name="map_001_torch_023" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -12.5, 8.25, 19.75)
+IsFlameActive = true
+
+[node name="map_001_torch_016" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 29.75, 2, -15)
+IsFlameActive = true
+
+[node name="map_001_torch_017" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 29.75, 2, 8)
+IsFlameActive = true
+
+[node name="map_001_torch_018" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 4.25, 2, 18)
+IsFlameActive = true
+
+[node name="map_001_torch_021" parent="Entrance" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -4.25, 2, 18)
+IsFlameActive = true
+
+[node name="Walls" type="Node3D" parent="Entrance"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5, -20.5)
+size = Vector3(62, 20, 1)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Wall_South" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.25, 10.5, 20.5)
+size = Vector3(17.5, 20, 1)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Wall_South4" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 20.5)
+size = Vector3(27, 5, 1)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Wall_South3" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.25, 10.5, 20.5)
+size = Vector3(17.5, 20, 1)
+material = SubResource("StandardMaterial3D_2qvmj")
+
+[node name="Wall_East" type="CSGBox3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 10.5, 0)
+visible = false
+size = Vector3(1, 20, 40)
+material = SubResource("StandardMaterial3D_h2t0x")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, 0, 0)
+
+[node name="Wall_West" type="CSGBox3D" parent="Entrance/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5, 0)
+size = Vector3(1, 20, 40)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="DoorSpace" type="CSGBox3D" parent="Entrance/Walls/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.75, -4)
+operation = 2
+size = Vector3(7, 4.75, 1.25)
+
+[node name="Archway002" type="CSGCombiner3D" parent="Entrance/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.5, 0, -4)
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="Entrance/Walls/Archway002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.875, 0)
+size = Vector3(7.5, 5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="Entrance/Walls/Archway002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+operation = 2
+size = Vector3(6, 4.25, 1.25)
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 0, 0)
+
+[node name="Wall_West" type="CSGBox3D" parent="Entrance/Walls/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5, 0)
+size = Vector3(1, 20, 40)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="DoorSpace" type="CSGBox3D" parent="Entrance/Walls/CSGCombiner3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.75, -4)
+operation = 2
+size = Vector3(7, 4.75, 1.25)
+
+[node name="Archway003" type="CSGCombiner3D" parent="Entrance/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.5, 0, -4)
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="Entrance/Walls/Archway003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.875, 0)
+size = Vector3(7.5, 5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="Entrance/Walls/Archway003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+operation = 2
+size = Vector3(6, 4.25, 1.25)
+
+[node name="Stairs003" type="Node3D" parent="Entrance"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00523639, 0, -15.3073)
+
+[node name="Stair017" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0200825, 0.75, 0.0297546)
+size = Vector3(0.5, 0.25, 10)
+material = SubResource("StandardMaterial3D_5n6h5")
+
+[node name="Stair018" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0193233, 0.875, 0.529732)
+size = Vector3(0.5, 0.5, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair019" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0185623, 1, 1.02973)
+size = Vector3(0.5, 0.75, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair020" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0178032, 1.125, 1.52972)
+size = Vector3(0.5, 1, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair021" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0170536, 1.25, 2.02972)
+size = Vector3(0.5, 1.25, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair022" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.016283, 1.375, 2.52971)
+size = Vector3(0.5, 1.5, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair023" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0155239, 1.5, 3.02969)
+size = Vector3(0.5, 1.75, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair024" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0147705, 1.625, 3.52969)
+size = Vector3(0.5, 2, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair025" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0139999, 1.75, 4.02968)
+size = Vector3(0.5, 2.25, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair026" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0.0132504, 1.875, 4.52966)
+size = Vector3(0.5, 2.5, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair027" type="CSGBox3D" parent="Entrance/Stairs003"]
+transform = Transform3D(0.00151826, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00151826, 0, 2, 5)
+size = Vector3(0.5, 2.75, 10)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stairs001" type="CSGCombiner3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0.75, 18)
+
+[node name="Stair001" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0, -7.74983)
+size = Vector3(0.5, 0.25, 4)
+material = SubResource("StandardMaterial3D_5n6h5")
+
+[node name="Stair002" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.125, -7.24984)
+size = Vector3(0.5, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair003" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.25, -6.74985)
+size = Vector3(0.5, 0.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair004" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.375, -6.24986)
+size = Vector3(0.5, 1, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair005" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.5, -5.74986)
+size = Vector3(0.5, 1.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair006" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.625, -5.24987)
+size = Vector3(0.5, 1.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair007" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.75, -4.74989)
+size = Vector3(0.5, 1.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair008" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 0.875, -4.24989)
+size = Vector3(0.5, 2, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair009" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1, -3.7499)
+size = Vector3(0.5, 2.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair010" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1.125, -3.24991)
+size = Vector3(0.5, 2.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair011" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1.25, -2.75)
+size = Vector3(0.5, 2.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair012" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1.375, -2.25)
+size = Vector3(0.5, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair032" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.25, 3, 0)
+size = Vector3(0.5, 0.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair033" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 3.125, 0)
+size = Vector3(0.5, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair034" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.25, 3.25, 0)
+size = Vector3(0.5, 0.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair035" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.75, 3.375, 0)
+size = Vector3(0.5, 1, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair036" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.251, 3.5, 0)
+size = Vector3(0.5, 1.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair037" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.751, 3.625, 0)
+size = Vector3(0.5, 1.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair038" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.251, 3.75, 0)
+size = Vector3(0.5, 1.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair039" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.751, 3.885, 0)
+size = Vector3(0.5, 2, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair040" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.251, 4, 0)
+size = Vector3(0.5, 2.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair041" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.751, 4.125, 0)
+size = Vector3(0.5, 2.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair042" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.251, 4.25, 0)
+size = Vector3(0.5, 2.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair043" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.751, 4.375, 0)
+size = Vector3(0.5, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair044" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2538, 5.97505, 0)
+size = Vector3(0.5, 0.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair045" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7538, 6.10005, 0)
+size = Vector3(0.5, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair046" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2538, 6.22505, 0)
+size = Vector3(0.5, 0.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair047" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7538, 6.35005, 0)
+size = Vector3(0.5, 1, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair048" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2548, 6.47505, 0)
+size = Vector3(0.5, 1.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair049" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.7548, 6.60005, 0)
+size = Vector3(0.5, 1.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair050" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2548, 6.72505, 0)
+size = Vector3(0.5, 1.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair051" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7548, 6.86005, 0)
+size = Vector3(0.5, 2, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair052" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2548, 6.97505, 0)
+size = Vector3(0.5, 2.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair013" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.375, 0)
+size = Vector3(18, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair014" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 4.375, 0)
+size = Vector3(4, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair016" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.245, 2.75, 0)
+size = Vector3(0.5, 6.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair015" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 5.625, 0)
+size = Vector3(7, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair017" type="CSGBox3D" parent="Entrance/Stairs001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 7.85, 0)
+size = Vector3(9, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stairs002" type="CSGCombiner3D" parent="Entrance"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -36, 0.75, 18)
+
+[node name="Stair001" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.80132, 0, 7.25154)
+size = Vector3(0.5, 0.25, 4)
+material = SubResource("StandardMaterial3D_5n6h5")
+
+[node name="Stair002" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.80056, 0.125, 6.75156)
+size = Vector3(0.5, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair003" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.7998, 0.25, 6.25156)
+size = Vector3(0.5, 0.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair004" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79904, 0.375, 5.75157)
+size = Vector3(0.5, 1, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair005" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79829, 0.5, 5.25158)
+size = Vector3(0.5, 1.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair006" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79752, 0.625, 4.75159)
+size = Vector3(0.5, 1.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair007" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79676, 0.75, 4.2516)
+size = Vector3(0.5, 1.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair008" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79601, 0.875, 3.75161)
+size = Vector3(0.5, 2, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair009" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79524, 1, 3.25162)
+size = Vector3(0.5, 2.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair010" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79449, 1.125, 2.75163)
+size = Vector3(0.5, 2.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair011" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-0.00151835, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00151835, -7.79373, 1.25, 2.25172)
+size = Vector3(0.5, 2.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair012" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.75, 1.375, -2.25)
+size = Vector3(0.5, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair032" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.25, 3, 0)
+size = Vector3(0.5, 0.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair033" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 3.125, 0)
+size = Vector3(0.5, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair034" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.25, 3.25, 0)
+size = Vector3(0.5, 0.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair035" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.75, 3.375, 0)
+size = Vector3(0.5, 1, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair036" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.251, 3.5, 0)
+size = Vector3(0.5, 1.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair037" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.751, 3.625, 0)
+size = Vector3(0.5, 1.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair038" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.251, 3.75, 0)
+size = Vector3(0.5, 1.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair039" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.751, 3.885, 0)
+size = Vector3(0.5, 2, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair040" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.251, 4, 0)
+size = Vector3(0.5, 2.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair041" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.751, 4.125, 0)
+size = Vector3(0.5, 2.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair042" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.251, 4.25, 0)
+size = Vector3(0.5, 2.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair043" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.751, 4.375, 0)
+size = Vector3(0.5, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair044" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2538, 5.97505, 0)
+size = Vector3(0.5, 0.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair045" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7538, 6.10005, 0)
+size = Vector3(0.5, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair046" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2538, 6.22505, 0)
+size = Vector3(0.5, 0.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair047" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7538, 6.35005, 0)
+size = Vector3(0.5, 1, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair048" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2548, 6.47505, 0)
+size = Vector3(0.5, 1.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair049" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.7548, 6.60005, 0)
+size = Vector3(0.5, 1.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair050" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2548, 6.72505, 0)
+size = Vector3(0.5, 1.75, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair051" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7548, 6.86005, 0)
+size = Vector3(0.5, 2, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair052" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2548, 6.97505, 0)
+size = Vector3(0.5, 2.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair013" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.375, 0)
+size = Vector3(18, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair014" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 4.375, 0)
+size = Vector3(4, 3, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair016" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.245, 2.75, 0)
+size = Vector3(0.5, 6.25, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Stair015" type="CSGBox3D" parent="Entrance/Stairs002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 5.625, 0)
+size = Vector3(7, 0.5, 4)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Entrance"]
+transform = Transform3D(-1, 0, 0.000593424, 0, 1, 0, -0.000593424, 0, -1, 0, 6.75, 20)
+mesh = SubResource("TextMesh_suc7o")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.78357, 0)
+visible = false
+light_color = Color(1, 1, 0.784314, 1)
+omni_range = 50.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Entrance"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30, 7.25, -4)
+mesh = SubResource("TextMesh_uaijs")
+
+[node name="Kitchen" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -76, 0, 56.75)
+
+[node name="Floor" type="CSGBox3D" parent="Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(40, 0.5, 40)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Ceiling" type="CSGBox3D" parent="Kitchen"]
+transform = Transform3D(0.999983, 0, -2.62901e-13, 0, 1, 0, 2.62901e-13, 0, 0.999983, 0, 10.25, -0.5)
+size = Vector3(40, 0.5, 39)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Walls" type="Node3D" parent="Kitchen"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Kitchen/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -20.5)
+size = Vector3(42, 10, 1)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Wall_North2" type="CSGBox3D" parent="Kitchen/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.5, 5.5, 0)
+size = Vector3(40, 10, 1)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="Wall_North3" type="CSGBox3D" parent="Kitchen/Walls"]
+transform = Transform3D(-4.37107e-08, 0, 0.999991, 0, 1, 0, -0.999991, 0, -4.37107e-08, 20.5, 5.5, 0)
+size = Vector3(40, 10, 1)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Kitchen/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.99206, 0, 15.5071)
+
+[node name="Wall_West" type="CSGBox3D" parent="Kitchen/Walls/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5.5, -9)
+size = Vector3(1, 10, 40)
+material = SubResource("StandardMaterial3D_0iks4")
+
+[node name="DoorSpace" type="CSGBox3D" parent="Kitchen/Walls/CSGCombiner3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 2.75, -5)
+operation = 2
+size = Vector3(7, 4.75, 1.25)
+
+[node name="Archway003" type="CSGCombiner3D" parent="Kitchen/Walls"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 4, 0, 19.5)
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="Kitchen/Walls/Archway003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.875, 0)
+size = Vector3(7.5, 5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="Kitchen/Walls/Archway003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+operation = 2
+size = Vector3(6, 4.25, 1.25)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.78357, 0)
+light_color = Color(1, 1, 0.784314, 1)
+omni_range = 50.0
+
+[node name="Table001" type="CSGCombiner3D" parent="Kitchen"]
+transform = Transform3D(4.99314, 0, 0.157112, 0, 1.25, 0, -0.261854, 0, 2.99588, -17.128, 2, 16.982)
+
+[node name="Table" type="CSGBox3D" parent="Kitchen/Table001"]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+size = Vector3(1, 0.1, 1)
+
+[node name="TableLeg001" type="CSGBox3D" parent="Kitchen/Table001"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -0.4, -0.6, 0.4)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="TableLeg002" type="CSGBox3D" parent="Kitchen/Table001"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.4, -0.6, -0.4)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="TableLeg003" type="CSGBox3D" parent="Kitchen/Table001"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0.4, -0.6, -0.4)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="TableLeg004" type="CSGBox3D" parent="Kitchen/Table001"]
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, 0.4, -0.6, 0.4)
+size = Vector3(0.05, 1.2, 0.05)
+
+[node name="EntraceChamber" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 84.25)
+
+[node name="Floor" type="CSGBox3D" parent="EntraceChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(25, 0.5, 15)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Ceiling" type="CSGBox3D" parent="EntraceChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0.5)
+size = Vector3(25, 0.5, 14)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Torches" type="Node3D" parent="EntraceChamber"]
+
+[node name="map_003_torch_001" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -4.5, 2, -6.25)
+IsFlameActive = true
+
+[node name="map_003_torch_002" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -12.25, 2, -3.5)
+IsFlameActive = true
+
+[node name="map_003_torch_003" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -12.25, 2, 3.5)
+IsFlameActive = true
+
+[node name="map_003_torch_004" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 12.25, 2, 4)
+IsFlameActive = true
+
+[node name="map_003_torch_005" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 12.25, 2, -4)
+IsFlameActive = true
+
+[node name="map_003_torch_006" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 4.5, 2, -6.25)
+IsFlameActive = true
+
+[node name="map_003_torch_007" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 7.25, 2, 7.25)
+IsFlameActive = true
+
+[node name="map_003_torch_008" parent="EntraceChamber/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -7.25, 2, 7.25)
+IsFlameActive = true
+
+[node name="Texts" type="Node3D" parent="EntraceChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7.499)
+
+[node name="Mesh" type="MeshInstance3D" parent="EntraceChamber/Texts"]
+transform = Transform3D(-1, 0, 0.000593424, 0, 1, 0, -0.000593424, 0, -1, 0, 1.477, 0)
+mesh = SubResource("TextMesh_dnc76")
+
+[node name="FireMesh" type="MeshInstance3D" parent="EntraceChamber/Texts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.019, -1, 0)
+material_override = SubResource("StandardMaterial3D_5oioy")
+mesh = SubResource("PlaneMesh_mnak8")
+
+[node name="Light" type="OmniLight3D" parent="EntraceChamber/Texts/FireMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+light_color = Color(1, 0.309804, 0.196078, 1)
+light_energy = 0.5
+omni_range = 1.25
+
+[node name="Particles" type="GPUParticles3D" parent="EntraceChamber/Texts/FireMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_oqcj4")
+draw_pass_1 = SubResource("QuadMesh_ofsw0")
+
+[node name="AirMesh" type="MeshInstance3D" parent="EntraceChamber/Texts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, -1, 0)
+material_override = SubResource("StandardMaterial3D_o8l00")
+mesh = SubResource("PlaneMesh_mnak8")
+
+[node name="Light" type="OmniLight3D" parent="EntraceChamber/Texts/AirMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+light_color = Color(0.772549, 0.772549, 0.772549, 1)
+light_energy = 0.5
+omni_range = 1.25
+
+[node name="Particles" type="GPUParticles3D" parent="EntraceChamber/Texts/AirMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_oqcj4")
+draw_pass_1 = SubResource("QuadMesh_jsfuf")
+
+[node name="LightningMesh" type="MeshInstance3D" parent="EntraceChamber/Texts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4, -1, 0)
+material_override = SubResource("StandardMaterial3D_0k0pp")
+mesh = SubResource("PlaneMesh_mnak8")
+
+[node name="Light" type="OmniLight3D" parent="EntraceChamber/Texts/LightningMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+light_color = Color(1, 1, 0.486275, 1)
+light_energy = 0.5
+omni_range = 1.25
+
+[node name="Particles" type="GPUParticles3D" parent="EntraceChamber/Texts/LightningMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_oqcj4")
+draw_pass_1 = SubResource("QuadMesh_oe1je")
+
+[node name="NatureMesh" type="MeshInstance3D" parent="EntraceChamber/Texts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4, -1, 0)
+material_override = SubResource("StandardMaterial3D_wgoes")
+mesh = SubResource("PlaneMesh_mnak8")
+
+[node name="Light" type="OmniLight3D" parent="EntraceChamber/Texts/NatureMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+light_color = Color(0.27451, 1, 0.482353, 1)
+light_energy = 0.5
+omni_range = 1.25
+
+[node name="Particles" type="GPUParticles3D" parent="EntraceChamber/Texts/NatureMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_oqcj4")
+draw_pass_1 = SubResource("QuadMesh_sybv6")
+
+[node name="WaterMesh" type="MeshInstance3D" parent="EntraceChamber/Texts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, -1, 0)
+material_override = SubResource("StandardMaterial3D_w5lko")
+mesh = SubResource("PlaneMesh_mnak8")
+
+[node name="Light" type="OmniLight3D" parent="EntraceChamber/Texts/WaterMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+light_color = Color(0.290196, 0.768627, 1, 1)
+light_energy = 0.5
+omni_range = 1.25
+
+[node name="Particles" type="GPUParticles3D" parent="EntraceChamber/Texts/WaterMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_oqcj4")
+draw_pass_1 = SubResource("QuadMesh_jppcs")
+
+[node name="Walls" type="Node3D" parent="EntraceChamber"]
+
+[node name="Wall001" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+
+[node name="WallMesh" type="CSGBox3D" parent="EntraceChamber/Walls/Wall001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, 0.5)
+size = Vector3(1, 9, 16)
+material = SubResource("StandardMaterial3D_bu5jr")
+
+[node name="DoorSpace" type="CSGBox3D" parent="EntraceChamber/Walls/Wall001"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13, 2.5, 0)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Wall002" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+material_override = SubResource("StandardMaterial3D_s08cm")
+
+[node name="WallMesh" type="CSGBox3D" parent="EntraceChamber/Walls/Wall002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -6.99975)
+size = Vector3(25, 9, 1)
+
+[node name="DoorSpace" type="CSGBox3D" parent="EntraceChamber/Walls/Wall002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -7)
+operation = 2
+size = Vector3(7, 4.75, 1.25)
+
+[node name="Wall003" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+
+[node name="WallMesh" type="CSGBox3D" parent="EntraceChamber/Walls/Wall003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4.5, 0.5)
+size = Vector3(1, 9, 16)
+material = SubResource("StandardMaterial3D_oxheu")
+
+[node name="DoorSpace2" type="CSGBox3D" parent="EntraceChamber/Walls/Wall003"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 2.5, 0)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Wall004" type="CSGBox3D" parent="EntraceChamber/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 8)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(25, 9, 1)
+
+[node name="Archway001" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="EntraceChamber/Walls/Archway001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 2.75, 0)
+size = Vector3(5, 4.5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="EntraceChamber/Walls/Archway001"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 2.5, 0)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Archway002" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="EntraceChamber/Walls/Archway002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8746, -7)
+size = Vector3(7.5, 5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="EntraceChamber/Walls/Archway002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -7)
+operation = 2
+size = Vector3(6, 4.25, 1.25)
+
+[node name="Archway003" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="EntraceChamber/Walls/Archway003"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 2.75, 0)
+size = Vector3(5, 4.5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="EntraceChamber/Walls/Archway003"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 2.5, 0)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Fountain001" type="CSGCombiner3D" parent="EntraceChamber/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.483582)
+material_override = SubResource("StandardMaterial3D_t4oj2")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="EntraceChamber/Walls/Fountain001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7.5)
+radius = 4.5
+height = 1.5
+sides = 60
+
+[node name="FountainSubstract" type="CSGCylinder3D" parent="EntraceChamber/Walls/Fountain001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 7.5)
+operation = 2
+radius = 4.0
+height = 1.0
+sides = 64
+
+[node name="Candles" type="Node3D" parent="EntraceChamber"]
+
+[node name="FlyingCandle6" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 6.5, -9)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle6"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle6/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+omni_range = 10.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle6/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle6/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle6/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle8" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1312, 15.8648, -24.4307)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle8"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle8/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle8/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle8/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle8/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle9" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1312, 15.8648, -35.8591)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle9"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle9/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle9/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle9/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle9/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle10" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25168, 15.8648, -35.8591)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle10"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle10/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle10/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle10/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle10/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle11" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25168, 15.8648, -44.133)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle11"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle11/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle11/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle11/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle11/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle12" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44665, 15.8648, -44.133)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle12"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle12/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle12/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle12/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle12/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle13" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44665, 15.8648, -34.0212)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle13"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle13/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle13/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle13/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle13/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle14" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4438, 15.8648, -34.0212)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle14"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle14/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle14/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle14/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle14/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle15" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.918, 15.8648, -41.1496)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle15"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle15/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle15/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle15/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle15/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle24" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.978, 6.66453, -32.305)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle24"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle24/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle24/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle24/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle24/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle25" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1868, 7.8797, -25.9001)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle25"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle25/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle25/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle25/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle25/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle16" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.918, 15.8648, -21.5897)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle16"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle16/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle16/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle16/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle16/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle17" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7347, 15.8648, -21.5897)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle17"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle17/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle17/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle17/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle17/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle18" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7347, 15.8648, -11.98)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle18"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle18/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle18/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle18/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle18/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle19" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9914, 15.8648, -11.98)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle19"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle19/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle19/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle19/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle19/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle20" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24884, 15.8648, -11.98)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle20"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle20/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle20/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle20/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle20/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle21" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3582, 15.8648, -11.98)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle21"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle21/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle21/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle21/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle21/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle22" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85737, 15.8648, -21.9896)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle22"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle22/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle22/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle22/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle22/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle23" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85737, 15.8648, -30.3259)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle23"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle23/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 1.5
+omni_range = 25.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle23/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle23/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle23/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle7" type="Node3D" parent="EntraceChamber/Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 6.5, -9)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandle7"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandle7/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+omni_range = 10.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandle7/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle7/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandle7/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandles" type="Node3D" parent="EntraceChamber/Candles"]
+
+[node name="FlyingCandle001" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06247, 5.62077, 3.53983)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle001"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle001/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+omni_range = 10.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle001/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle001/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle001/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle002" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89738, 6.78623, 5.72402)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle002"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle002/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+omni_range = 10.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle002/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle002/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle002/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle003" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89738, 5.05527, 0)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle003"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle003/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle003/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle003/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle003/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="FlyingCandle004" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18712, 6.45982, 0)
+
+[node name="Candle" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle004"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.117895, 0)
+mesh = SubResource("CylinderMesh_oqcj4")
+
+[node name="CandleLight" type="Node3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle004"]
+transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 0, 0.155565, 0)
+
+[node name="FireLight" type="OmniLight3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle004/CandleLight"]
+light_color = Color(1, 0.8, 0.6, 1)
+omni_range = 10.0
+
+[node name="Fireball" type="MeshInstance3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle004/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+material_override = SubResource("StandardMaterial3D_ha56b")
+mesh = SubResource("SphereMesh_suc7o")
+skeleton = NodePath("")
+
+[node name="FireParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle004/CandleLight"]
+amount = 150
+lifetime = 0.7
+preprocess = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kfxd")
+draw_pass_1 = SubResource("CylinderMesh_gfyyd")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="EntraceChamber/Candles/FlyingCandles/FlyingCandle004/CandleLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.064858, 0)
+amount = 100
+lifetime = 1.75
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_ha56b")
+draw_pass_1 = SubResource("QuadMesh_3of5k")
+
+[node name="BarrierDoor" type="Node3D" parent="EntraceChamber"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EntraceChamber/BarrierDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_eudmx")
+mesh = SubResource("QuadMesh_fhehc")
+skeleton = NodePath("../..")
+
+[node name="PortalRoom" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 104.25)
+
+[node name="Floor" type="CSGBox3D" parent="PortalRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(25, 0.5, 15)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Ceiling" type="CSGBox3D" parent="PortalRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0.5)
+size = Vector3(25, 0.5, 14)
+material = SubResource("StandardMaterial3D_fhehc")
+
+[node name="Walls" type="Node3D" parent="PortalRoom"]
+
+[node name="Wall005" type="CSGBox3D" parent="PortalRoom/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 4.5, 0.5)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(14, 9, 1)
+
+[node name="Wall006" type="CSGBox3D" parent="PortalRoom/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 4.5, 0.5)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(14, 9, 1)
+
+[node name="Wall007" type="CSGBox3D" parent="PortalRoom/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 8)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(27, 9, 1)
+
+[node name="Wall008" type="CSGBox3D" parent="PortalRoom/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 4.5, -7)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(10, 9, 1)
+
+[node name="Wall009" type="CSGBox3D" parent="PortalRoom/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, -7)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(5, 9, 1)
+
+[node name="Portal" type="Node3D" parent="PortalRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 0.41, 0)
+
+[node name="Signs" type="MeshInstance3D" parent="PortalRoom/Portal"]
+mesh = SubResource("TorusMesh_oxheu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalRoom/Portal/Signs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.15)
+mesh = SubResource("BoxMesh_oqcj4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PortalRoom/Portal/Signs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 3.15)
+mesh = SubResource("BoxMesh_oqcj4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PortalRoom/Portal/Signs"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -2.7425, 0.05, 1.58653)
+mesh = SubResource("BoxMesh_oqcj4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="PortalRoom/Portal/Signs"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 2.74386, 0.05, -1.57122)
+mesh = SubResource("BoxMesh_oqcj4")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="PortalRoom/Portal/Signs"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 2.72677, 0.05, 1.59409)
+mesh = SubResource("BoxMesh_oqcj4")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="PortalRoom/Portal/Signs"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -2.75482, 0.05, -1.57367)
+mesh = SubResource("BoxMesh_oqcj4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalRoom/Portal"]
+transform = Transform3D(-6.55671e-08, 0, 2, 0, 2.25, 0, -1.5, 0, -8.74228e-08, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_wkjrl")
+mesh = SubResource("QuadMesh_oqcj4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="PortalRoom/Portal/MeshInstance3D"]
+light_color = Color(0.156863, 0.8, 0.560784, 1)
+light_energy = 1.5
+omni_range = 8.0
+
+[node name="Particles" type="GPUParticles3D" parent="PortalRoom/Portal/MeshInstance3D"]
+transform = Transform3D(1.25, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_0iks4")
+draw_pass_1 = SubResource("QuadMesh_ohwnc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalRoom/Portal/MeshInstance3D/Particles"]
+transform = Transform3D(1.75, 2.68019e-07, -2.71908e-07, 2.28117e-07, 0.0819007, 1.99832, 2.44063e-07, -1.99832, 0.0819007, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_n3l2y")
+mesh = SubResource("CylinderMesh_suc7o")
+skeleton = NodePath("../..")
+script = ExtResource("13_suc7o")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="PortalRoom/Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317291, 0)
+light_color = Color(1, 1, 0.756863, 1)
+
+[node name="Torches" type="Node3D" parent="PortalRoom"]
+
+[node name="map_003_torch_003" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -7.25, 2, -6.25)
+IsFlameActive = true
+
+[node name="map_003_torch_004" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -7.25, 2, 7.25)
+IsFlameActive = true
+
+[node name="map_003_torch_005" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 10.5, 2, 7.25)
+IsFlameActive = true
+
+[node name="map_003_torch_009" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 1, 2, 7.25)
+IsFlameActive = true
+
+[node name="map_003_torch_010" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 12.25, 2, 0)
+IsFlameActive = true
+
+[node name="map_003_torch_011" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 7.25, 2, -8.5)
+IsFlameActive = true
+
+[node name="map_003_torch_012" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -2.25, 2, -8.5)
+IsFlameActive = true
+
+[node name="map_003_torch_006" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 10.5, 2, -6.25)
+IsFlameActive = true
+
+[node name="map_003_torch_007" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 6.25, 2, -15.25)
+IsFlameActive = true
+
+[node name="map_003_torch_008" parent="PortalRoom/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -1, 2, -15.25)
+IsFlameActive = true
+
+[node name="BarrierDoor" type="Node3D" parent="PortalRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -16)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalRoom/BarrierDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_eudmx")
+mesh = SubResource("QuadMesh_fhehc")
+skeleton = NodePath("../..")
+
+[node name="PortalCorridor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 84.25)
+
+[node name="Floor001" type="CSGBox3D" parent="PortalCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(25, 0.5, 7)
+material = SubResource("StandardMaterial3D_13nmy")
+
+[node name="Floor002" type="CSGBox3D" parent="PortalCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.25, 8.5)
+size = Vector3(10, 0.5, 8)
+material = SubResource("StandardMaterial3D_276wq")
+
+[node name="Ceiling001" type="CSGBox3D" parent="PortalCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0)
+size = Vector3(25, 0.5, 7)
+material = SubResource("StandardMaterial3D_6jihv")
+
+[node name="Ceiling002" type="CSGBox3D" parent="PortalCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8.75, 9)
+size = Vector3(10, 0.5, 9)
+material = SubResource("StandardMaterial3D_276wq")
+
+[node name="Walls" type="Node3D" parent="PortalCorridor"]
+
+[node name="Wall001" type="CSGBox3D" parent="PortalCorridor/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -4)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(25, 9, 1)
+
+[node name="Wall002" type="CSGCombiner3D" parent="PortalCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
+
+[node name="WallMesh" type="CSGBox3D" parent="PortalCorridor/Walls/Wall002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+size = Vector3(1, 9, 25)
+material = SubResource("StandardMaterial3D_bu5jr")
+
+[node name="DoorSpace" type="CSGBox3D" parent="PortalCorridor/Walls/Wall002"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.5, 4.76313)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Wall003" type="CSGBox3D" parent="PortalCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 4.5, 0)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(9, 9, 1)
+
+[node name="Wall004" type="CSGBox3D" parent="PortalCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 4.5, 9)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(9, 9, 1)
+
+[node name="Wall005" type="CSGBox3D" parent="PortalCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 4.5, 9)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(9, 9, 1)
+
+[node name="Archway003" type="CSGCombiner3D" parent="PortalCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.75, 0, 4)
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="PortalCorridor/Walls/Archway003"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.75, 0)
+size = Vector3(5, 4.5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="PortalCorridor/Walls/Archway003"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 0)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Torches" type="Node3D" parent="PortalCorridor"]
+
+[node name="map_003_torch_001" parent="PortalCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 10, 2, 3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_002" parent="PortalCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -1, 2, 3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_004" parent="PortalCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -10, 2, 3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_003" parent="PortalCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 4.5, 2, -3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_005" parent="PortalCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -4.5, 2, -3.25)
+IsFlameActive = true
+
+[node name="StorageCorridor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 0, 52.75)
+
+[node name="Floor001" type="CSGBox3D" parent="StorageCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500488, 0.25, 0)
+size = Vector3(26, 0.5, 7)
+material = SubResource("StandardMaterial3D_13nmy")
+
+[node name="Floor002" type="CSGBox3D" parent="StorageCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.25, 8.5)
+size = Vector3(10, 0.5, 8)
+material = SubResource("StandardMaterial3D_276wq")
+
+[node name="Ceiling001" type="CSGBox3D" parent="StorageCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0)
+size = Vector3(25, 0.5, 7)
+material = SubResource("StandardMaterial3D_6jihv")
+
+[node name="Ceiling002" type="CSGBox3D" parent="StorageCorridor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 8.75, 9)
+size = Vector3(10, 0.5, 9)
+material = SubResource("StandardMaterial3D_276wq")
+
+[node name="Walls" type="Node3D" parent="StorageCorridor"]
+
+[node name="Wall001" type="CSGBox3D" parent="StorageCorridor/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -4)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(25, 9, 1)
+
+[node name="Wall002" type="CSGCombiner3D" parent="StorageCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
+
+[node name="WallMesh" type="CSGBox3D" parent="StorageCorridor/Walls/Wall002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+size = Vector3(1, 9, 25)
+material = SubResource("StandardMaterial3D_bu5jr")
+
+[node name="DoorSpace" type="CSGBox3D" parent="StorageCorridor/Walls/Wall002"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.5, 4.76313)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Wall004" type="CSGBox3D" parent="StorageCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 4.5, 9)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(9, 9, 1)
+
+[node name="Wall005" type="CSGBox3D" parent="StorageCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 4.5, 9)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(9, 9, 1)
+
+[node name="Archway003" type="CSGCombiner3D" parent="StorageCorridor/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.75, 0, 4)
+material_override = SubResource("StandardMaterial3D_fboo1")
+
+[node name="Wall_North" type="CSGBox3D" parent="StorageCorridor/Walls/Archway003"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.75, 0)
+size = Vector3(5, 4.5, 1.2)
+
+[node name="DoorSpace" type="CSGBox3D" parent="StorageCorridor/Walls/Archway003"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 0)
+operation = 2
+size = Vector3(4, 4, 1.25)
+
+[node name="Torches" type="Node3D" parent="StorageCorridor"]
+
+[node name="map_003_torch_001" parent="StorageCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 10, 2, 3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_002" parent="StorageCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -1, 2, 3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_004" parent="StorageCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -10, 2, 3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_003" parent="StorageCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 4.5, 2, -3.25)
+IsFlameActive = true
+
+[node name="map_003_torch_005" parent="StorageCorridor/Torches" instance=ExtResource("1_10q5h")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -4.5, 2, -3.25)
+IsFlameActive = true
+
+[node name="DispatchChamber" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 84.25)
+
+[node name="Walls" type="Node3D" parent="DispatchChamber"]
+
+[node name="Wall001" type="CSGBox3D" parent="DispatchChamber/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9)
+material_override = SubResource("StandardMaterial3D_0iks4")
+size = Vector3(29, 1, 1)
+
+[node name="Wall002" type="CSGBox3D" parent="DispatchChamber/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.5, 1)
+size = Vector3(1, 1, 15)
+material = SubResource("StandardMaterial3D_oxheu")
+
+[node name="Wall003" type="CSGBox3D" parent="DispatchChamber/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.5, 1)
+size = Vector3(1, 1, 15)
+material = SubResource("StandardMaterial3D_oxheu")
+
+[node name="Wall004" type="CSGBox3D" parent="DispatchChamber/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7)
+material_override = SubResource("StandardMaterial3D_m4p3h")
+size = Vector3(3, 3, 1)
+
+[node name="Texts" type="Node3D" parent="DispatchChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7.499)
+
+[node name="Mesh" type="MeshInstance3D" parent="DispatchChamber/Texts"]
+transform = Transform3D(-1, 0, 0.000593424, 0, 1, 0, -0.000593424, 0, -1, 0, -1.70142, -14.815)
+mesh = SubResource("TextMesh_2grkr")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="DispatchChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3.5, -7)
+mesh = SubResource("PrismMesh_oqcj4")
+material = SubResource("StandardMaterial3D_0ltvc")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="DispatchChamber"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 3.5, -7)
+mesh = SubResource("PrismMesh_oqcj4")
+material = SubResource("StandardMaterial3D_0ltvc")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70885, 9.91301, 75.542)
+
+[node name="Kitty" type="CSGCombiner3D" parent="Node3D"]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, -0.841753, -0.115829)
+
+[node name="Body" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_oqcj4")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="Head" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.202415, 0.541542)
+mesh = SubResource("SphereMesh_s08cm")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="Node3D/Kitty/Head"]
+transform = Transform3D(0.766044, -0.642788, -2.80971e-08, 0, -4.37114e-08, 1, -0.642788, -0.766044, -3.34849e-08, -0.111193, 0.00848389, -0.110671)
+mesh = SubResource("PrismMesh_0iks4")
+material = SubResource("StandardMaterial3D_8kfxd")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="Node3D/Kitty/Head"]
+transform = Transform3D(-0.917269, 0.398269, 2.98455e-08, 4.5506e-08, 2.98686e-08, 1, 0.398269, 0.917269, -4.55211e-08, 0.108977, 0.00848389, -0.0878611)
+mesh = SubResource("PrismMesh_0iks4")
+material = SubResource("StandardMaterial3D_8kfxd")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Node3D/Kitty/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.32907e-14, 0, -5.32907e-14, 1, -0.067297, 0.110336, -0.0705624)
+radius = 0.008
+material = SubResource("StandardMaterial3D_oqcj4")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="Node3D/Kitty/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.68434e-14, 0, -5.68434e-14, 1, 0.069623, 0.110336, -0.0705624)
+radius = 0.008
+material = SubResource("StandardMaterial3D_c6gmt")
+
+[node name="Leg001" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(1, 0, 0, 0, 3.60006, 0, 0, 0, 1, -0.15, -0.314, 0.299)
+mesh = SubResource("CapsuleMesh_ha56b")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="Leg002" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(1, 0, 0, 0, 3.60006, 0, 0, 0, 1, 0.15, -0.314, 0.299)
+mesh = SubResource("CapsuleMesh_ha56b")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="Leg003" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(1, 0, 0, 0, 3.60006, 0, 0, 0, 1, -0.15, -0.314, -0.324814)
+mesh = SubResource("CapsuleMesh_ha56b")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="Leg004" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(1, 0, 0, 0, 3.60006, 0, 0, 0, 1, 0.15, -0.314, -0.324814)
+mesh = SubResource("CapsuleMesh_ha56b")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="Tail" type="CSGMesh3D" parent="Node3D/Kitty"]
+transform = Transform3D(0.249494, 0, 0, 0, 2.87048, 0.209714, 0, -2.17274, 0.27706, -0.03125, 0.241569, -0.546532)
+mesh = SubResource("CapsuleMesh_suc7o")
+material = SubResource("StandardMaterial3D_suc7o")
+
+[node name="NotYetImplemented" type="Node3D" parent="."]
+visible = false
+
+[node name="Atrium" type="Node3D" parent="NotYetImplemented"]
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/Atrium"]
+size = Vector3(66.6667, 0.3333, 66.6667)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/Atrium"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -33)
+size = Vector3(66.6667, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 33)
+size = Vector3(66.6667, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 66.6667)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 66.6667)
+
+[node name="Cloister" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66.6667)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/Cloister"]
+size = Vector3(40, 0.3333, 60)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/Cloister"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -29.6667)
+size = Vector3(40, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 29.6667)
+size = Vector3(40, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 60)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/Cloister/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 60)
+
+[node name="HallStone" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.3333, 0, 30)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/HallStone"]
+size = Vector3(53.3333, 0.3333, 73.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/HallStone"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -36.3333)
+size = Vector3(53.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 36.3333)
+size = Vector3(53.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 73.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/HallStone/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 73.3333)
+
+[node name="HallEmbers" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.3333, 0, 30)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/HallEmbers"]
+size = Vector3(53.3333, 0.3333, 73.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/HallEmbers"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -36.3333)
+size = Vector3(53.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 36.3333)
+size = Vector3(53.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 73.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/HallEmbers/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 73.3333)
+
+[node name="BarracksW" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.3333, 0, 85)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/BarracksW"]
+size = Vector3(23.3333, 0.3333, 23.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/BarracksW"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -11.3333)
+size = Vector3(23.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 11.3333)
+size = Vector3(23.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 23.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/BarracksW/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 23.3333)
+
+[node name="BarracksE" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.3333, 0, 85)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/BarracksE"]
+size = Vector3(23.3333, 0.3333, 23.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/BarracksE"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -11.3333)
+size = Vector3(23.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 11.3333)
+size = Vector3(23.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 23.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/BarracksE/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 23.3333)
+
+[node name="HallOfTides" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3333, 0, -25)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/HallOfTides"]
+size = Vector3(23.3333, 0.3333, 10)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/HallOfTides"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -4.6667)
+size = Vector3(23.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 4.6667)
+size = Vector3(23.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 10)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/HallOfTides/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 10)
+
+[node name="SecondaryHall" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -6.6667)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/SecondaryHall"]
+size = Vector3(16.6667, 0.3333, 20)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/SecondaryHall"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -9.6667)
+size = Vector3(16.6667, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 9.6667)
+size = Vector3(16.6667, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 20)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/SecondaryHall/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 20)
+
+[node name="Archives" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6667, 0, 11.6667)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/Archives"]
+size = Vector3(10, 0.3333, 20)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/Archives"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -9.6667)
+size = Vector3(10, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 9.6667)
+size = Vector3(10, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 20)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/Archives/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 20)
+
+[node name="SpireOfStorms" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6667, 0, -13.3333)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/SpireOfStorms"]
+size = Vector3(20, 0.3333, 23.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/SpireOfStorms"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -11.3333)
+size = Vector3(20, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 11.3333)
+size = Vector3(20, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 23.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/SpireOfStorms/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6667, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 23.3333)
+
+[node name="Vault1" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3333, 0, 3.3333)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/Vault1"]
+size = Vector3(13.3333, 0.3333, 13.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/Vault1"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -6.3333)
+size = Vector3(13.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 6.3333)
+size = Vector3(13.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 13.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/Vault1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 13.3333)
+
+[node name="Vault2" type="Node3D" parent="NotYetImplemented"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3333, 0, 20)
+visible = false
+
+[node name="Floor" type="CSGBox3D" parent="NotYetImplemented/Vault2"]
+size = Vector3(13.3333, 0.3333, 13.3333)
+
+[node name="Walls" type="Node3D" parent="NotYetImplemented/Vault2"]
+
+[node name="Wall_North" type="CSGBox3D" parent="NotYetImplemented/Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, -6.3333)
+size = Vector3(13.3333, 2.6667, 0.6667)
+
+[node name="Wall_South" type="CSGBox3D" parent="NotYetImplemented/Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3333, 6.3333)
+size = Vector3(13.3333, 2.6667, 0.6667)
+
+[node name="Wall_West" type="CSGBox3D" parent="NotYetImplemented/Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 13.3333)
+
+[node name="Wall_East" type="CSGBox3D" parent="NotYetImplemented/Vault2/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3333, 1.3333, 0)
+size = Vector3(0.6667, 2.6667, 13.3333)
+
+[node name="CharacterHolder" type="Node3D" parent="."]
+
+[node name="SpellHolder" type="Node3D" parent="."]

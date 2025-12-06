@@ -1,0 +1,156 @@
+[gd_scene load_steps=23 format=3 uid="uid://cojdrwm0lqspl"]
+
+[ext_resource type="Script" uid="uid://cnepoevwfnb5j" path="res://framework/Controls/Spells/SpellControl.cs" id="1_cg6vq"]
+[ext_resource type="Script" uid="uid://ddinpo76cuhuq" path="res://framework/Controls/Common/RotateUVControl.cs" id="1_m6816"]
+
+[sub_resource type="Gradient" id="Gradient_cg6vq"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 0.0186786, 0.88078, 0.858312, 1, 0.107351, 0.483341, 0.69407, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sb5r4"]
+gradient = SubResource("Gradient_cg6vq")
+
+[sub_resource type="Curve" id="Curve_jj03g"]
+_data = [Vector2(0, 0.101887), 0.0, 0.0, 0, 0, Vector2(0.295566, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xrfpt"]
+curve = SubResource("Curve_jj03g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_105wj"]
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 5, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_xrfpt")
+color_ramp = SubResource("GradientTexture1D_sb5r4")
+turbulence_noise_strength = 17.09
+turbulence_noise_scale = 0.203
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oivel"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu6vx"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("CompressedTexture2D_oivel")
+grow_amount = 1.26
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ub5ox"]
+material = SubResource("StandardMaterial3D_lu6vx")
+top_radius = 0.1
+bottom_radius = 0.05
+height = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l4qye"]
+load_path = "res://.godot/imported/lines_white_only.png-0fe02b962fc4f58313aa82d1e08ae80f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohwnc"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.0313726, 0.760784, 1, 1)
+albedo_texture = SubResource("CompressedTexture2D_l4qye")
+uv1_scale = Vector3(4, 4, 8)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mo5h8"]
+radius = 0.12
+height = 0.24
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ohwnc"]
+load_path = "res://.godot/imported/portal_texture_001.png-7044d6035afa483881cd1b99662551b1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq2hs"]
+shading_mode = 0
+albedo_color = Color(0, 0.8, 0.94902, 1)
+albedo_texture = SubResource("CompressedTexture2D_ohwnc")
+heightmap_scale = -16.0
+refraction_scale = 1.0
+grow_amount = -0.241
+
+[sub_resource type="SphereMesh" id="SphereMesh_0iks4"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="Gradient" id="Gradient_0iks4"]
+colors = PackedColorArray(1, 0.309804, 0.196078, 1, 1, 0.309804, 0.196078, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8kfxd"]
+gradient = SubResource("Gradient_0iks4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c6gmt"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 0.15
+initial_velocity_max = 0.35
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.309804, 0.196078, 1)
+color_ramp = SubResource("GradientTexture1D_8kfxd")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gq2hs"]
+load_path = "res://.godot/imported/particle_001.png-d3303bc08893d6d92cbf1c1f1cb6e818.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbv1v"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0.8, 0.94902, 1)
+albedo_texture = SubResource("CompressedTexture2D_gq2hs")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2esor"]
+material = SubResource("StandardMaterial3D_dbv1v")
+size = Vector2(0.008, 0.008)
+
+[node name="SpellWaterBolt" type="Node3D"]
+script = ExtResource("1_cg6vq")
+
+[node name="DestroyEffect" type="Node3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="DestroyParticles" type="GPUParticles3D" parent="DestroyEffect"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_105wj")
+draw_pass_1 = SubResource("CylinderMesh_ub5ox")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1.75, 2.68019e-07, -2.71908e-07, 2.28117e-07, 0.0819006, 1.99832, 2.44063e-07, -1.99832, 0.0819006, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ohwnc")
+mesh = SubResource("SphereMesh_mo5h8")
+skeleton = NodePath("../../..")
+script = ExtResource("1_m6816")
+ScrollSpeed = Vector2(0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/MeshInstance3D2"]
+material_override = SubResource("StandardMaterial3D_gq2hs")
+mesh = SubResource("SphereMesh_0iks4")
+script = ExtResource("1_m6816")
+ScrollSpeed = Vector2(0, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
+light_color = Color(0.239216, 0.827451, 0.960784, 1)
+light_energy = 2.5
+
+[node name="Particles" type="GPUParticles3D" parent="Node3D"]
+transform = Transform3D(1.25, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
+amount = 50
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_c6gmt")
+draw_pass_1 = SubResource("QuadMesh_2esor")

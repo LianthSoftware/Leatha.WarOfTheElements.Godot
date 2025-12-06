@@ -1,17 +1,15 @@
-[gd_scene load_steps=66 format=3 uid="uid://dpmgtuk4lb7kq"]
+[gd_scene load_steps=79 format=4 uid="uid://dpmgtuk4lb7kq"]
 
 [ext_resource type="Sky" uid="uid://deixec4t7t1w0" path="res://resources/textures/Environment/NightSky_001/NightSkyHDRI008_4K.tres" id="1_1w7ym"]
+[ext_resource type="Script" uid="uid://5f7pf0jpjhxc" path="res://framework/Scripts/Maps/Map001/Map001Control.cs" id="1_83bfx"]
 [ext_resource type="Script" uid="uid://b7tol038j1umt" path="res://framework/Controls/Effects/FogEffect.cs" id="2_u8jh7"]
-[ext_resource type="Material" uid="uid://dnmr18dwnkt61" path="res://resources/materials/wall_fade_world_y.tres" id="3_tyjim"]
-[ext_resource type="Script" uid="uid://fqh5lwjjmy12" path="res://framework/Scripts/InitialSpawnMapControl.cs" id="4_bg5rj"]
-[ext_resource type="PackedScene" uid="uid://bl7om8cmlsm72" path="res://scenes/controls/effects/initial_map_element_pillar.tscn" id="5_3k15d"]
 [ext_resource type="Texture2D" uid="uid://dkgo8mhex6hve" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Color.png" id="5_rthf5"]
 [ext_resource type="Texture2D" uid="uid://dy8vqrt0nvcje" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_NormalGL.png" id="6_bg5rj"]
 [ext_resource type="Texture2D" uid="uid://dik87dbmrg233" path="res://resources/textures/Environment/Tiles130_2K-PNG/crack_mask.png" id="6_k8vcq"]
 [ext_resource type="Texture2D" uid="uid://b8mwjdt83wn7" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_AmbientOcclusion.png" id="6_v1y75"]
 [ext_resource type="Texture2D" uid="uid://kn3vf2tqwbsn" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Roughness.png" id="7_3k15d"]
 [ext_resource type="Texture2D" uid="uid://bbrrvo2b54qtj" path="res://resources/textures/Environment/Tiles130_2K-PNG/Tiles130_2K-PNG_Displacement.png" id="7_k8vcq"]
-[ext_resource type="PackedScene" uid="uid://dr8y1iqt6orlm" path="res://scenes/controls/effects/spells/spell_fireball.tscn" id="13_7x2cj"]
+[ext_resource type="PackedScene" uid="uid://dy5mervfhyhst" path="res://scenes/controls/entities/area_trigger_control.tscn" id="12_83bfx"]
 [ext_resource type="PackedScene" uid="uid://dfeyc6qu1kdmh" path="res://scenes/controls/effects/common/torch_control.tscn" id="13_efqqu"]
 
 [sub_resource type="Environment" id="Environment_yexna"]
@@ -86,6 +84,43 @@ density = 2.5
 height_falloff = 6.0
 density_texture = SubResource("NoiseTexture3D_a6qfw")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_edsrv"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fhi6m"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uk04y"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bxxpm"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nv67r"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jkf6s"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ts21"]
+albedo_color = Color(0.74902, 0.8, 0.85098, 1)
+roughness_texture = SubResource("CompressedTexture2D_jkf6s")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_nv67r")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_edsrv")
+heightmap_enabled = true
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = SubResource("CompressedTexture2D_bxxpm")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_fhi6m")
+detail_normal = SubResource("CompressedTexture2D_uk04y")
+uv1_scale = Vector3(100, 100, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rthf5"]
 transparency = 1
 albedo_color = Color(0.920022, 0.744113, 0.389569, 1)
@@ -139,6 +174,42 @@ size = Vector2(0.1, 0.1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3k15d"]
 height = 1.0
 radius = 5.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ts21"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_AmbientOcclusion.png-5bf1e4bb052af22c08102f535f5e9c06.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fk4ym"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Color.png-5e61911ac75874468cf98c7d63d271cd.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bfe4p"]
+load_path = "res://.godot/imported/crack_mask.png-3983322ad7403d90e34210d3700bc1a2.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fxgs1"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Displacement.png-0844a37aba521c353a3b3682212328a5.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xa6pe"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_NormalGL.png-311ed146a018f3df5c8d0a9b0fc75445.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rindf"]
+load_path = "res://.godot/imported/Tiles130_2K-PNG_Roughness.png-cd69a1025e8ce7121d83740183cfb052.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xop3i"]
+albedo_color = Color(0.86831, 0.795371, 0.472975, 1)
+roughness_texture = SubResource("CompressedTexture2D_rindf")
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_xa6pe")
+ao_enabled = true
+ao_light_affect = 0.7
+ao_texture = SubResource("CompressedTexture2D_2ts21")
+heightmap_enabled = true
+heightmap_scale = 16.0
+heightmap_texture = SubResource("CompressedTexture2D_fxgs1")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = SubResource("CompressedTexture2D_fk4ym")
+detail_normal = SubResource("CompressedTexture2D_bfe4p")
+uv1_scale = Vector3(10, 10, 1)
+uv1_triplanar_sharpness = 0.00497876
 
 [sub_resource type="BoxMesh" id="BoxMesh_tyjim"]
 size = Vector3(35, 20, 0.5)
@@ -236,18 +307,33 @@ points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, 
 points = PackedVector3Array(-1, -10, -1, -1, -10, 1, -1, 10, -1, 1, -10, -1, 1, -10, 1, -1, 10, 1, 1, 10, -1, 1, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ip6tl"]
-size = Vector3(1, 5, 1)
+size = Vector3(28, 10, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k15d"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83bfx"]
+albedo_color = Color(1, 0.705882, 0.27451, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bg5rj"]
-points = PackedVector3Array(-0.5, -2.5, -0.5, -0.5, -2.5, 0.5, -0.5, 2.5, -0.5, 0.5, -2.5, -0.5, 0.5, -2.5, 0.5, -0.5, 2.5, 0.5, 0.5, 2.5, -0.5, 0.5, 2.5, 0.5)
+[sub_resource type="ArrayMesh" id="ArrayMesh_83bfx"]
+_surfaces = [{
+"aabb": AABB(-2, -0.1, -1.74846e-07, 4, 0.2, 2),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 150,
+"vertex_data": PackedByteArray("AAAAQM3MzL0AAAAAAAAAQM3MzD0AAAAA6kb3P83MzL3ugwQ/6kb3P83MzL3ugwQ/AAAAQM3MzD0AAAAA6kb3P83MzD3ugwQ/6kb3P83MzL3ugwQ/6kb3P83MzD3ugwQ/17PdP83MzL0AAIA/17PdP83MzL0AAIA/6kb3P83MzD3ugwQ/17PdP83MzD0AAIA/17PdP83MzL0AAIA/17PdP83MzD0AAIA/8wS1P83MzL3zBLU/8wS1P83MzL3zBLU/17PdP83MzD0AAIA/8wS1P83MzD3zBLU/8wS1P83MzL3zBLU/8wS1P83MzD3zBLU///9/P83MzL3Ys90///9/P83MzL3Ys90/8wS1P83MzD3zBLU///9/P83MzD3Ys90///9/P83MzL3Ys90///9/P83MzD3Ys90/64MEP83MzL3rRvc/64MEP83MzL3rRvc///9/P83MzD3Ys90/64MEP83MzD3rRvc/64MEP83MzL3rRvc/64MEP83MzD3rRvc/Lr27s83MzL0AAABALr27s83MzL0AAABA64MEP83MzD3rRvc/Lr27s83MzD0AAABALr27s83MzL0AAABALr27s83MzD0AAABA8oMEv83MzL3qRvc/8oMEv83MzL3qRvc/Lr27s83MzD0AAABA8oMEv83MzD3qRvc/8oMEv83MzL3qRvc/8oMEv83MzD3qRvc/AQCAv83MzL3Xs90/AQCAv83MzL3Xs90/8oMEv83MzD3qRvc/AQCAv83MzD3Xs90/AQCAv83MzL3Xs90/AQCAv83MzD3Xs90/8wS1v83MzL3zBLU/8wS1v83MzL3zBLU/AQCAv83MzD3Xs90/8wS1v83MzD3zBLU/8wS1v83MzL3zBLU/8wS1v83MzD3zBLU/2bPdv83MzL36/38/2bPdv83MzL36/38/8wS1v83MzD3zBLU/2bPdv83MzD36/38/2bPdv83MzL36/38/2bPdv83MzD36/38/60b3v83MzL3qgwQ/60b3v83MzL3qgwQ/2bPdv83MzD36/38/60b3v83MzD3qgwQ/60b3v83MzL3qgwQ/60b3v83MzD3qgwQ/AAAAwM3MzL0uvTu0AAAAwM3MzL0uvTu060b3v83MzD3qgwQ/AAAAwM3MzD0uvTu0AAAAAM3MzD0AAAAAAAAAQM3MzD0AAAAA6kb3P83MzD3ugwQ/AAAAAM3MzD0AAAAA6kb3P83MzD3ugwQ/17PdP83MzD0AAIA/AAAAAM3MzD0AAAAA17PdP83MzD0AAIA/8wS1P83MzD3zBLU/AAAAAM3MzD0AAAAA8wS1P83MzD3zBLU///9/P83MzD3Ys90/AAAAAM3MzD0AAAAA//9/P83MzD3Ys90/64MEP83MzD3rRvc/AAAAAM3MzD0AAAAA64MEP83MzD3rRvc/Lr27s83MzD0AAABAAAAAAM3MzD0AAAAALr27s83MzD0AAABA8oMEv83MzD3qRvc/AAAAAM3MzD0AAAAA8oMEv83MzD3qRvc/AQCAv83MzD3Xs90/AAAAAM3MzD0AAAAAAQCAv83MzD3Xs90/8wS1v83MzD3zBLU/AAAAAM3MzD0AAAAA8wS1v83MzD3zBLU/2bPdv83MzD36/38/AAAAAM3MzD0AAAAA2bPdv83MzD36/38/60b3v83MzD3qgwQ/AAAAAM3MzD0AAAAA60b3v83MzD3qgwQ/AAAAwM3MzD0uvTu0AAAAAM3MzL0AAAAA6kb3P83MzL3ugwQ/AAAAQM3MzL0AAAAAAAAAAM3MzL0AAAAA17PdP83MzL0AAIA/6kb3P83MzL3ugwQ/AAAAAM3MzL0AAAAA8wS1P83MzL3zBLU/17PdP83MzL0AAIA/AAAAAM3MzL0AAAAA//9/P83MzL3Ys90/8wS1P83MzL3zBLU/AAAAAM3MzL0AAAAA64MEP83MzL3rRvc///9/P83MzL3Ys90/AAAAAM3MzL0AAAAALr27s83MzL0AAABA64MEP83MzL3rRvc/AAAAAM3MzL0AAAAA8oMEv83MzL3qRvc/Lr27s83MzL0AAABAAAAAAM3MzL0AAAAAAQCAv83MzL3Xs90/8oMEv83MzL3qRvc/AAAAAM3MzL0AAAAA8wS1v83MzL3zBLU/AQCAv83MzL3Xs90/AAAAAM3MzL0AAAAA2bPdv83MzL36/38/8wS1v83MzL3zBLU/AAAAAM3MzL0AAAAA60b3v83MzL3qgwQ/2bPdv83MzL36/38/AAAAAM3MzL0AAAAAAAAAwM3MzL0uvTu060b3v83MzL3qgwQ/AAAAQM3MzL0AAAAAAAAAQM3MzD0AAAAAAAAAwM3MzL0AAAAAAAAAwM3MzL0AAAAAAAAAQM3MzD0AAAAAAAAAwM3MzD0AAAAA/yilKPND8LtoGJjPvk4hoB8uCEM5XHLQHy4IQzlcctBoGJjPvk4hoKMsocCWVH+qHy4IQzlcctCjLKHAllR/qo4qMzjtUHfKjiozOO1Qd8qjLKHAllR/quQpaMsgSQ2mjiozOO1Qd8rkKWjLIEkNpj8pRy3QQkLBPylHLdBCQsHkKWjLIEkNpj8phtZJQJeePylHLdBCQsE/KYbWSUCXnuQphCEgSWG15CmEISBJYbU/KYbWSUCXno4qweL9O4iX5CmEISBJYbWOKsHi/TuIl6Ms/hOWVDOroyz+E5ZUM6uOKsHi/TuIlx8uJvFTO+KRoyz+E5ZUM6sfLibxUzvikSUyRQNXYvyiJTJFA1di/KIfLibxUzvikdnNufyePL+MJTJFA1di/KLZzbn8njy/jN/R2A7wcI6d39HYDvBwjp3Zzbn8njy/jFvTAOyuP2WH39HYDvBwjp1b0wDsrj9lh3DVPR0/ffObcNU9HT9985tb0wDsrj9lhxrWet7VuDKAcNU9HT9985sa1nre1bgygL/WeCn/ggKgv9Z4Kf+CAqAa1nre1bgygL/Wt9IGoj3Ov9Z4Kf+CAqC/1rfSBqI9zhrWljQggKCjGtaWNCCAoKO/1rfSBqI9znDVy8cPei3bGtaWNCCAoKNw1cvHD3ot21vTXT+Fda6oW9NdP4V1rqhw1cvHD3ot29/R9rxybYTXW9NdP4V1rqjf0fa8cm2E14nYPU7Rdnusidg9TtF2e6zf0fa8cm2E16zDMcSvVh3X/3///wAA/79oGJjPvk4hoKMsocCWVH+q/3///wAA/7+jLKHAllR/quQpaMsgSQ2m/3///wAA/7/kKWjLIEkNpj8phtZJQJee/3///wAA/78/KYbWSUCXno4qweL9O4iX/3///wAA/7+OKsHi/TuIlx8uJvFTO+KR/3///wAA/78fLibxUzvikdnNufyePL+M/3///wAA/7/Zzbn8njy/jFvTAOyuP2WH/3///wAA/79b0wDsrj9lhxrWet7VuDKA/3///wAA/78a1nre1bgygL/Wt9IGoj3O/3///wAA/7+/1rfSBqI9znDVy8cPei3b/3///wAA/79w1cvHD3ot29/R9rxybYTX/3///wAA/7/f0fa8cm2E16zDMcSvVh3X/38AAAAA/78fLghDOVxy0P8opSjzQ/C7/38AAAAA/7+OKjM47VB3yh8uCEM5XHLQ/38AAAAA/78/KUct0EJCwY4qMzjtUHfK/38AAAAA/7/kKYQhIElhtT8pRy3QQkLB/38AAAAA/7+jLP4TllQzq+QphCEgSWG1/38AAAAA/78lMkUDV2L8oqMs/hOWVDOr/38AAAAA/7/f0dgO8HCOnSUyRQNXYvyi/38AAAAA/79w1T0dP33zm9/R2A7wcI6d/38AAAAA/7+/1ngp/4ICoHDVPR0/ffOb/38AAAAA/78a1pY0IICgo7/WeCn/ggKg/38AAAAA/79b010/hXWuqBrWljQggKCj/38AAAAA/7+J2D1O0XZ7rFvTXT+Fda6o/yilKPND8LtoGJjPvk4hoP//////fwCA//////9/AIBoGJjPvk4hoP//////fwCA")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_efqqu"]
+_surfaces = [{
+"aabb": AABB(-2, -0.1, -1.74846e-07, 4, 0.2, 2),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 150,
+"vertex_data": PackedByteArray("AAAAQM3MzL0AAAAAAAAAQM3MzD0AAAAA6kb3P83MzL3ugwQ/6kb3P83MzL3ugwQ/AAAAQM3MzD0AAAAA6kb3P83MzD3ugwQ/6kb3P83MzL3ugwQ/6kb3P83MzD3ugwQ/17PdP83MzL0AAIA/17PdP83MzL0AAIA/6kb3P83MzD3ugwQ/17PdP83MzD0AAIA/17PdP83MzL0AAIA/17PdP83MzD0AAIA/8wS1P83MzL3zBLU/8wS1P83MzL3zBLU/17PdP83MzD0AAIA/8wS1P83MzD3zBLU/8wS1P83MzL3zBLU/8wS1P83MzD3zBLU///9/P83MzL3Ys90///9/P83MzL3Ys90/8wS1P83MzD3zBLU///9/P83MzD3Ys90///9/P83MzL3Ys90///9/P83MzD3Ys90/64MEP83MzL3rRvc/64MEP83MzL3rRvc///9/P83MzD3Ys90/64MEP83MzD3rRvc/64MEP83MzL3rRvc/64MEP83MzD3rRvc/Lr27s83MzL0AAABALr27s83MzL0AAABA64MEP83MzD3rRvc/Lr27s83MzD0AAABALr27s83MzL0AAABALr27s83MzD0AAABA8oMEv83MzL3qRvc/8oMEv83MzL3qRvc/Lr27s83MzD0AAABA8oMEv83MzD3qRvc/8oMEv83MzL3qRvc/8oMEv83MzD3qRvc/AQCAv83MzL3Xs90/AQCAv83MzL3Xs90/8oMEv83MzD3qRvc/AQCAv83MzD3Xs90/AQCAv83MzL3Xs90/AQCAv83MzD3Xs90/8wS1v83MzL3zBLU/8wS1v83MzL3zBLU/AQCAv83MzD3Xs90/8wS1v83MzD3zBLU/8wS1v83MzL3zBLU/8wS1v83MzD3zBLU/2bPdv83MzL36/38/2bPdv83MzL36/38/8wS1v83MzD3zBLU/2bPdv83MzD36/38/2bPdv83MzL36/38/2bPdv83MzD36/38/60b3v83MzL3qgwQ/60b3v83MzL3qgwQ/2bPdv83MzD36/38/60b3v83MzD3qgwQ/60b3v83MzL3qgwQ/60b3v83MzD3qgwQ/AAAAwM3MzL0uvTu0AAAAwM3MzL0uvTu060b3v83MzD3qgwQ/AAAAwM3MzD0uvTu0AAAAAM3MzD0AAAAAAAAAQM3MzD0AAAAA6kb3P83MzD3ugwQ/AAAAAM3MzD0AAAAA6kb3P83MzD3ugwQ/17PdP83MzD0AAIA/AAAAAM3MzD0AAAAA17PdP83MzD0AAIA/8wS1P83MzD3zBLU/AAAAAM3MzD0AAAAA8wS1P83MzD3zBLU///9/P83MzD3Ys90/AAAAAM3MzD0AAAAA//9/P83MzD3Ys90/64MEP83MzD3rRvc/AAAAAM3MzD0AAAAA64MEP83MzD3rRvc/Lr27s83MzD0AAABAAAAAAM3MzD0AAAAALr27s83MzD0AAABA8oMEv83MzD3qRvc/AAAAAM3MzD0AAAAA8oMEv83MzD3qRvc/AQCAv83MzD3Xs90/AAAAAM3MzD0AAAAAAQCAv83MzD3Xs90/8wS1v83MzD3zBLU/AAAAAM3MzD0AAAAA8wS1v83MzD3zBLU/2bPdv83MzD36/38/AAAAAM3MzD0AAAAA2bPdv83MzD36/38/60b3v83MzD3qgwQ/AAAAAM3MzD0AAAAA60b3v83MzD3qgwQ/AAAAwM3MzD0uvTu0AAAAAM3MzL0AAAAA6kb3P83MzL3ugwQ/AAAAQM3MzL0AAAAAAAAAAM3MzL0AAAAA17PdP83MzL0AAIA/6kb3P83MzL3ugwQ/AAAAAM3MzL0AAAAA8wS1P83MzL3zBLU/17PdP83MzL0AAIA/AAAAAM3MzL0AAAAA//9/P83MzL3Ys90/8wS1P83MzL3zBLU/AAAAAM3MzL0AAAAA64MEP83MzL3rRvc///9/P83MzL3Ys90/AAAAAM3MzL0AAAAALr27s83MzL0AAABA64MEP83MzL3rRvc/AAAAAM3MzL0AAAAA8oMEv83MzL3qRvc/Lr27s83MzL0AAABAAAAAAM3MzL0AAAAAAQCAv83MzL3Xs90/8oMEv83MzL3qRvc/AAAAAM3MzL0AAAAA8wS1v83MzL3zBLU/AQCAv83MzL3Xs90/AAAAAM3MzL0AAAAA2bPdv83MzL36/38/8wS1v83MzL3zBLU/AAAAAM3MzL0AAAAA60b3v83MzL3qgwQ/2bPdv83MzL36/38/AAAAAM3MzL0AAAAAAAAAwM3MzL0uvTu060b3v83MzL3qgwQ/AAAAQM3MzL0AAAAAAAAAQM3MzD0AAAAAAAAAwM3MzL0AAAAAAAAAwM3MzL0AAAAAAAAAQM3MzD0AAAAAAAAAwM3MzD0AAAAA/yilKPND8LtoGJjPvk4hoB8uCEM5XHLQHy4IQzlcctBoGJjPvk4hoKMsocCWVH+qHy4IQzlcctCjLKHAllR/qo4qMzjtUHfKjiozOO1Qd8qjLKHAllR/quQpaMsgSQ2mjiozOO1Qd8rkKWjLIEkNpj8pRy3QQkLBPylHLdBCQsHkKWjLIEkNpj8phtZJQJeePylHLdBCQsE/KYbWSUCXnuQphCEgSWG15CmEISBJYbU/KYbWSUCXno4qweL9O4iX5CmEISBJYbWOKsHi/TuIl6Ms/hOWVDOroyz+E5ZUM6uOKsHi/TuIlx8uJvFTO+KRoyz+E5ZUM6sfLibxUzvikSUyRQNXYvyiJTJFA1di/KIfLibxUzvikdnNufyePL+MJTJFA1di/KLZzbn8njy/jN/R2A7wcI6d39HYDvBwjp3Zzbn8njy/jFvTAOyuP2WH39HYDvBwjp1b0wDsrj9lh3DVPR0/ffObcNU9HT9985tb0wDsrj9lhxrWet7VuDKAcNU9HT9985sa1nre1bgygL/WeCn/ggKgv9Z4Kf+CAqAa1nre1bgygL/Wt9IGoj3Ov9Z4Kf+CAqC/1rfSBqI9zhrWljQggKCjGtaWNCCAoKO/1rfSBqI9znDVy8cPei3bGtaWNCCAoKNw1cvHD3ot21vTXT+Fda6oW9NdP4V1rqhw1cvHD3ot29/R9rxybYTXW9NdP4V1rqjf0fa8cm2E14nYPU7Rdnusidg9TtF2e6zf0fa8cm2E16zDMcSvVh3X/3///wAA/79oGJjPvk4hoKMsocCWVH+q/3///wAA/7+jLKHAllR/quQpaMsgSQ2m/3///wAA/7/kKWjLIEkNpj8phtZJQJee/3///wAA/78/KYbWSUCXno4qweL9O4iX/3///wAA/7+OKsHi/TuIlx8uJvFTO+KR/3///wAA/78fLibxUzvikdnNufyePL+M/3///wAA/7/Zzbn8njy/jFvTAOyuP2WH/3///wAA/79b0wDsrj9lhxrWet7VuDKA/3///wAA/78a1nre1bgygL/Wt9IGoj3O/3///wAA/7+/1rfSBqI9znDVy8cPei3b/3///wAA/79w1cvHD3ot29/R9rxybYTX/3///wAA/7/f0fa8cm2E16zDMcSvVh3X/38AAAAA/78fLghDOVxy0P8opSjzQ/C7/38AAAAA/7+OKjM47VB3yh8uCEM5XHLQ/38AAAAA/78/KUct0EJCwY4qMzjtUHfK/38AAAAA/7/kKYQhIElhtT8pRy3QQkLB/38AAAAA/7+jLP4TllQzq+QphCEgSWG1/38AAAAA/78lMkUDV2L8oqMs/hOWVDOr/38AAAAA/7/f0dgO8HCOnSUyRQNXYvyi/38AAAAA/79w1T0dP33zm9/R2A7wcI6d/38AAAAA/7+/1ngp/4ICoHDVPR0/ffOb/38AAAAA/78a1pY0IICgo7/WeCn/ggKg/38AAAAA/79b010/hXWuqBrWljQggKCj/38AAAAA/7+J2D1O0XZ7rFvTXT+Fda6o/yilKPND8LtoGJjPvk4hoP//////fwCA//////9/AIBoGJjPvk4hoP//////fwCA")
+}]
 
 [node name="InitialPlayerSpawnMap" type="Node3D"]
-script = ExtResource("4_bg5rj")
-MapId = 1
+script = ExtResource("1_83bfx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yexna")
@@ -262,6 +348,43 @@ shadow_enabled = true
 
 [node name="GameObjectHolder" type="Node3D" parent="Environment"]
 
+[node name="Editor" type="Node3D" parent="Environment/GameObjectHolder"]
+
+[node name="AreaTriggers" type="Node3D" parent="Environment/GameObjectHolder/Editor"]
+
+[node name="AreaTriggerControl" parent="Environment/GameObjectHolder/Editor/AreaTriggers" instance=ExtResource("12_83bfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, 1, 0)
+Radius = 15.0
+
+[node name="GameObjects" type="Node3D" parent="Environment/GameObjectHolder/Editor"]
+
+[node name="map_001_torch_001" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 55, 2.65, 12.75)
+
+[node name="map_001_torch_002" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 55, 2.65, -12.75)
+
+[node name="map_001_torch_003" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 33.5, 2.65, 12.75)
+
+[node name="map_001_torch_004" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 33.5, 2.65, -12.75)
+
+[node name="map_001_torch_005" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 18.33, 2.65, 28.75)
+
+[node name="map_001_torch_006" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 18.33, 2.65, -28.75)
+
+[node name="map_001_torch_007" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -18.33, 2.65, 28.75)
+
+[node name="map_001_torch_008" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -18.3, 2.65, -28.75)
+
+[node name="map_001_torch_009" parent="Environment/GameObjectHolder/Editor/GameObjects" instance=ExtResource("13_efqqu")]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -28.75, 2.65, 0)
+
 [node name="Static" type="Node3D" parent="Environment/GameObjectHolder"]
 
 [node name="Floor001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static" node_paths=PackedStringArray("FogVolumeNode")]
@@ -273,9 +396,22 @@ FogVolumeNode = NodePath("FogVolume2")
 ScrollSpeed = 0.1
 
 [node name="FogVolume2" type="FogVolume" parent="Environment/GameObjectHolder/Static/Floor001"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 size = Vector3(120, 2, 80)
 material = SubResource("FogMaterial_6w0wb")
+
+[node name="Ceiling001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+material_override = SubResource("StandardMaterial3D_2ts21")
+mesh = SubResource("BoxMesh_bg5rj")
+skeleton = NodePath("../../../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/GameObjectHolder/Static/Ceiling001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.3493, 0.373863)
+light_color = Color(1, 1, 0.662745, 1)
+light_energy = 0.5
+light_volumetric_fog_energy = 2.189
+omni_range = 100.0
 
 [node name="Podium" type="Node3D" parent="Environment/GameObjectHolder/Static"]
 
@@ -311,7 +447,7 @@ shape = SubResource("CylinderShape3D_3k15d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 30)
 
 [node name="Wall001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall001"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tyjim")
 skeleton = NodePath("../../../../../..")
@@ -323,7 +459,7 @@ shape = SubResource("ConvexPolygonShape3D_3k15d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -30)
 
 [node name="Wall002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall002"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_tyjim")
 skeleton = NodePath("../../../../../..")
@@ -334,9 +470,10 @@ shape = SubResource("ConvexPolygonShape3D_v1y75")
 
 [node name="Wall003" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 55.5, 10, 0)
+visible = false
 
 [node name="Wall003" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall003"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_3k15d")
 skeleton = NodePath("../../../../../..")
@@ -349,7 +486,7 @@ shape = SubResource("ConvexPolygonShape3D_k8vcq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, -14.029)
 
 [node name="Wall004" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall004"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_k8vcq")
 skeleton = NodePath("../../../../../..")
@@ -362,11 +499,10 @@ shape = SubResource("ConvexPolygonShape3D_ip6tl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, 14)
 
 [node name="Wall009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall009"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_k8vcq")
 skeleton = NodePath("../../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_1w7ym")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/Wall009"]
 shape = SubResource("ConvexPolygonShape3D_83bfx")
@@ -375,7 +511,7 @@ shape = SubResource("ConvexPolygonShape3D_83bfx")
 transform = Transform3D(-0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, -24.5, 10, 15)
 
 [node name="Wall005" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall005"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_a6qfw")
 skeleton = NodePath("../../../../../..")
@@ -388,7 +524,7 @@ shape = SubResource("ConvexPolygonShape3D_efqqu")
 transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -24.5, 10, -15)
 
 [node name="Wall006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall006"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_6w0wb")
 skeleton = NodePath("../../../../../..")
@@ -401,7 +537,7 @@ shape = SubResource("ConvexPolygonShape3D_7x2cj")
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 26.5, 10, 22)
 
 [node name="Wall007" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall007"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_v1y75")
 skeleton = NodePath("../../../../../..")
@@ -414,7 +550,7 @@ shape = SubResource("ConvexPolygonShape3D_147f4")
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 26.5, 10, -22)
 
 [node name="Wall008" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/Wall008"]
-material_override = ExtResource("3_tyjim")
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_v1y75")
 skeleton = NodePath("../../../../../..")
@@ -531,60 +667,42 @@ skeleton = NodePath("../../../../../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/WallPillar007"]
 shape = SubResource("ConvexPolygonShape3D_bfe4p")
 
-[node name="ElementPillar001" parent="Environment/GameObjectHolder/Static/Walls" instance=ExtResource("5_3k15d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 5.5)
-visible = false
+[node name="Dynamic" type="Node3D" parent="Environment/GameObjectHolder"]
 
-[node name="ElementPillar002" type="StaticBody3D" parent="Environment/GameObjectHolder/Static/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -5.5)
-visible = false
+[node name="DoorController" type="Node3D" parent="Environment/GameObjectHolder/Dynamic"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 10, 0)
 
-[node name="WallPillar006" type="MeshInstance3D" parent="Environment/GameObjectHolder/Static/Walls/ElementPillar002"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/GameObjectHolder/Dynamic/DoorController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+omni_range = 20.0
+
+[node name="DoorPart001" type="StaticBody3D" parent="Environment/GameObjectHolder/Dynamic/DoorController"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -5.02, 0)
+
+[node name="Wall009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Dynamic/DoorController/DoorPart001"]
+material_override = SubResource("StandardMaterial3D_xop3i")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_ip6tl")
 skeleton = NodePath("../../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_3k15d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/GameObjectHolder/Static/Walls/ElementPillar002"]
-shape = SubResource("ConvexPolygonShape3D_bg5rj")
+[node name="DoorPart002" type="StaticBody3D" parent="Environment/GameObjectHolder/Dynamic/DoorController"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 5, 0)
 
-[node name="ElementPillar003" parent="Environment/GameObjectHolder/Static/Walls" instance=ExtResource("5_3k15d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 2.5, 0)
-visible = false
+[node name="Wall009" type="MeshInstance3D" parent="Environment/GameObjectHolder/Dynamic/DoorController/DoorPart002"]
+material_override = SubResource("StandardMaterial3D_xop3i")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_ip6tl")
+skeleton = NodePath("../../../../../..")
 
-[node name="Lights" type="Node3D" parent="Environment/GameObjectHolder/Static"]
+[node name="OrnamentPart001" type="MeshInstance3D" parent="Environment/GameObjectHolder/Dynamic/DoorController"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.354042, 0, 0)
+material_override = SubResource("StandardMaterial3D_83bfx")
+mesh = SubResource("ArrayMesh_83bfx")
 
-[node name="Torch001" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 33.5, 2.65, 12.75)
-
-[node name="Torch002" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 33.5, 2.65, -12.75)
-
-[node name="Torch003" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 55, 2.65, -12.75)
-
-[node name="Torch004" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 55, 2.65, 12.75)
-
-[node name="Torch005" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 18.33, 2.65, -28.75)
-
-[node name="Torch006" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 18.33, 2.65, 28.75)
-
-[node name="Torch007" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -18.33, 2.65, 28.75)
-
-[node name="Torch008" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -18.3, 2.65, -28.75)
-
-[node name="Torch009" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_efqqu")]
-transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, -28.75, 2.65, 0)
-
-[node name="SpellFireball" parent="Environment/GameObjectHolder/Static/Lights" instance=ExtResource("13_7x2cj")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 23.9897, 0.875998, -3.40278)
-
-[node name="Dynamic" type="Node3D" parent="Environment/GameObjectHolder"]
+[node name="OrnamentPart002" type="MeshInstance3D" parent="Environment/GameObjectHolder/Dynamic/DoorController"]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, 0.354042, 0, -0.0291481)
+material_override = SubResource("StandardMaterial3D_83bfx")
+mesh = SubResource("ArrayMesh_efqqu")
 
 [node name="CharacterHolder" type="Node3D" parent="."]
 

@@ -462,6 +462,7 @@ texture = ExtResource("8_gjph7")
 expand_mode = 1
 
 [node name="LoadingBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer2/SecondaryElement/PanelContainer/TextureRect"]
+light_mask = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.175

@@ -30,15 +30,14 @@ top_radius = 0.033
 bottom_radius = 0.033
 height = 0.25
 
-[sub_resource type="Gradient" id="Gradient_t4bhj"]
+[sub_resource type="Gradient" id="Gradient_jcs5a"]
 offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
 colors = PackedColorArray(1, 0.968627, 0.815686, 0.196078, 1, 0.701961, 0.278431, 1, 0.752941, 0.27451, 0.113725, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_r6105"]
-gradient = SubResource("Gradient_t4bhj")
+gradient = SubResource("Gradient_jcs5a")
 
 [node name="Torch" type="Node3D" node_paths=PackedStringArray("FireEffectControl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_jcs5a")
 FireEffectControl = NodePath("FireEffect")
 

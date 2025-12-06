@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://d1cjl8w3udu8"]
+
+[node name="MonasteryMap003" type="Node3D"]
+
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="Wings" type="Node3D" parent="."]
+
+[node name="FireWing" type="Node3D" parent="Wings"]
+
+[node name="Floor" type="Node3D" parent="Wings/FireWing"]
+
+[node name="Ceiling" type="Node3D" parent="Wings/FireWing"]
+
+[node name="Walls" type="Node3D" parent="Wings/FireWing"]
+
+[node name="AirWing" type="Node3D" parent="Wings"]
+
+[node name="Floor" type="Node3D" parent="Wings/AirWing"]
+
+[node name="Ceiling" type="Node3D" parent="Wings/AirWing"]
+
+[node name="Walls" type="Node3D" parent="Wings/AirWing"]
+
+[node name="LightningWing" type="Node3D" parent="Wings"]
+
+[node name="Floor" type="Node3D" parent="Wings/LightningWing"]
+
+[node name="Ceiling" type="Node3D" parent="Wings/LightningWing"]
+
+[node name="Walls" type="Node3D" parent="Wings/LightningWing"]
+
+[node name="NatureWing" type="Node3D" parent="Wings"]
+
+[node name="Floor" type="Node3D" parent="Wings/NatureWing"]
+
+[node name="Ceiling" type="Node3D" parent="Wings/NatureWing"]
+
+[node name="Walls" type="Node3D" parent="Wings/NatureWing"]
+
+[node name="WaterWing" type="Node3D" parent="Wings"]
+
+[node name="Floor" type="Node3D" parent="Wings/WaterWing"]
+
+[node name="Ceiling" type="Node3D" parent="Wings/WaterWing"]
+
+[node name="Walls" type="Node3D" parent="Wings/WaterWing"]
+
+[node name="NeutralWing" type="Node3D" parent="Wings"]
+
+[node name="Floor" type="Node3D" parent="Wings/NeutralWing"]
+
+[node name="Ceiling" type="Node3D" parent="Wings/NeutralWing"]
+
+[node name="Walls" type="Node3D" parent="Wings/NeutralWing"]

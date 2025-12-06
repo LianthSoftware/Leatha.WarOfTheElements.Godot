@@ -51,6 +51,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.UI.menu
                 if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: true } mb && _selectedControl != null)
                 {
                     GetTree().ChangeSceneToFile("res://scenes/ui/world_loading_scene.tscn");
+                    //GetTree().ChangeSceneToFile("res://scenes/maps/map001/character_creation_event_control.tscn");
                 }
             };
         }

@@ -29,6 +29,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Effects
         public GradientTexture1D FireGradientTexture { get; set; }
 
         private GpuParticles3D _particles;
+        private GpuParticles3D _smokeParticles;
         private OmniLight3D _light;
         private StandardMaterial3D _particleMaterial;
 
@@ -40,6 +41,7 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Effects
         public override void _Ready()
         {
             _particles = GetNode<GpuParticles3D>("FireParticles");
+            _smokeParticles = GetNode<GpuParticles3D>("SmokeParticles");
             _light = GetNode<OmniLight3D>("FireLight");
 
             var quadMesh = _particles.DrawPass1;
@@ -92,6 +94,16 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Effects
             {
                 ppm.ColorRamp = FireGradientTexture;
             }
+        }
+
+        public void SetFlameActive(bool isActive)
+        {
+            //_particles ??= GetNode<GpuParticles3D>("FireParticles");
+            //_smokeParticles ??= GetNode<GpuParticles3D>("SmokeParticles");
+
+            _particles.Emitting = isActive;
+            _smokeParticles.Emitting = isActive;
+            _light.Visible = isActive;
         }
     }
 }

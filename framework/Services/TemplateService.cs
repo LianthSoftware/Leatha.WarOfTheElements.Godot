@@ -24,6 +24,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Services
 
         GameObjectInfoObject GetGameObjectTemplate(int gameObjectId);
 
+        //AreaTrigger GetGameObjectTemplate(int gameObjectId);
+
 
 
 

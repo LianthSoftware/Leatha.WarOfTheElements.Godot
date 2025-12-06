@@ -99,6 +99,8 @@ namespace Leatha.WarOfTheElements.Godot.framework.Controls.Entities
             //_forward = 1.0f;
 
             _interactionControl = GetTree().CurrentScene.GetNode<InteractionControl>("UICanvasLayer/InteractionControl");
+
+            _camera.Current = true;
         }
 
         public override void _Process(double delta)

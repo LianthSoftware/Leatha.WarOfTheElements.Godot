@@ -1,14 +1,15 @@
 using Godot;
+using Leatha.WarOfTheElements.Godot.framework.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Leatha.WarOfTheElements.Godot.framework.Controls;
-using SystemVector3 = System.Numerics.Vector3;
-using SystemQuaternion = System.Numerics.Quaternion;
-using GodotVector3 = Godot.Vector3;
+using static System.Formats.Asn1.AsnWriter;
 using GodotQuaternion = Godot.Quaternion;
+using GodotVector3 = Godot.Vector3;
+using SystemQuaternion = System.Numerics.Quaternion;
+using SystemVector3 = System.Numerics.Vector3;
 
 namespace Leatha.WarOfTheElements.Godot.framework.Extensions
 {
@@ -19,6 +20,12 @@ namespace Leatha.WarOfTheElements.Godot.framework.Extensions
         public static GameControl GetGameControl(this Node node)
         {
             return node.GetTree().CurrentScene as GameControl;
+        }
+
+        public static void SwitchSceneRoot(this Node node, Node newRoot)
+        {
+            node.GetTree().CurrentScene.QueueFree(); // Remove loading scene
+            node.GetTree().CurrentScene = newRoot;
         }
 
         public static async Task RunOnMainThreadAsync(this Node node, Func<Task> action)

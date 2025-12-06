@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=4 uid="uid://dy5mervfhyhst"]
+
+[ext_resource type="Script" uid="uid://7dnjxiausmm2" path="res://framework/Controls/Entities/AreaTriggerControl.cs" id="1_cn0ul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr7xv"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tr7xv"]
+material = SubResource("StandardMaterial3D_tr7xv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cn0ul"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4d1ok"]
+_surfaces = [{
+"aabb": AABB(-5, 0, -5, 10, 1e-05, 10),
+"format": 34359742465,
+"index_count": 130,
+"index_data": PackedByteArray("AAABAAEAAgACAAMAAwAEAAQABQAFAAYABgAHAAcACAAIAAkACQAKAAoACwALAAwADAANAA0ADgAOAA8ADwAQABAAEQARABIAEgATABMAFAAUABUAFQAWABYAFwAXABgAGAAZABkAGgAaABsAGwAcABwAHQAdAB4AHgAfAB8AIAAgACEAIQAiACIAIwAjACQAJAAlACUAJgAmACcAJwAoACgAKQApACoAKgArACsALAAsAC0ALQAuAC4ALwAvADAAMAAxADEAMgAyADMAMwA0ADQANQA1ADYANgA3ADcAOAA4ADkAOQA6ADoAOwA7ADwAPAA9AD0APgA+AD8APwBAAEAAAAA="),
+"material": SubResource("StandardMaterial3D_cn0ul"),
+"primitive": 1,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 65,
+"vertex_data": PackedByteArray("AACgQAAAAAAAAAAAxDqfQAAAAACE7Po+9+ycQAAAAAAyt3k/RxyZQAAAAAA9yLk/G9KTQAAAAADc6vQ/fhuNQAAAAADS2BZA/wiFQAAAAABQyDFABF13QAAAAACAAUtAMEZiQAAAAAAwRmJAfwFLQAAAAAAEXXdAT8gxQAAAAAD/CIVA0NgWQAAAAAB/G41A2ur0PwAAAAAb0pNAPMi5PwAAAABHHJlAK7d5PwAAAAD37JxAguz6PgAAAADEOp9AeqxqtAAAAAAAAKBAkez6vgAAAADEOp9AMrd5vwAAAAD37JxAQMi5vwAAAABGHJlA3ur0vwAAAAAb0pNA1NgWwAAAAAB+G41AU8gxwAAAAAD+CIVAfwFLwAAAAAAFXXdAMEZiwAAAAAAwRmJABV13wAAAAAB/AUtA/wiFwAAAAABPyDFAgBuNwAAAAADQ2BZAHNKTwAAAAADU6vQ/RxyZwAAAAABAyLk/9+ycwAAAAAAxt3k/xDqfwAAAAAB87Po+AACgwAAAAAB6rOq0xDqfwAAAAACZ7Pq+9+ycwAAAAABAt3m/RhyZwAAAAABGyLm/G9KTwAAAAADa6vS/fhuNwAAAAADT2BbA/giFwAAAAABSyDHAAl13wAAAAACCAUvALUZiwAAAAAAyRmLAgAFLwAAAAAAEXXfATMgxwAAAAAAACYXA0dgWwAAAAAB/G43Azur0vwAAAAAd0pPAOMi5vwAAAABHHJnAOLd5vwAAAAD37JzAYOz6vgAAAADEOp/A3QqAMwAAAAAAAKDAtOz6PgAAAADEOp/AOrd5PwAAAAD37JzATMi5PwAAAABGHJnA4ur0PwAAAAAa0pPA0tgWQAAAAAB/G43AVMgxQAAAAAD9CIXAgAFLQAAAAAAEXXfANUZiQAAAAAArRmLABl13QAAAAAB9AUvA/wiFQAAAAABSyDHAgBuNQAAAAADO2BbAG9KTQAAAAADa6vS/SByZQAAAAAAyyLm/9+ycQAAAAAArt3m/xTqfQAAAAABF7Pq+AACgQAAAAAB6rGo1")
+}]
+
+[node name="AreaTriggerControl" type="Node3D"]
+script = ExtResource("1_cn0ul")
+LineColor = Color(1, 0, 1, 1)
+UseFullCircle = true
+SegmentThickness = 0.25
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_tr7xv")
+
+[node name="RadiusCircle" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_4d1ok")

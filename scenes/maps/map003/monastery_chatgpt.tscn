@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://cegpm8r7pj11x"]
+
+[node name="Monastery" type="Node3D"]
+
+[node name="Atrium" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Atrium"]
+size = Vector3(60, 1, 60)
+
+[node name="Walls" type="Node3D" parent="Atrium"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -29.5)
+size = Vector3(60, 8, 1)
+
+[node name="Wall_South" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 29.5)
+size = Vector3(60, 8, 1)
+
+[node name="Wall_West" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 4, 0)
+size = Vector3(1, 8, 60)
+
+[node name="Wall_East" type="CSGBox3D" parent="Atrium/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 4, 0)
+size = Vector3(1, 8, 60)
+
+[node name="Wing_South_Entrance" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
+
+[node name="Floor" type="CSGBox3D" parent="Wing_South_Entrance"]
+size = Vector3(40, 1, 30)
+
+[node name="Walls" type="Node3D" parent="Wing_South_Entrance"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Wing_South_Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -14.5)
+size = Vector3(40, 8, 1)
+
+[node name="Wall_South" type="CSGBox3D" parent="Wing_South_Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 14.5)
+size = Vector3(40, 8, 1)
+
+[node name="Wall_West" type="CSGBox3D" parent="Wing_South_Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 4, 0)
+size = Vector3(1, 8, 30)
+
+[node name="Wall_East" type="CSGBox3D" parent="Wing_South_Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 4, 0)
+size = Vector3(1, 8, 30)
+
+[node name="Wing_North" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -55)
+
+[node name="Floor" type="CSGBox3D" parent="Wing_North"]
+size = Vector3(40, 1, 50)
+
+[node name="Walls" type="Node3D" parent="Wing_North"]
+
+[node name="Wall_North" type="CSGBox3D" parent="Wing_North/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -24.5)
+size = Vector3(40, 8, 1)
+
+[node name="Wall_South" type="CSGBox3D" parent="Wing_North/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 24.5)
+size = Vector3(40, 8, 1)
+
+[node name="Wall_West" type="CSGBox3D" parent="Wing_North/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 4, 0)
+size = Vector3(1, 8, 50)
+
+[node name="Wall_East" type="CSGBox3D" parent="Wing_North/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 4, 0)
+size = Vector3(1, 8, 50)
+
+[node name="Wing_East" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, 0)
+
+[node name="Floor" type="CSGBox3D" parent="Wing_East"]
+size = Vector3(50, 1, 40)
+
+[node name="Walls" type="Node3D" parent="Wing_East"]
+
+[node name="Wall_East" type="CSGBox3D" parent="Wing_East/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 4, 0)
+size = Vector3(1, 8, 40)
+
+[node name="Wall_West" type="CSGBox3D" parent="Wing_East/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 4, 0)
+size = Vector3(1, 8, 40)
+
+[node name="Wall_North" type="CSGBox3D" parent="Wing_East/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -19.5)
+size = Vector3(50, 8, 1)
+
+[node name="Wall_South" type="CSGBox3D" parent="Wing_East/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19.5)
+size = Vector3(50, 8, 1)
+
+[node name="Wing_West" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0, 0)
+
+[node name="Floor" type="CSGBox3D" parent="Wing_West"]
+size = Vector3(50, 1, 40)
+
+[node name="Walls" type="Node3D" parent="Wing_West"]
+
+[node name="Wall_West" type="CSGBox3D" parent="Wing_West/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 4, 0)
+size = Vector3(1, 8, 40)
+
+[node name="Wall_East" type="CSGBox3D" parent="Wing_West/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 4, 0)
+size = Vector3(1, 8, 40)
+
+[node name="Wall_North" type="CSGBox3D" parent="Wing_West/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -19.5)
+size = Vector3(50, 8, 1)
+
+[node name="Wall_South" type="CSGBox3D" parent="Wing_West/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 19.5)
+size = Vector3(50, 8, 1)
